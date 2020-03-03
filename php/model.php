@@ -4,8 +4,7 @@
 $TPL['results'];
 $TPL['error'];
 $TPL['success'];
-
-
+//DID THIS WORK?
 
 /**
  * Function that inserts a new field into the phonebook Database
@@ -24,7 +23,6 @@ function insert($conn, $first_name, $last_name, $email, $phone)
     }
 
 }
-
 
 /**
  * Function that takes the arg of the the connection from the app.config.php
@@ -91,7 +89,3 @@ function sortBy($conn, $field, $order)
     return ($TPL['results']);
 
 }
-
-
-
-

@@ -1,21 +1,9 @@
 <?php
 
-// turn off notices, warnings, deprecated errors
-// error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
-
-/* DB header info */
-// $user = 'root';
-// $password = 'root';
-// $db = '000759190';
-// $host = 'localhost';
-// $port = 8888;
-
-//new PHP Data Object //This allows PHP to interact with a database
-
+$host = 'ecbiz126.inmotionhosting.com';
+$database = 'italkt5_rmhcsco';
 $user = 'italkt5_cove8';
 $pass = 'Cove_8Cove_8';
-
-// $dbh = new PDO('mysql:host=localhost;dbname=test', $user, $pass);
 
 try
 {

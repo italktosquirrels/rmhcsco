@@ -1,0 +1,17 @@
+Ward ID     Ward Name                   Ward Colour
+-------     ---------                   -----------
+1           Chedoke-Cootes
+2           Downtown
+3           Hamilton Centre
+4           East Hamilton
+5           Redhill
+6           East Mountain
+7           Central Mountain
+8           West/Central Mountain 
+9           Upper Stoney Creek
+10          Lower Stoney Creek
+11          Glanbrook
+12          Ancaster Area
+13          Dundas Area        
+14          West Mountain
+15          Flamborough East

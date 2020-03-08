@@ -12,17 +12,16 @@
 
 //new PHP Data Object //This allows PHP to interact with a database
 
-$DB['server'] = 'localhost';
-$DB['port'] = '8888';
-$DB['database'] = '000759190';
-$DB['username'] = 'root';
-$DB['password'] = 'root';
+$DB['server'] = 'ecbiz126.inmotionhosting.com';
+// $DB['port'] = '8888';
+$DB['database'] = 'italkt5_rmhcsco';
+$DB['username'] = 'italkt5_cove8';
+$DB['password'] = 'Cove_8Cove_8';
 
 try
 {
-    $conn = new PDO("mysql:host=" . $DB['server'] . ";dbname=" . $DB['database'] . ";port=" . $DB['port'],
-        $DB['username'],
-        $DB['password']);
+    echo "HELLO";
+    $conn = new PDO("mysql:host=" . $DB['server'] . ";dbname=" . $DB['database'] . $DB['username'], $DB['password']);
 
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

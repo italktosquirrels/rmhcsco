@@ -1,0 +1,10 @@
+/* Remove bottom margin from title */
+.wysPageContent.pageTitle {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+/* Adds Margin to Volunteer Section */
+.volunteerDonation.volunteer {
+    margin-top: 50px;
+}

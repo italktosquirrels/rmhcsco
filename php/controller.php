@@ -1,9 +1,9 @@
 <?php
 //Include Database Connection
-include 'app.config.php';
+include 'config.php';
 
 //Include Fucntions and Database Logic
-include 'app.model.php';
+include 'model.php';
 
 //GLOBAL VARIABLES
 $TPL['input_error'] = null;
@@ -13,7 +13,7 @@ $id = null;
 $TPL['deleteID'];
 
 //Stores propgate function (SELECT ALL) in the TPL variable
-$TPL['results'] = propagateTable($conn);
+$TPL['results'] = getData($conn);
 
 $TPL['controller'] = $_SERVER['PHP_SELF'];
 
@@ -59,7 +59,7 @@ switch ($_REQUEST['act']) {
                     $TPL['error'] = $message;
                 }
 
-                $TPL['results'] = propagateTable($conn);
+                $TPL['results'] = getData($conn);
             }
         }
 

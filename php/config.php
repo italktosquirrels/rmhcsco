@@ -12,22 +12,25 @@
 
 //new PHP Data Object //This allows PHP to interact with a database
 
-$DB['server'] = 'ecbiz126.inmotionhosting.com';
-// $DB['port'] = '8888';
-$DB['database'] = 'italkt5_rmhcsco';
-$DB['username'] = 'italkt5_cove8';
-$DB['password'] = 'Cove_8Cove_8';
+$user = 'italkt5_cove8';
+$pass = 'Cove_8Cove_8';
+
+// $dbh = new PDO('mysql:host=localhost;dbname=test', $user, $pass);
 
 try
 {
-    echo "HELLO";
-    $conn = new PDO("mysql:host=" . $DB['server'] . ";dbname=" . $DB['database'] . $DB['username'], $DB['password']);
+    // echo "HELLO";
+    $conn = new PDO('mysql:host=ecbiz126.inmotionhosting.com;dbname=italkt5_rmhcsco', $user, $pass);
+
+    // $conn = new PDO("mysql:host=" . $DB['server'] . ";dbname=" . $DB['database'] . "," . $DB['username'], $DB['password']);
 
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // have my fetch data returned as an associative array
     $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    echo "Success";
 
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();

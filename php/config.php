@@ -4,6 +4,7 @@ $DB['server'] = 'ecbiz126.inmotionhosting.com';
 $DB['database'] = 'italkt5_rmhcsco';
 $DB['username'] = 'italkt5_cove8';
 $DB['password'] = 'Cove_8Cove_8';
+//test
 
 try
 {

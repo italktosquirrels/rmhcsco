@@ -1,10 +1,125 @@
 /* Remove bottom margin from title */
-.wysPageContent.pageTitle {
+.wysPageContent.removeBottom {
     margin-bottom: 0px;
     padding-bottom: 0px;
+}
+
+.introInfo.removeTop {
+    padding-top: 0px;
+    /* margin-top: 0px; */
 }
 
 /* Adds Margin to Volunteer Section */
 .volunteerDonation.volunteer {
     margin-top: 50px;
+}
+
+/* ******************************
+    HAPPY WHEELS CART PAGE
+******************************* */
+
+section.heroSecondary h1 {
+    font-size: 4.188em;
+}
+
+/* DONATE - STYLING */
+.donate {
+    text-align: center;
+
+    font-family: 'Futura Bold';
+    font-size: 1.6em;
+
+    width: 50%;
+    margin: 0px auto 50px auto;
+}
+
+.donate a {
+    color: #dc1d00;
+    text-decoration: underline;
+}
+
+/* LIVE MAP - PADDING */
+.live_map {
+    padding: 25px 0px;
+}
+
+
+figcaption.map_tag {
+    background: #ffca07;
+    color: #3c3c3b;
+    display: inline-block;
+    font-family: 'Futura Bold';
+    font-size: 1.250em;
+    line-height: 1;
+    letter-spacing: -0.010em;
+    right: -6px;
+    padding: 5px 9px;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+/* DONATIONS CAR - HWC MAIN PAGE */
+.donationsBar_hwc ul {
+    list-style: none;
+    background-color: #618ecc;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+
+}
+
+.donationsBar_hwc li {
+    display: inline-block;
+    width: 33%;
+    font-family: 'Futura Bold';
+    color: #fff;
+    font-size: 0.813em;
+    /* line-height: 40px; */
+    height: 20px;
+}
+
+.donationsBar_hwc h1 span {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 2px solid #ffca07;
+}
+
+/* ******************************
+    HWC - LIVE MAP PAGE
+******************************* */
+
+
+.wysPageContent.headerPadding {
+    padding-top: 75px;
+}
+
+/* DONATIONS CAR - MAP PAGE */
+.donationsBar {
+    width: 100%;
+}
+
+.donationsBar ul {
+    list-style: none;
+    background-color: #353534;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.donationsBar li {
+    display: inline-block;
+    width: 33%;
+    font-family: 'Futura Bold';
+    color: #fff;
+    font-size: 0.813em;
+    /* line-height: 40px; */
+    height: 20px;
+}
+
+.donationsBar h1 span {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 2px solid #ffca07;
 }

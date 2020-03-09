@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Donate | Ronald McDonald House Charities South Central Ontario</title>
+    <title>HWC Donations Map | Ronald McDonald House Charities South Central Ontario</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -16,7 +16,18 @@
     <link rel="shortcut icon" href="/favicon.ico?v=ngJBLm96xn">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css?v=1.15">
-    <link rel="canonical" href="hwc_donate.html.html">
+    <link rel="stylesheet" href="css/cove8.css" />
+    <link rel="canonical" href="hwc_map.html">
+
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 700px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+    </style>
 </head>
 
 <body>
@@ -47,139 +58,94 @@
                         <a title="Watch our YouTube Channel" class="youtube social" target="_blank" onclick="trackOutboundLink('https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/');" href="https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/">Watch our YouTube Channel</a>
                     </li>
                     <li><a class="bgYellow txtColBrown navLink center" href="http://rmhcsco.velocitystudio.com/volunteer/benefits">Volunteer</a></li>
-                    <li><a class="bgRed txtColWhite navLink center" href="donations.html">Donate</a></li>
+                    <li><a class="bgRed txtColWhite navLink center" href="hwc_donate.html">Donate Now</a></li>
                 </ul>
             </div>
         </div>
-        <div class="wrapper">
-            <button class="burger burgerStyle"><span>Menu</span></button>
-            <a class="logo" href="http://rmhcsco.velocitystudio.com/">Ronald McDonald House Charities - South Central Ontario</a>
-            <nav>
-                <ul class="topper">
-                    <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/how-we-help">About Us<i></i></a>
-                        <div class="miningMenu">
-                            <ul>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/how-we-help">How We Help</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/our-staff">Our Staff</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/our-families">Our Families</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/board-of-directors">Board of Directors</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/reports">Reports</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/career-opportunities">Career Opportunities</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/how-can-i-stay-here">Staying With Us<i></i></a>
-                        <div class="miningMenu">
-                            <ul>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/how-can-i-stay-here">How Can I Stay Here?</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/what-you-should-know">What You Should Know</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/family-services">Family Services</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/house-facilities">House Facilities</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/house-tour">House Tour</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help">Ways To Help<i></i></a>
-                        <div class="miningMenu">
-                            <ul>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/donate">Make A Donation</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/meals-that-heal">Meals That Heal</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/monthly-planned-and-sustainable-giving">Monthly, Planned, & Sustainable Giving</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/community-involvement-and-events">Community Involvement & Events</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/corporate-partnerships">Corporate Partnerships</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/donate-a-car-canada">Donate A Car Canada</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/fundscrip">Fundscrip</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/online-wishlist">Online Wishlist</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/host-a-gift-card-drive">Host A Gift Card Drive</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/benefits">Volunteer<i></i></a>
-                        <div class="miningMenu">
-                            <ul>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/benefits">Benefits</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/individual-volunteer-opportunities">Individual Volunteer Opportunities</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/group-volunteer-opportunities">Group Volunteer Opportunities</a></li>
-                                <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/apply-today">Apply Today</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a class="" href="http://rmhcsco.velocitystudio.com/our-family-rooms">Our Family Rooms</a></li>
-                    <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/our-families">Our Families</a></li>
-                </ul>
-            </nav>
-            <!--     
-      <nav>
-        <ul>
-          <li>
-            <a href="">About Us</a>
 
-            <div class="miningMenu">
-              <ul>
-                <li>
-                  <a class="" href="https://www.mikesuper.com/tv-appearances/nbcs-phenomenon">NBC's Phenomenon</a>
-                </li><li>
-                  <a class="" href="https://www.mikesuper.com/tv-appearances/nbcs-americas-got-talent">NBC's America's Got Talent</a>
-                </li><li>
-                  <a class="" href="https://www.mikesuper.com/tv-appearances/ellen">Ellen</a>
-                </li><li>
-                  <a class="" href="https://www.mikesuper.com/tv-appearances/penn-and-teller-fool-us">Penn &amp; Teller Fool Us</a>
-                </li>
-              </ul>
-            </div>
-          </li><li>
-            <a href="">Staying with Us</a>
-          </li><li>
-            <a href="">Ways to Help</a>
-          </li><li>
-            <a href="">Volunteer</a>  
-          </li><li>
-            <a href="">Our Family Room</a>   
-          </li><li>
-            <a href="">Our Families</a>          
-          </li>
-        </ul>
-      </nav>
-      -->
-        </div>
     </header>
-    <section class="heroContainer headerFixed heroSecondary">
-        <img src="img/hero-ways-to-help.jpg">
-        <div class="wrapper">
-            <div class="pageHolder">
-                <h1>
-                    <span>Happy Wheels Cart</span> Donate </h1>
 
-                <ul class="breadcrumbs">
-                    <li>
-                        <a class="" href="http://rmhcsco.velocitystudio.com/">Home</a>
-                        <a class="" href="donations.html"> / Donate</a>
-                        <a class="" href="happywheelscart.html"> / Happy Wheels Cart</a>
-                    </li>
-                    <li>Donate to Happy Wheels</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <section class="subNav">
-        <ul class="secondaryNav scrollerTime">
-            <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/in-honour-in-memory-donation">In Honour/ In Memory Donation</a></li>
-            <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/corporate-business-donation">Corporate / Business Donation</a></li>
-            <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/individual-general-donation">Individual / General Donation</a></li>
-            <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/become-a-monthly-donor">Become A Monthly Donor</a></li>
-        </ul>
-    </section>
     <!-- COVE 8 MAIN CONTENT -->
+    <!-- MAIN HEADER -->
     <section>
         <div class="wrapper">
-            <div class="wysPageContent">
-                <h2 style="text-align: center;">Make A Donation</h2>
-                <p class="introParagraph" style="text-align: center;">Thank you for supporting Ronald McDonald House Charities<sup><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif">&reg;</span></span></span></sup> South Central Ontario (RMHC<sup><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif">&reg;</span></span></span></sup>SCO) and the families we serve. Please select the type of gift you would like to make below.</p>
+            <div class="wysPageContent headerPadding">
+                <h2 style="text-align: center;">Happy Wheels Cart Live Map</h2>
+                <p class="introParagraph" style="text-align: center;">Donate to watch The Happy Wheels Cart travel across Hamilton, collecting donations and filling families with hope along the way.</p>
+                <ul class="share horizontal">
+                    <li><a class="facebook" href="http://www.facebook.com/sharer/sharer.php?u={FACEBOOKSHAREURL}" target="_blank">Share with Facebook</a></li>
+                    <li class="text"><span>Share</span></li>
+                </ul>
                 <hr class="gold" />
-
             </div>
         </div>
-    </section> <!-- VOLUNTEER / DONATION -->
+    </section>
+    <!-- </section -->
+    <!-- LIVE MAP -->
+    <section>
+        <div class="donationsBar">
+            <ul>
+                <li>
+                    <h1><span>$21, 342</span></h1>
+                </li>
+                <li>
+                    <h1><span>West Mountain</span></h1>
+                </li>
+                <li>
+                    <h1><span>211</span></h1>
+                </li>
+            </ul>
+            <ul>
+                <li>Total Happy Wheels Donations</li>
+                <li>Top Ranking District</li>
+                <li>Total Famalies Helped</li>
+            </ul>
+        </div>
+        <div id="map"></div>
+        <script>
+            // Initialize and add the map
+            function initMap() {
+                // The location of Uluru
+                var uluru = {
+                    lat: -25.344,
+                    lng: 131.036
+                };
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {
+                        zoom: 4,
+                        center: uluru
+                    });
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }
+        </script>
+        <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&callback=initMap">
+        </script>
+        <div class="wysPageContent">
+            <ul class="share horizontal">
+                <li><a class="facebook" href="http://www.facebook.com/sharer/sharer.php?u={FACEBOOKSHAREURL}" target="_blank">Share with Facebook</a></li>
+                <li class="text"><span>Share</span></li>
+            </ul>
+            <hr class="gold" />
+        </div>
+
+    </section>
+    <!-- </section> -->
+
+    <!-- COVE 8 END -->
+    <!-- COVE 8 END -->
+    <!-- COVE 8 END -->
+
+    <!-- VOLUNTEER / DONATION -->
     <section class="volunteerDonation">
         <div class="wrapper">
             <ul>
@@ -192,7 +158,7 @@
                         <p>your support can</p>
                         <h5>Keep Families Close</h5>
                         <p>
-                            <img class="arrowChalk" src="/img/arrow-left-chalk.svg"><img class="arrowChalk" src="/img/arrow-right-chalk.svg">
+                            <img class="arrowChalk" src="img/arrow-left-chalk.svg"><img class="arrowChalk" src="img/arrow-right-chalk.svg">
                         </p>
                     </div>
                 </li>
@@ -330,7 +296,7 @@
                 </li>
             </ul>
             <div class="copyrightAuthor clearfix">
-                <p class="photo"><img src="/css/images/logo-house-rmhcswo.svg"></p>
+                <p class="photo"><img src="css/images/logo-house-rmhcswo.svg"></p>
                 <div class="details">
                     <small>&copy; 2019 McDonald's<br>
                         The following trademarks used herein are owned by McDonald's Corporation and its affiliates; McDonald's, Ronald McDonald House Charities, Ronald McDonald House Charities Logo, RMHC, Ronald McDonald House, Ronald McDonald Family Room, and Ronald McDonald Care Mobile<br>Charitable Registration #13277 9836 RR0001</small>
@@ -347,8 +313,8 @@
     <script src="/js/plugins.js"></script>
     <script src="/js/main.js?v=1.4"></script>
     <script src="/js/vendor/jquery.fancybox.min.js"></script>
-    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
     <script type="text/javascript" src="/js/vendor/swiper.min.js"></script>
     <script>
         $(document).ready(function () {});

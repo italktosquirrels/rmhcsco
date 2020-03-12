@@ -1,9 +1,10 @@
 <?php
-  if(!empty($_GET['tid'] && !empty($_GET['product']))) {
+  if(!empty($_GET['tid'] && !empty($_GET['product'] && !empty($_GET['name'])))) {
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
 
     $tid = $GET['tid'];
     $product = $GET['product'];
+    $name = $GET['name'];
   } else {
     header('Location: index.html');
   }
@@ -20,7 +21,7 @@
 </head>
 <body>
   <div class="container mt-4">
-    <h2>Thank you for purchasing <?php echo $product; ?></h2>
+    <h2>Thank you for <?php $name ?>, purchasing <?php echo $product; ?></h2>
     <hr>
     <p>Your transaction ID is <?php echo $tid; ?></p>
     <p>Check your email for more info</p>

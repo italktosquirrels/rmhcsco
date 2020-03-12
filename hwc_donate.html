@@ -186,13 +186,13 @@
         </div>
         <!-- STRIPE FORM -->
         <div class="container">
-            <h2 class="my-4 text-center">Ronald McDonald House Charities - South Central Ontario</h2>
-            <form action="./charge.php" method="post" id="payment-form">
+            <h2 class="my-4 text-center">RMHCSCO</h2>
+            <form action="php/charge.php" method="post" id="payment-form">
               <div class="form-row">
                <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
                <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name">
                <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address">
-               <input type="number " name="amount" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Donation amount in CAD">
+               <input type="number " name="amount" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Donation amount">
                 <div id="card-element" class="form-control">
                   <!-- a Stripe Element will be inserted here. -->
                 </div>
@@ -428,7 +428,7 @@
     <script src="js/stripe/example5.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="./js/stripe/charge.js"></script>
+    <script src="js/stripe/charge.js"></script>
 </body>
 
 </html>

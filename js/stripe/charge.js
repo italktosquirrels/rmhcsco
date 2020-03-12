@@ -1,9 +1,15 @@
-
+// Ward Array
+wardsList =["Chedoke-Cootes", "Downtown", "Hamilton Centre", "East Hamilton", "Redhill", "East Mountain", "Central Mountain", "West/Central Mountain", "Upper Stoney Creek ", "Lower Stoney Creek", "Glanbrook", "Ancaster Area", "Dundas Area", "West Mountain", "Flamborough East"]
 // Create a Stripe client
 var stripe = Stripe('pk_test_JtV6ynbFKItsc8Ifu0OmRApw00aOLVqMbL');
-
 // Create an instance of Elements
 var elements = stripe.elements();
+
+wardsList.forEach(function (item){
+  $("#dropdown").append("<option value='" + item + "'>" + item +"</option");
+});
+
+
 
 // Custom styling can be passed to options when creating an Element.
 // (Note that this demo uses a wider set of styles than the guide below.)

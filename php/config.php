@@ -1,14 +1,19 @@
 <?php
 
+/**
+ * COVE 8 Copyright 2020
+ * All Work has been produced by Cove 8
+ * 
+ * This file establishes a connection to the database
+ */
+
 $DB['server'] = 'ecbiz126.inmotionhosting.com';
 $DB['database'] = 'italkt5_rmhcsco';
 $DB['username'] = 'italkt5_cove8';
 $DB['password'] = 'Cove_8Cove_8';
-//test
 
 try
 {
-
     $conn = new PDO("mysql:host=" . $DB['server'] . ";dbname=" . $DB['database'], $DB['username'], $DB['password']);
 
     // set the PDO error mode to exception

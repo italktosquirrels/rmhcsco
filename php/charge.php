@@ -1,7 +1,7 @@
 
 <?php
-
-require_once('vendor\autoload.php');
+require_once('stripe-php/init.php');
+// require_once('vendor\autoload.php');
 //   require_once('config/db.php');
 //   require_once('lib/pdo_db.php');
 //   require_once('models/Customer.php');

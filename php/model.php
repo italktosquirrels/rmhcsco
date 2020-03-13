@@ -78,7 +78,7 @@ function getTotal($conn)
 function insert($conn, $amount, $date_time, $ward_id)
 {
     try {
-        $stmt = $conn->prepare("INSERT INTO Donation (Amount, Date/Time, Ward_ID) VALUES (?,?,?);");
+        $stmt = $conn->prepare("INSERT INTO Donation (Amount, Date_Time, Ward_ID) VALUES (?,?,?);");
         $stmt->execute([$amount, $date_time, $email, $ward_id]);
         return $success = "One Record Was Successfully Inserted";
 

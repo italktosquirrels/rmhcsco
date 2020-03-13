@@ -1,37 +1,22 @@
 // Loads when document when ready
 $(document).ready(function () {
 
+    console.log("PAGE LOADED")
     // AJAX CALL - For Metrics Bars
-    $('metricsBar').load("controller.php", {
-        Amount: "",
-        DateTime: "",
-        Ward: ""
-    })
-
-    // AJAX CALL - When Donation Made
-    $('donateButton').click(function () {
-        $('').load("controller.php", {
-            Amount: "",
-            DateTime: "",
-            Ward: ""
-        })
-    })
-
-
-    /**
-     * FACEBOOK FUNCTION
-     */
-
-    $(".facebook").click(function () {
-        alert("Handler for .click() called.");
+    $.ajax({
+        url: '../php/controller.php',
+        data: {
+            action: 'total_by_ward'
+        },
+        type: 'post',
+        success: function (output) {
+            alert(output);
+            console.log("success")
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Status: " + textStatus);
+            alert("Error: " + errorThrown);
+        }
     });
-
-    $.getJSON("facebook.php", function (json) {
-        console.log("JSON Data: " + json);
-    });
-
-
-
-
 
 });

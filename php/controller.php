@@ -28,10 +28,8 @@ print_r($TPL['results']);
 json_encode($TPL['results']);
 
 /**
- * POST DATA RETREIVED WHEN DONATION MADE
+ * SWITCH CASE FOR AJAX CALLS
  */
-
-$TPL['post'] = json_decode($_POST['donation']);
 
 if (isset($_POST['action']) && !empty($_POST['action'])) {
     $action = $_POST['action'];
@@ -41,10 +39,14 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
             break;
 
         case 'total_by_ward':
+            $TPL['totalByWard'] = getTotalByWard($conn);
+            print_r($TPL['totalByWard']);
+            json_encode($TPL['totalByWard']);
 
             break;
 
-        case '':
+        case 'total':
+            getTotal($conn);
             break;
 
     }

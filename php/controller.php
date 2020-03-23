@@ -13,20 +13,6 @@ include 'config.php';
 //Fucntions and Database Logic
 include 'model.php';
 
-//GLOBAL VARIABLES
-
-/**
- * LOADS DATA FROM DATABSE / ENCODES TO JSON
- */
-
-//Gets Database Results
-$TPL['results'] = getTotalByWard($conn);
-
-print_r($TPL['results']);
-
-//Encodes Results to JSON Object
-json_encode($TPL['results']);
-
 /**
  * SWITCH CASE FOR AJAX CALLS
  */
@@ -40,14 +26,13 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
 
         case 'total_by_ward':
             $data['totalByWard'] = getTotalByWard($conn);
-            // print_r($TPL['totalByWard']);
             echo json_encode($data);
 
             break;
 
-        case 'total':
-            getTotal($conn);
-            break;
+        // case 'total':
+        //     getTotal($conn);
+        //     break;
 
     }
 }

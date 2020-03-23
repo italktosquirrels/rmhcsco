@@ -9,9 +9,10 @@ $(document).ready(function () {
         data: {
             action: 'total_by_ward'
         },
-        dataType: 'text',
+        dataType: 'json',
         success: function (data) {
             console.log(data);
+            // console.log(data.totalByWard);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);

@@ -1,9 +1,6 @@
 <?php
 
 //Gloabal Variable
-$TPL['results'];
-$TPL['error'];
-$TPL['success'];
 
 /**
  * Function that inserts a new field into the phonebook Database
@@ -15,7 +12,7 @@ function getTotalByWard($conn)
     try
     {
         // build the select query
-        $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Total By Ward', w.Ward_ID, w.Ward_Name
+        $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Total', w.Ward_ID, w.Ward_Name
                                 FROM Donation d
                                 JOIN Ward w ON d.Ward_ID = w.Ward_ID
                                 GROUP BY Ward_ID
@@ -59,7 +56,6 @@ function getTotal($conn)
         while ($nextRow = $stmt->fetch()) {
             $TPL['results'][] = $nextRow;
         }
-        // print_r($TPL['results']);
 
     } catch (PDOException $e) {
         // echo "Select failed: " . $e->getMessage();

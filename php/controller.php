@@ -39,9 +39,9 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
             break;
 
         case 'total_by_ward':
-            $TPL['totalByWard'] = getTotalByWard($conn);
-            print_r($TPL['totalByWard']);
-            json_encode($TPL['totalByWard']);
+            $data['totalByWard'] = getTotalByWard($conn);
+            // print_r($TPL['totalByWard']);
+            echo json_encode($data);
 
             break;
 

@@ -1,13 +1,37 @@
+
 // Ward Array
 wardsList =["Chedoke-Cootes", "Downtown", "Hamilton Centre", "East Hamilton", "Redhill", "East Mountain", "Central Mountain", "West/Central Mountain", "Upper Stoney Creek ", "Lower Stoney Creek", "Glanbrook", "Ancaster Area", "Dundas Area", "West Mountain", "Flamborough East"]
 // Create a Stripe client
 var stripe = Stripe('pk_test_JtV6ynbFKItsc8Ifu0OmRApw00aOLVqMbL');
 // Create an instance of Elements
 var elements = stripe.elements();
+//Add wards to dropdown menu
 
+$(document).ready(function(){
+  //Process button value
+    $('#amountButtons').click(function(e){
+      radioChecked = $('input[name="radioAmount"]:checked').val();
+
+      if (radioChecked == "other"){
+        $('#inputAmount').css("visibility", "visible");
+        amount = $('#inputAmount').val();
+        $('input[name=amount]').val(amount);
+      } else {
+        $('#inputAmount').css("visibility", "hidden").val("");
+        console.log(radioChecked);
+        $('input[name=amount]').val(radioChecked);
+       
+      }
+    });
+
+   
+  });
+  
 wardsList.forEach(function (item){
   $("#dropdown").append("<option value='" + item + "'>" + item +"</option");
 });
+
+
 
 
 

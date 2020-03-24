@@ -187,13 +187,30 @@
         <!-- STRIPE FORM -->
         <div class="container">
             <h2 class="my-4 text-center">RMHCSCO</h2>
+            <div id="amountButtons">
+                <input type="radio" name="radioAmount" value="5" />
+                <label for="donationAmount">5</label>
+                <input type="radio" name="radioAmount" value="10" />
+                <label for="donationAmount">10</label>
+                <input type="radio" name="radioAmount" value="15" />
+                <label for="donationAmount">15</label>
+                <input type="radio" name="radioAmount" value="20" />
+                <label for="donationAmount">20</label>
+                <input type="radio" name="radioAmount" value="30" />
+                <label for="donationAmount">30</label>
+                <input type="radio" name="radioAmount" value="other" />
+                <label for="donationAmount">Other</label>
+                <input id="inputAmount" style="visibility: hidden;" type="number" />
+          </div>
             <form action="php/charge.php" method="post" id="payment-form">
               <div class="form-row">
                <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
                <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name">
                <select id="dropdown" name="ward" class="form-control mb-3"></select>
                <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address">
-               <input type="number " name="amount" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Donation amount"> 
+                <input id="donationAmount" name="amount" type="hidden" />
+                <!-- <input type="number" name="amount" type="number" placeholder="Other" /> -->
+               
                <div id="card-element" class="form-control">
                   <!-- a Stripe Element will be inserted here. -->
                 </div>

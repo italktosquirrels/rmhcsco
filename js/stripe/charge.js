@@ -1,17 +1,36 @@
-
 // Ward Array
-wardsList =["Chedoke-Cootes", "Downtown", "Hamilton Centre", "East Hamilton", "Redhill", "East Mountain", "Central Mountain", "West/Central Mountain", "Upper Stoney Creek ", "Lower Stoney Creek", "Glanbrook", "Ancaster Area", "Dundas Area", "West Mountain", "Flamborough East"]
+wardsList ={
+  "Chedoke-Cootes" :1,
+  "Downtown":2,
+  "Hamilton Centre" :3,
+  "East Hamilton" :4,
+  "Redhill" :5,
+  "East Mountain" :6,
+  "Central Mountain":7,
+  "West/Central Mountain" :8,
+  "Upper Stoney Creek" :9, 
+  "Lower Stoney Creek":10,
+  "Glanbrook" :11,
+  "Ancaster Area" :12, 
+  "Dundas Area" :13,
+ "West Mountain" :14,
+  "Flamborough East" :15}
+
 // Create a Stripe client
 var stripe = Stripe('pk_test_JtV6ynbFKItsc8Ifu0OmRApw00aOLVqMbL');
 // Create an instance of Elements
 var elements = stripe.elements();
+
 //Add wards to dropdown menu
+$.each(wardsList, function(key, value) {
+  $("#dropdown").append("<option value='" + value + "'>" + key +"</option");
+});
 
 $(document).ready(function(){
+
   //Process button value
     $('#amountButtons').click(function(e){
       radioChecked = $('input[name="radioAmount"]:checked').val();
-
       if (radioChecked == "other"){
         $('#inputAmount').css("visibility", "visible");
         amount = $('#inputAmount').val();
@@ -19,21 +38,11 @@ $(document).ready(function(){
       } else {
         $('#inputAmount').css("visibility", "hidden").val("");
         console.log(radioChecked);
-        $('input[name=amount]').val(radioChecked);
-       
+        $('input[name=amount]').val(radioChecked);  
       }
     });
-
-   
   });
   
-wardsList.forEach(function (item){
-  $("#dropdown").append("<option value='" + item + "'>" + item +"</option");
-});
-
-
-
-
 
 // Custom styling can be passed to options when creating an Element.
 // (Note that this demo uses a wider set of styles than the guide below.)

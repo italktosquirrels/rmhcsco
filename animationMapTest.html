@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+    author @ elizabeth southward
+    last revised mar 25 2020
+
+    simple google map with hamilton ward boundaries and ward selector.
+    when donate button is pushed, animation script draws route from ward to RMHCSCO.
+-->
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Animation Map</title>
+   
+      <link rel="stylesheet" type="text/css" href="css/mapTestStyle.css">
+    
+      <script type="text/javascript"
+    src="https://maps.google.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&sensor=false"></script>
+    <script type ="text/javascript" src="js/geoCode.js"></script>
+    <script type="text/javascript" src="js/animation.js"></script>
+  
+    </head>
+  <body onload="initialize()">
+    <div id="tools">
+      <h4>Please select your ward</h4>
+        <p></p>
+        <select id="start">
+            <!-- the harcoded values are a center point in the respective ward -->
+            <option value="43.2535809,-79.9048477" id="1">Ward 1</option>
+            <option value="43.2533545,-79.8713059" id="2">Ward 2</option>
+            <option value="43.2513141,-79.8405899" id="3">Ward 3</option>
+            <option value="43.2468749,-79.7992347" id="4">Ward 4</option>
+            <option value="43.228158,-79.7664322"  id="5">Ward 5</option> <!-- needs new lat/long -->
+            <option value="43.2080969,-79.8388357" id="6">Ward 6</option>
+            <option value="43.2138899,-79.8681587" id="7">Ward 7</option>
+            <option value="43.2199659,-79.8928887" id="8">Ward 8</option>
+            <option value="43.1878654,-79.7787937" id="9">Ward 9</option>
+            <option value="43.2226129,-79.7028177" id="10">Ward 10</option>
+            <option value="43.1598979,-79.9272297" id="11">Ward 11</option>
+            <option value="43.2097349,-80.0492837" id="12">Ward 12</option>
+            <option value="43.3211289,-80.0513307" id="13">Ward 13</option>
+            <option value="43.2337239,-79.9187647" id="14">Ward 14</option>
+            <option value="43.3803054,-79.9749105" id="15">Ward 15</option>
+        </select>
+      <div id="error-msg"></div>
+      <button id="start-btn" onclick="setRoutes();">Donate</button>
+      <div id="capture"><p></p></div>
+      </div>
+    <div id="map_canvas" style="width:75%;height:100%;"></div>
+  </body>
+</html>

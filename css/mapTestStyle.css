@@ -1,0 +1,35 @@
+html{
+    height:100%;
+}
+body{
+    background-color: #fff;
+    height: 100%;
+    margin: 0px;
+    font-family: Helvetica,Arial;
+}
+#error-msg{
+    color: red;
+}
+#start-btn{
+    border-radius: 0;
+    border: none;
+    color: white;
+    margin: 20px 0;
+    background-color: blue;
+    height: 30px;
+    width: 70px;
+}
+
+#tools{
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    background-color: cornsilk;
+    text-align: center;
+}
+
+#map_canvas{
+    position: absolute;
+    left: 24%;
+}

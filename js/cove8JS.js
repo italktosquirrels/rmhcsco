@@ -1,23 +1,45 @@
 // Loads when document when ready
 $(document).ready(function () {
 
-    console.log("PAGE LOADED")
-    // AJAX CALL - For Metrics Bars
-    $.ajax({
-        url: './php/controller.php',
-        type: 'post',
-        data: {
-            action: 'total_by_ward'
-        },
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
-            // console.log(data.totalByWard);
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown);
-        }
-    });
+    metricsCall();
+
+    // setInterval(metricsCall, 5000);
+
+    /**
+     * Ajax call to get metrics from database
+     */
+    function metricsCall() {
+        $.ajax({
+            url: './php/controller.php',
+            type: 'post',
+            data: {
+                action: 'metrics'
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $("#top_ward").text(data.totalByWard[0].Ward_Name);
+                console.log(data.totalAmountDonated[0].Total);
+                $("#total_donation_amount").text("$" + data.totalAmountDonated[0].Total + ".00");
+                console.log(data.totalDonations[0].Total);
+                $("#total_donations").text(data.totalDonations[0].Total);
+
+                $.each(data.totalByWard, function (key, value) {
+                    $(".sidebar ul").append('<li>' + data.totalByWard.Ward_Name + '</li>');
+                    console.log(data.totalByWard.Ward_Name);
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("Status: " + textStatus);
+                console.log("Error: " + errorThrown);
+                $("#top_ward").text("Data Not Available");
+                $("#total_donation_amount").text("Data Not Available");
+                $("#total_donations").text("Data Not Available");
+            }
+        });
+
+    }
+
+
 
 });

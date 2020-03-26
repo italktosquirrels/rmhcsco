@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="css/main.css?v=1.15">
     <link rel="stylesheet" href="css/cove8.css" />
     <link rel="canonical" href="hwc_map.html">
-    <script src="/js/cove8JS.js"></script>
 
     <meta property="og:url" content="http://rmhcsco.italktosquirrels.com/hwc_map.html" />
     <meta property="og:type" content="website" />
@@ -26,15 +25,6 @@
     <meta property="og:description" content="The Happy Wheels Cart, stocked with snacks, drinks, toys and activities, travels room to room to provide a much-needed break for parents and children unable to leave their hospital beds. Donate today to help keep families close, room by room." />
     <meta property="og:image" content="img/heart-sketch.svg" />
 
-    <style>
-        /* Set the size of the div element that contains the map */
-        #map {
-            height: 700px;
-            /* The height is 400 pixels */
-            width: 100%;
-            /* The width is the width of the web page */
-        }
-    </style>
 </head>
 
 <body>
@@ -90,25 +80,29 @@
     <!-- </section> -->
     <!-- LIVE MAP -->
     <section>
-        <div class="donationsBar">
-            <ul>
-                <li>
-                    <h1><span>$21, 342</span></h1>
-                </li>
-                <li>
-                    <h1><span>West Mountain</span></h1>
-                </li>
-                <li>
-                    <h1><span>211</span></h1>
-                </li>
-            </ul>
-            <ul>
-                <li>Total Happy Wheels Donations</li>
-                <li>Top Ranking District</li>
-                <li>Total Famalies Helped</li>
-            </ul>
+        <div id="map_wrapper">
+            <div class="donationsBar">
+                <ul>
+                    <li>
+                        <h1><span id="total_donation_amount"></span></h1>
+                    </li>
+                    <li>
+                        <h1><span id="top_ward"></span></h1>
+                    </li>
+                    <li>
+                        <h1><span id="total_donations">211</span></h1>
+                    </li>
+                </ul>
+                <ul>
+                    <li>Total Donated</li>
+                    <li>Top Ranking District</li>
+                    <li>Total Happy Wheels Donations</li>
+                </ul>
+            </div>
+            <div class="sidebar"></div>
+            <ul></ul>
+            <div id="map"></div>
         </div>
-        <div id="map"></div>
         <script>
             // Initialize and add the map
             function initMap() {
@@ -137,7 +131,7 @@
     -->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&callback=initMap">
         </script>
-        <div class="wysPageContent">
+        <div class="wysPageContent" style="margin-top: 70px;">
             <ul class="share horizontal">
                 <li><a class="facebook" href="http://www.facebook.com/sharer/sharer.php?u={FACEBOOKSHAREURL}" target="_blank">Share with Facebook</a></li>
                 <li class="text"><span>Share</span></li>
@@ -312,17 +306,20 @@
             </div>
         </div>
     </footer>
-    <script src="/js/vendor/modernizr-3.7.1.min.js"></script>
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
-        window.jQuery || document.write('<script src="/js/vendor/jquery-3.4.1.min.js"><\/script>')
+        window.jQuery || document.write('<script src="/js/vendor/jquery-3.4.1.min.js"><\/script>');
     </script>
-    <script src="/js/plugins.js"></script>
-    <script src="/js/main.js?v=1.4"></script>
-    <script src="/js/vendor/jquery.fancybox.min.js"></script>
+    <!-- COVE 8 JAVASCRIPT -->
+    <script src="js/cove8JS.js"></script>
+    <!-- END -->
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js?v=1.4"></script>
+    <script src="js/vendor/jquery.fancybox.min.js"></script>
     <link rel="stylesheet" href="css/jquery.fancybox.min.css">
     <link rel="stylesheet" href="css/swiper.min.css">
-    <script type="text/javascript" src="/js/vendor/swiper.min.js"></script>
+    <script type="text/javascript" src="js/vendor/swiper.min.js"></script>
     <script>
         $(document).ready(function () {});
     </script>

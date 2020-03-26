@@ -12,7 +12,7 @@ function getTotalByWard($conn)
     try
     {
         // build the select query
-        $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Total', w.Ward_ID, w.Ward_Name
+        $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Amount', w.Ward_ID, w.Ward_Name
                                 FROM Donation d
                                 JOIN Ward w ON d.Ward_ID = w.Ward_ID
                                 GROUP BY Ward_ID
@@ -48,6 +48,36 @@ function getTotal($conn)
     {
         // build the select query
         $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Total' FROM Donation");
+
+        // execute the query, save reference to results
+        $stmt->execute();
+
+        // grab results of query for as long as results, store in TPL
+        while ($nextRow = $stmt->fetch()) {
+            $TPL['results'][] = $nextRow;
+        }
+
+    } catch (PDOException $e) {
+        // echo "Select failed: " . $e->getMessage();
+        $TPL['error'] = "Select failed: " . $e->getMessage();
+        exit();
+    }
+
+    return $TPL['results'];
+
+}
+
+/**
+ * Function that inserts a new field into the phonebook Database
+ * Returns propgateTable to update view
+ */
+
+function getTotalDonations($conn)
+{
+    try
+    {
+        // build the select query
+        $stmt = $conn->prepare("SELECT COUNT(Donate_ID) AS 'Total' FROM Donation");
 
         // execute the query, save reference to results
         $stmt->execute();

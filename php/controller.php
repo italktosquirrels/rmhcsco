@@ -24,8 +24,10 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
             insert($conn, $amount, $date_time, $ward_id);
             break;
 
-        case 'total_by_ward':
+        case 'metrics':
             $data['totalByWard'] = getTotalByWard($conn);
+            $data['totalAmountDonated'] = getTotal($conn);
+            $data['totalDonations'] = getTotalDonations($conn);
             echo json_encode($data);
 
             break;

@@ -58,7 +58,7 @@ figcaption.map_tag {
     text-transform: uppercase;
 }
 
-/* DONATIONS CAR - HWC MAIN PAGE */
+/* DONATIONS BAR - HWC MAIN PAGE */
 .donationsBar_hwc ul {
     list-style: none;
     background-color: #618ecc;
@@ -96,7 +96,8 @@ figcaption.map_tag {
 
 /* DONATIONS CAR - MAP PAGE */
 .donationsBar {
-    width: 100%;
+    width: 85%;
+    padding-left: 15%;
 }
 
 .donationsBar ul {
@@ -122,4 +123,39 @@ figcaption.map_tag {
     margin: 0 auto;
     text-align: center;
     border-bottom: 2px solid #ffca07;
+}
+
+/* ******************************
+    GOOGLE MAPS CSS
+******************************* */
+
+#map_wrapper {
+    height: 1000px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+}
+
+.donationsBar {
+    background-color: #353534;
+}
+
+/* Creates SideBar with Metrics */
+.sidebar {
+    float: left;
+    height: 100%;
+    width: 15%;
+    background-color: #353534;
+}
+
+/* Set the size of the div element that contains the map */
+#map {
+    float: right;
+    height: 100%;
+    /* The height is 400 pixels */
+    width: 85%;
+    padding: 0;
+    margin-top: -17px;
+    /* The width is the width of the web page */
+    /* float: clear; */
 }

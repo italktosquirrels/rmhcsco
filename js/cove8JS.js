@@ -26,7 +26,7 @@ $(document).ready(function () {
                 $("#total_donations").text(data.totalDonations[0].Total);
 
                 $.each(data.totalByWard, function (key, value) {
-                    $(".sidebar ul").append('<li>' + rank, data.totalByWard[key].Ward_Name, data.totalByWard[key].Amount + '</li>');
+                    $(".sidebar").append('<li>' + rank, data.totalByWard[key].Ward_Name, data.totalByWard[key].Amount + '</li>');
                     console.log(rank, data.totalByWard[key].Ward_Name, data.totalByWard[key].Amount);
                     rank++;
                 });
@@ -41,6 +41,10 @@ $(document).ready(function () {
         });
 
     }
+
+
+
+});
 
 
 

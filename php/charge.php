@@ -1,11 +1,15 @@
 <?php
 
-// include 'php/config.php';
+include 'config.php';
+include 'model.php';
 require_once('../vendor/autoload.php');
 //   require_once('config/db.php');
 //   require_once('lib/pdo_db.php');
 //   require_once('models/Customer.php');
 //   require_once('models/Transaction.php');
+
+// var_dump($_POST);
+// die();
 
 \Stripe\Stripe::setApiKey('sk_test_BJJNoaDhqEnjBFP6vE78QXSa00H2xzeLHO');
 
@@ -18,6 +22,9 @@ require_once('../vendor/autoload.php');
  $amount = $POST['amount'];
  $ward = $POST['ward'];
  $token = $POST['stripeToken']; 
+ date_default_timezone_set('America/Toronto');
+ $date_time = $date = date('Y-m-d h:i:s a', time());
+
 
 // Create Customer In Stripe
 $customer = \Stripe\Customer::create(array(
@@ -32,6 +39,17 @@ $charge = \Stripe\Charge::create(array(
   "description" => "Testing for RMHCSCO",
   "customer" => $customer->id
 ));
+
+
+switch ($ward){
+  case "Hi":
+  break;
+}
+
+
+// insert($conn, $amount, $date_time, $email, $ward);
+insert($conn, $amount, $date_time, $ward);
+
 
 //Redirect to success
 header("Location: success.php?tid=".$charge->id. "&product=" .$charge->description. "&name=" .$first_name ."&ward=". $ward);

@@ -105,7 +105,7 @@ function insert($conn, $amount, $date_time, $ward_id)
 {
     try {
         $stmt = $conn->prepare("INSERT INTO Donation (Amount, Date_Time, Ward_ID) VALUES (?,?,?);");
-        $stmt->execute([$amount, $date_time, $email, $ward_id]);
+        $stmt->execute([$amount, $date_time, $ward_id]);
         return $success = "One Record Was Successfully Inserted";
 
     } catch (PDOException $e) {

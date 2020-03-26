@@ -9,6 +9,7 @@ $(document).ready(function () {
      * Ajax call to get metrics from database
      */
     function metricsCall() {
+        var rank = 1;
         $.ajax({
             url: './php/controller.php',
             type: 'post',
@@ -25,8 +26,9 @@ $(document).ready(function () {
                 $("#total_donations").text(data.totalDonations[0].Total);
 
                 $.each(data.totalByWard, function (key, value) {
-                    $(".sidebar ul").append('<li>' + data.totalByWard.Ward_Name + '</li>');
-                    console.log(data.totalByWard.Ward_Name);
+                    $(".sidebar ul").append('<li>' + rank, data.totalByWard[key].Ward_Name, data.totalByWard[key].Amount + '</li>');
+                    console.log(rank, data.totalByWard[key].Ward_Name, data.totalByWard[key].Amount);
+                    rank++;
                 });
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

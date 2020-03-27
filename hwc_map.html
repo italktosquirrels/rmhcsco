@@ -27,7 +27,7 @@
 
 </head>
 
-<body>
+<body onload="initMap()">
     <header class="clearfix">
         <div class="bgBlue">
             <div class="wrapper">
@@ -83,6 +83,9 @@
         <div id="map_wrapper">
             <div class="donationsBar">
                 <ul>
+                    <li class="wardRankings">
+                        <h1><span>Ward Rankings</span></h1>
+                    </li>
                     <li>
                         <h1><span id="total_donation_amount"></span></h1>
                     </li>
@@ -90,47 +93,21 @@
                         <h1><span id="top_ward"></span></h1>
                     </li>
                     <li>
-                        <h1><span id="total_donations">211</span></h1>
+                        <h1><span id="total_donations"></span></h1>
                     </li>
                 </ul>
                 <ul>
+                    <li class="wardRankings"></li>
                     <li>Total Donated</li>
                     <li>Top Ranking District</li>
                     <li>Total Happy Wheels Donations</li>
                 </ul>
             </div>
-            <div class="sidebar"></div>
-            <ul></ul>
+            <div class="sidebar_wrapper">
+                <ul class="sidebar"></ul>
+            </div>
             <div id="map"></div>
         </div>
-        <script>
-            // Initialize and add the map
-            function initMap() {
-                // The location of Uluru
-                var uluru = {
-                    lat: -25.344,
-                    lng: 131.036
-                };
-                // The map, centered at Uluru
-                var map = new google.maps.Map(
-                    document.getElementById('map'), {
-                        zoom: 4,
-                        center: uluru
-                    });
-                // The marker, positioned at Uluru
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-            }
-        </script>
-        <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&callback=initMap">
-        </script>
         <div class="wysPageContent" style="margin-top: 70px;">
             <ul class="share horizontal">
                 <li><a class="facebook" href="http://www.facebook.com/sharer/sharer.php?u={FACEBOOKSHAREURL}" target="_blank">Share with Facebook</a></li>
@@ -313,6 +290,8 @@
     </script>
     <!-- COVE 8 JAVASCRIPT -->
     <script src="js/cove8JS.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&sensor=false"></script>
+    <script type="text/javascript" src="js/map.js"></script>
     <!-- END -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js?v=1.4"></script>

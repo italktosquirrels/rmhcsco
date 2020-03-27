@@ -420,7 +420,7 @@
     </StyleMap>
     <Style id="poly-FF5252-1-217-normal">
       <LineStyle>
-        <color>ff5252ff</color>
+        <color>#72ad48</color>
         <width>0.001</width>
       </LineStyle>
       <PolyStyle>
@@ -431,7 +431,7 @@
     </Style>
     <Style id="poly-FF5252-1-217-highlight">
       <LineStyle>
-        <color>ff5252ff</color>
+        <color>#72ad48</color>
         <width>0.0015</width>
       </LineStyle>
       <PolyStyle>

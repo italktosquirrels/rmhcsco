@@ -96,33 +96,43 @@ figcaption.map_tag {
 
 /* DONATIONS CAR - MAP PAGE */
 .donationsBar {
-    width: 85%;
-    padding-left: 15%;
+    /* width: 85%; */
+    /* padding-left: 15%; */
 }
 
 .donationsBar ul {
     list-style: none;
     background-color: #353534;
-    text-align: center;
+
     padding: 0;
     margin: 0;
 }
 
 .donationsBar li {
     display: inline-block;
-    width: 33%;
+    width: 24%;
     font-family: 'Futura Bold';
     color: #fff;
     font-size: 0.813em;
-    /* line-height: 40px; */
+    line-height: 40px;
+    text-align: center;
     height: 20px;
 }
 
+.donationsBar h1 {
+    font-size: 1.5em;
+}
+
 .donationsBar h1 span {
-    width: 30%;
-    margin: 0 auto;
-    text-align: center;
+    /* width: 30%; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+
     border-bottom: 2px solid #ffca07;
+}
+
+.wardRankings {
+    /* margin-left: -%; */
 }
 
 /* ******************************
@@ -134,6 +144,7 @@ figcaption.map_tag {
     /* The height is 400 pixels */
     width: 100%;
     /* The width is the width of the web page */
+    clear: both;
 }
 
 .donationsBar {
@@ -144,12 +155,13 @@ figcaption.map_tag {
 .sidebar {
     float: left;
     height: 1000px;
-    width: 17%;
+    width: 20%;
     padding: 0;
     margin: 0;
     color: #ffffff;
     background-color: #353534;
-    display: table;
+    /* display: table; */
+
 }
 
 .sidebar ul li {
@@ -160,10 +172,8 @@ figcaption.map_tag {
 #map {
     float: right;
     height: 100%;
-    /* The height is 400 pixels */
-    width: 83%;
+    width: 80%;
+    /* max-width: 83%; */
     padding: 0;
-    /* margin-top: -17px; */
-    /* The width is the width of the web page */
-    /* float: clear; */
+
 }

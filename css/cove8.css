@@ -96,33 +96,43 @@ figcaption.map_tag {
 
 /* DONATIONS CAR - MAP PAGE */
 .donationsBar {
-    width: 85%;
-    padding-left: 15%;
+    /* width: 85%; */
+    /* padding-left: 15%; */
 }
 
 .donationsBar ul {
     list-style: none;
     background-color: #353534;
-    text-align: center;
+
     padding: 0;
     margin: 0;
 }
 
 .donationsBar li {
     display: inline-block;
-    width: 33%;
+    width: 24%;
     font-family: 'Futura Bold';
     color: #fff;
     font-size: 0.813em;
-    /* line-height: 40px; */
+    line-height: 40px;
+    text-align: center;
     height: 20px;
 }
 
+.donationsBar h1 {
+    font-size: 1.5em;
+}
+
 .donationsBar h1 span {
-    width: 30%;
-    margin: 0 auto;
-    text-align: center;
+    /* width: 30%; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+
     border-bottom: 2px solid #ffca07;
+}
+
+.wardRankings {
+    /* margin-left: -%; */
 }
 
 /* ******************************
@@ -133,7 +143,9 @@ figcaption.map_tag {
     height: 1000px;
     /* The height is 400 pixels */
     width: 100%;
+    min-width: 1200px;
     /* The width is the width of the web page */
+    clear: both;
 }
 
 .donationsBar {
@@ -143,20 +155,26 @@ figcaption.map_tag {
 /* Creates SideBar with Metrics */
 .sidebar {
     float: left;
-    height: 100%;
-    width: 15%;
+    height: 1000px;
+    width: 20%;
+    padding: 0;
+    margin: 0;
     color: #ffffff;
     background-color: #353534;
+    /* display: table; */
+
+}
+
+.sidebar ul li {
+    height: 66px;
 }
 
 /* Set the size of the div element that contains the map */
 #map {
     float: right;
     height: 100%;
-    /* The height is 400 pixels */
-    width: 85%;
+    width: 80%;
+    /* max-width: 83%; */
     padding: 0;
-    margin-top: -17px;
-    /* The width is the width of the web page */
-    /* float: clear; */
+
 }

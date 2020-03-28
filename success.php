@@ -1,3 +1,16 @@
+<?php
+  if(!empty($_GET['tid'] && !empty($_GET['product'] && !empty($_GET['name']&& !empty($_GET['ward']))))) {
+    $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
+
+    $tid = $GET['tid'];
+    $product = $GET['product'];
+    $name = $GET['name'];
+    $ward = $GET['ward'];
+  } else {
+    header('Location: index.html');
+  }
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -17,7 +30,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css?v=1.15">
     <link rel="stylesheet" href="css/cove8.css" />
-    <link rel="canonical" href="hwc_map.html">
+    <link rel="canonical" href="success.php">
 
     <meta property="og:url" content="http://rmhcsco.italktosquirrels.com/hwc_map.html" />
     <meta property="og:type" content="website" />
@@ -64,11 +77,12 @@
 
     <!-- COVE 8 MAIN CONTENT -->
     <!-- MAIN HEADER -->
+  </div>
     <section>
         <div class="wrapper">
             <div class="wysPageContent headerPadding">
-                <h2 style="text-align: center;">Happy Wheels Cart Live Map</h2>
-                <p class="introParagraph" style="text-align: center;">Donate to watch The Happy Wheels Cart travel across Hamilton, collecting donations and filling families with hope along the way.</p>
+                <h2 style="text-align: center;">Thank you for Donation, <?php echo $name ?>!</h2>
+                <p class="introParagraph" style="text-align: center;">Your transaction ID is:</br> <?php echo $tid; ?></p>
                 <ul class="share horizontal">
                     <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Frmhcsco.italktosquirrels.com%2Fhwc_map.html&amp;src=sdkpreparse" target="_blank">Share with Facebook</a></li>
                     <li class="text"><span>Share</span></li>

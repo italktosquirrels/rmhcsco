@@ -7,13 +7,8 @@ var startLocation = [];
 var endLocation = [];
 var timerHandle = [];
 var infoWindow = null;
-// the kml data with ward boundaries and colours
-// identical to the WARDS.kml under /data 
+// the KML data with ward boundaries + colours 
 var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
-
-/// author : Avinash Kr Sharma
-/// source code : https://github.com/AvinashKrSharma/vehicle-movement-animation-google-maps
-/// alteration have been made to the source code, but I do not claim this code to be my own
 
 var startLoc = [];
 var endLoc = [];
@@ -29,9 +24,10 @@ window.setRoutes = setRoutes;
 function initialize() {
 
     // initialize infoWindow
-    infoWindow = new google.maps.InfoWindow({
-        size: new google.maps.Size(150, 50)
-    });
+//    infoWindow = new google.maps.InfoWindow({
+//        size: new google.maps.Size(150, 50)
+//    });
+
     var options = {
         // max zoom
         zoom: 18
@@ -42,16 +38,18 @@ function initialize() {
     address = 'Hamilton, ON'
     
     // KML functions adds the ward data onto the map
+    // comment out to see animation map without the eyesore ward colours 
         var kmlLayer = new google.maps.KmlLayer(src, {
           suppressInfoWindows: true,
           preserveViewport: false,
           map: map
         });
-        kmlLayer.addListener('click', function(event) {
-          var content = event.featureData.infoWindowHtml;
-          var testimonial = document.getElementById('capture');
-          testimonial.innerHTML = content;
-        });
+
+//        kmlLayer.addListener('click', function(event) {
+//          var content = event.featureData.infoWindowHtml;
+//          var testimonial = document.getElementById('capture');
+//          testimonial.innerHTML = content;
+//        });
 
     // Geocoder is used to encode or actually geocode textual addresses to lat long values
     geocoder = new google.maps.Geocoder();
@@ -62,32 +60,38 @@ function initialize() {
 
 // returns the marker
 function createMarker(latlng, label, html) {
-    var contentString = '<b>' + label + '</b><br>' + html;
+    var contentString = '';
+    var cart = {
+        url: 'img/cart.png',
+        size: new google.maps.Size(50, 43) // 50 pixels wide x 43 pixels tall
+    }
     // using Marker api, marker is created
     var marker = new google.maps.Marker({
         position: latlng,
         map: map,
-        title: label,
+       /// title: label,
+        suppressInfoWindows: true,
+        icon: cart,
         zIndex: 10
     });
-    marker.myname = label;
+    //marker.myname = label;
     // adding click listener to open up info window when marker is clicked
-    google.maps.event.addListener(marker, 'click', function () {
-        infoWindow.setContent(contentString);
-        infoWindow.open(map, marker);
-    });
+   // google.maps.event.addListener(marker, 'click', function () {
+  //      infoWindow.setContent(contentString);
+  //      infoWindow.open(map, marker);
+  //  });
     return marker;
 }
 
-function toggleError(msg){
-    document.getElementById('error-msg').innerText = msg;
-}
+//function toggleError(msg){
+//    document.getElementById('error-msg').innerText = msg;
+//}
 
 // Using Directions Service find the route between the starting and ending points
 function setRoutes() {
     map && initialize();
     // empty out the error msg
-    toggleError("");
+    //toggleError("");
     // set the values and check if any is empty, and if yes, show error and return
     var begin = document.getElementById('start');
     var startVal = begin.value; 
@@ -107,9 +111,11 @@ function setRoutes() {
     for (var i = 0; i < startLoc.length; i++) {
         var rendererOptions = {
             map: map,
-            suppressMarkers: true,
-            preserveViewport: true
+            suppressInfoWindows: true,
+            suppressPolylines: true,
+            preserveViewport: false
         };
+        
         directionsService = new google.maps.DirectionsService();
         var travelMode = google.maps.DirectionsTravelMode.DRIVING;
         var request = {
@@ -118,9 +124,8 @@ function setRoutes() {
             travelMode: travelMode
         };
         directionsService.route(request, makeRouteCallback(i, directionsDisplay[i]), rendererOptions);
+        
     }
-    
- // todo populate side bar with ward data from dropdown 
 }
 
 // called after getting route from directions service, does all the heavylifting
@@ -142,18 +147,28 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
             // set up polyline for current route
             polyLine[routeNum] = new google.maps.Polyline({
                 path: [],
-                strokeColor: '#FFFF00',
-                strokeWeight: 3
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.0000000001,
+      strokeWeight: 0
             });
             poly2[routeNum] = new google.maps.Polyline({
                 path: [],
-                strokeColor: '#FFFF00',
-                strokeWeight: 3
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.000000000001,
+      strokeWeight: 0
             });
             // For each route, display summary information.
             var legs = response.routes[0].legs;
             // directionsrenderer renders the directions obtained previously by the directions service
             disp = new google.maps.DirectionsRenderer(rendererOptions);
+            
+            // if true, hides the A/B pointer markers
+            disp.setOptions( { suppressMarkers: true } );
+            // if true, hides the polyline while still driving on the route (does not delete)
+            // looks funky if hidden, don't know what the cart is doing or where its going.
+            // to do change colour + opacity to something more on brand if possible 
+            //disp.setOptions( { suppressPolylines: true } );
+            
             disp.setMap(map);
             disp.setDirections(response);
 
@@ -163,7 +178,7 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
                 if (i == 0) {
                     startLocation[routeNum].latlng = legs[i].start_location;
                     startLocation[routeNum].address = legs[i].start_address;
-                    marker[routeNum] = createMarker(legs[i].start_location, "start", legs[i].start_address, "green");
+                    marker[routeNum] = createMarker(legs[i].start_location, "Happy Wheels Cart", legs[i].start_address, "green");
                 }
                 endLocation[routeNum].latlng = legs[i].end_location;
                 endLocation[routeNum].address = legs[i].end_address;
@@ -178,7 +193,7 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
         }
         if (polyLine[routeNum]){
             // render the line to map
-            polyLine[routeNum].setMap(map);
+           // polyLine[routeNum].setMap(map);
             // and start animation
             startAnimation(routeNum);
         }
@@ -213,7 +228,7 @@ function animate(index, d, tick) {
     timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
 }
 
-// start marker movement by updating marker position every 100 milliseconds i.e. tick value
+// start marker movement by updating marker position every x milliseconds i.e. tick value
 function startAnimation(index) {
     if (timerHandle[index]) 
         clearTimeout(timerHandle[index]);
@@ -223,7 +238,7 @@ function startAnimation(index) {
     poly2[index] = new google.maps.Polyline({
         path: [polyLine[index].getPath().getAt(0)],
         strokeColor: "#FFFF00",
-        strokeWeight: 3
+        strokeWeight: 0
     });
     timerHandle[index] = setTimeout("animate(" + index + ",10)", 200);  // Allow time for the initial map display
 }

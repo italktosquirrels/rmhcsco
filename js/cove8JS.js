@@ -17,20 +17,20 @@ $(document).ready(function () {
 
         var styles_span1 = {
             "font-family": 'Futura Bold',
-            "font-size": "1vw",
+            "font-size": ".9em",
             padding: "0px 15px",
             // "padding-left": "15px"
         };
 
         var styles_span2 = {
-            "font-size": "1vw",
+            "font-size": ".90em",
             "font-family": 'Futura',
             // padding: "5px",
         };
 
         var styles_span3 = {
             "font-family": 'Futura Bold',
-            "font-size": "1vw",
+            "font-size": ".9em",
             "text-align": "right",
             padding: "15px 0px 0px 15px",
         };
@@ -51,8 +51,8 @@ $(document).ready(function () {
                 $("#total_donations").text(data.totalDonations[0].Total);
 
                 $.each(data.totalByWard, function (key, value) {
-                    $(".sidebar").append('<li style="border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
-                        data.totalByWard[key].Ward_Colour + ';"><span class="span1">' + rank + '</span><span class="span2">' + data.totalByWard[key].Ward_Name + '</span><span class="span3">$' + data.totalByWard[key].Amount + '.00</span></li > ');
+                    $(".sidebar").append('<li style="margin-top: 5px; border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
+                        data.totalByWard[key].Ward_Colour + ';"><span class="span1">' + rank + '</span><span class="span2">' + data.totalByWard[key].Ward_Name + '</span></br><span class="span3">$' + data.totalByWard[key].Amount + '.00</span></li > ');
                     // console.log(rank, data.totalByWard[key].Ward_Name, data.totalByWard[key].Amount, data.totalByWard[key].Ward_Colour);
                     console.log('<li style="border-bottom: 3px solid ' + data.totalByWard[key].Ward_Colour + '; border-left: 10px solid ' + data.totalByWard[key].Ward_Colour + ';"><span id="span1">' + rank + '</span>' + data.totalByWard[key].Ward_Name + ' ' + data.totalByWard[key].Amount + '</li>');
 

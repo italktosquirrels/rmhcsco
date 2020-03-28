@@ -52,7 +52,7 @@ insert($conn, $amount, $date_time, $ward);
 
 
 //Redirect to success
-header("Location: success.php?tid=".$charge->id. "&product=" .$charge->description. "&name=" .$first_name ."&ward=". $ward);
+header("Location: ../success.php?tid=".$charge->id. "&product=" .$charge->description. "&name=" .$first_name ."&ward=". $ward);
 
 // // Customer Data
 // $customerData = [

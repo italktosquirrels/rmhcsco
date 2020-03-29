@@ -11,11 +11,33 @@ require_once('../vendor/autoload.php');
 // var_dump($_POST);
 // die();
 
-\Stripe\Stripe::setApiKey('sk_test_BJJNoaDhqEnjBFP6vE78QXSa00H2xzeLHO');
 
- // Sanitize POST Array
+$action = $_POST['action'];
+switch ($action){ 
+  case("wards"):
+    $wardList = array("Chedoke-Cootes" =>1,
+    "Downtown"=>2,
+    "Hamilton Centre" =>3,
+    "East Hamilton" =>4,
+    "Redhill" =>5,
+    "East Mountain" =>6,
+    "Central Mountain"=>7,
+    "West/Central Mountain" =>8,
+    "Upper Stoney Creek" =>9, 
+    "Lower Stoney Creek"=>10,
+    "Glanbrook" =>11,
+    "Ancaster Area" =>12, 
+    "Dundas Area" =>13,
+    "West Mountain" =>14,
+    "Flamborough East" =>15);
+    echo json_encode($wardList);
+  break; 
+  default:
+
+  \Stripe\Stripe::setApiKey('sk_test_BJJNoaDhqEnjBFP6vE78QXSa00H2xzeLHO');
+
+  // Sanitize POST Array
  $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
-
  $first_name = $POST['first_name'];
  $last_name = $POST['last_name'];
  $email = $POST['email'];
@@ -26,6 +48,16 @@ require_once('../vendor/autoload.php');
  $date_time = $date = date('Y-m-d h:i:s a', time());
 
 
+switch ($action){
+
+  case("ward"):
+    $ward = array("Hey" => 1, "You" => 2);
+    echo json_encode($ward);
+  break; 
+  default:
+  break;
+
+}
 // Create Customer In Stripe
 $customer = \Stripe\Customer::create(array(
   "email" => $email,
@@ -41,10 +73,10 @@ $charge = \Stripe\Charge::create(array(
 ));
 
 
-switch ($ward){
-  case "Hi":
-  break;
-}
+// switch ($ward){
+//   case "Hi":
+//   break;
+// }
 
 
 // insert($conn, $amount, $date_time, $email, $ward);
@@ -54,6 +86,12 @@ insert($conn, $amount, $date_time, $ward);
 //Redirect to success
 header("Location: ../success.php?tid=".$charge->id. "&product=" .$charge->description. "&name=" .$first_name ."&ward=". $ward);
 
+
+  break;
+
+}
+
+ 
 // // Customer Data
 // $customerData = [
 //   'id' => $charge->customer,

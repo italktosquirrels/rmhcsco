@@ -28,19 +28,25 @@ $.each(wardsList, function(key, value) {
 
 $(document).ready(function(){
 
-  //Process button value
-    $('#amountButtons').click(function(e){
-      radioChecked = $('input[name="radioAmount"]:checked').val();
-      if (radioChecked == "other"){
-        $('#inputAmount').css("visibility", "visible");
-        amount = $('#inputAmount').val();
-        $('input[name=amount]').val(amount);
-      } else {
-        $('#inputAmount').css("visibility", "hidden").val("");
-        console.log(radioChecked);
-        $('input[name=amount]').val(radioChecked);  
-      }
-    });
+   //Process button value
+   $('#amountButtons').click(function(e){
+    radioChecked = $('input[name="radioAmount"]:checked').val();
+    //if other amount is selected
+    if (radioChecked == "other"){
+      $('#inputAmount').css("visibility", "visible");
+      amount = 0;
+        $('#inputAmount').change(function(){   
+          amount = $('#inputAmount').val();
+          console.log(amount);
+          $('input[name=amount]').val(amount);
+        });
+    //if radio button amout is selected
+    } else {
+      $('#inputAmount').css("visibility", "hidden").val("");
+      console.log(radioChecked);
+      $('input[name=amount]').val(radioChecked);  
+    }
+  });
   });
   
 

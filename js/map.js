@@ -10,7 +10,7 @@ function initMap() {
     });
 
     //RMHSCO LOCATION AND MARKER
-    var image = 'css/images/rmhcsco_map_icon.png';
+    var image = 'img/rmhcsco_map_icon.png';
     var beachMarker = new google.maps.Marker({
         position: {
             lat: 43.258030,

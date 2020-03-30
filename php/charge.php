@@ -13,6 +13,8 @@ require_once('../vendor/autoload.php');
 
 
 $action = $_POST['action'];
+
+if(!empty($action) and isset($action)){
 switch ($action){ 
   case("wards"):
     $wardList = array("Chedoke-Cootes" =>1,
@@ -33,8 +35,11 @@ switch ($action){
     echo json_encode($wardList);
   break; 
   default:
+  break;
+}
+} else {
 
-  \Stripe\Stripe::setApiKey('sk_test_BJJNoaDhqEnjBFP6vE78QXSa00H2xzeLHO');
+ \Stripe\Stripe::setApiKey('sk_test_BJJNoaDhqEnjBFP6vE78QXSa00H2xzeLHO');
 
   // Sanitize POST Array
  $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
@@ -48,16 +53,7 @@ switch ($action){
  $date_time = $date = date('Y-m-d h:i:s a', time());
 
 
-switch ($action){
 
-  case("ward"):
-    $ward = array("Hey" => 1, "You" => 2);
-    echo json_encode($ward);
-  break; 
-  default:
-  break;
-
-}
 // Create Customer In Stripe
 $customer = \Stripe\Customer::create(array(
   "email" => $email,
@@ -72,26 +68,13 @@ $charge = \Stripe\Charge::create(array(
   "customer" => $customer->id
 ));
 
-
-// switch ($ward){
-//   case "Hi":
-//   break;
-// }
-
-
-// insert($conn, $amount, $date_time, $email, $ward);
+//insert record to database
 insert($conn, $amount, $date_time, $ward);
-
 
 //Redirect to success
 header("Location: ../success.php?tid=".$charge->id. "&product=" .$charge->description. "&name=" .$first_name ."&ward=". $ward);
-
-
-  break;
-
 }
 
- 
 // // Customer Data
 // $customerData = [
 //   'id' => $charge->customer,

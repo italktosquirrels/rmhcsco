@@ -148,7 +148,7 @@ function initMap() {
     });
 
     //RMHSCO LOCATION AND MARKER
-    var image = 'img/rmhcsco_map_icon.png';
+    var image = 'RMHCSCO/img/rmhcsco_map_icon.png';
     var beachMarker = new google.maps.Marker({
         position: {
             lat: 43.258030,
@@ -164,7 +164,7 @@ function initMap() {
 
     map.data.setStyle(function (feature) {
         var WARD = feature.getProperty('WARD');
-        var color = "gray";
+        var color = "gray"; // for testing. prev : 'gray'
         switch (WARD) {
 
             case "1":
@@ -221,6 +221,6 @@ function initMap() {
         }
     });
 
-    console.log('mao');
+    console.log('testtesttest');
 
 }

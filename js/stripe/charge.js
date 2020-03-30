@@ -26,15 +26,15 @@ $(document).ready(function () {
   $('#amountButtons input').mouseover(function(){
     value = $(this).val();
     if(value == 5){
-      $('#donationDescription').html("A donation of $5 can help provide things like:" +
+      $('#donationDescription').html("A donation of $5 can help provide things like: " +
       "A much-needed snack for a mother to share with her sick daughter. "); 
     
     } else if(value == 10){
-      $('#donationDescription').html("A donation of $10 can help provide things like:" +
+      $('#donationDescription').html("A donation of $10 can help provide things like: " +
       "A cup of coffee for a father who’s been at his daughter’s bedside for 22 hours.");
 
     } else if (value == 15){
-      $('#donationDescription').html("A donation of $15 can help provide things like:" +
+      $('#donationDescription').html("A donation of $15 can help provide things like: " +
       "A fun activity for a sister to share with her little brother on bedrest.");
 
     } else if (value == 20){
@@ -43,7 +43,7 @@ $(document).ready(function () {
       "snack for a mother to share with her sick daughter.");
 
     } else if (value == 30){
-      $('#donationDescription').html("A donation of $30 can help provide things like:" + 
+      $('#donationDescription').html("A donation of $30 can help provide things like: " + 
       "A fun activity for a sister to share with her little brother on bedrest. A cup of " +
       "coffee for a father who’s been at his daughter’s bedside for 22 hours. A cup of coffee " +
       "for a father who’s been at his daughter’s bedside for 22 hours.");

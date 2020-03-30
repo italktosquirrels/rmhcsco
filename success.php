@@ -1,11 +1,11 @@
 <?php
-  if(!empty($_GET['tid'] && !empty($_GET['product'] && !empty($_GET['name']&& !empty($_GET['ward']))))) {
+  if(!empty($_GET['tid'] && !empty($_GET['name']))) {
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
 
     $tid = $GET['tid'];
-    $product = $GET['product'];
+    // $product = $GET['product'];
     $name = $GET['name'];
-    $ward = $GET['ward'];
+    // $ward = $GET['ward'];
   } else {
     header('Location: index.html');
   }

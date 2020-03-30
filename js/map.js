@@ -1,11 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+// <<<<<<< HEAD
+// <<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
->>>>>>> 7f2730de9eb9b9b85bfd8e9c603ecd9742d2232e
+// =======
+// <<<<<<< HEAD
+// >>>>>>> 7f2730de9eb9b9b85bfd8e9c603ecd9742d2232e
 var map;
-var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
+//var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
 
  function initMap() {
      // create the map
@@ -87,8 +87,8 @@ var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
      console.log('mao');
 
  }
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
 
 
@@ -104,7 +104,7 @@ var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
  //       var testimonial = document.getElementById('sidebar');
  //       testimonial.innerHTML = content;
  //   });
-=======
+//=======
       var map;
       var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
 
@@ -169,10 +169,10 @@ var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
       //       var content = event.featureData.infoWindowHtml;
       //       var testimonial = document.getElementById('sidebar');
       //       testimonial.innerHTML = content;
-      //   });
->>>>>>> c0d8f17f632b2a969e4a59568f92e4f28e1acd58
->>>>>>> 7f2730de9eb9b9b85bfd8e9c603ecd9742d2232e
-=======
+//       //   });
+// >>>>>>> c0d8f17f632b2a969e4a59568f92e4f28e1acd58
+// >>>>>>> 7f2730de9eb9b9b85bfd8e9c603ecd9742d2232e
+// =======
 var map;
 var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
 
@@ -276,4 +276,4 @@ function initMap() {
 //       var testimonial = document.getElementById('sidebar');
 //       testimonial.innerHTML = content;
 //   });
->>>>>>> 22c20955b4fa21f292b71ff565a7ff62fcf7f4f3
+// >>>>>>> 22c20955b4fa21f292b71ff565a7ff62fcf7f4f3

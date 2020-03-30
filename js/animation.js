@@ -62,7 +62,7 @@ function initialize() {
 function createMarker(latlng, label, html) {
     var contentString = '';
     var cart = {
-        url: 'img/cart.png',
+        url: 'img/happy-wheels-cart-icon.png',
         size: new google.maps.Size(50, 43) // 50 pixels wide x 43 pixels tall
     }
     // using Marker api, marker is created

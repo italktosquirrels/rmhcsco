@@ -1,47 +1,49 @@
-// Ward Array
-wardsList ={
-  "Chedoke-Cootes" :1,
-  "Downtown":2,
-  "Hamilton Centre" :3,
-  "East Hamilton" :4,
-  "Redhill" :5,
-  "East Mountain" :6,
-  "Central Mountain":7,
-  "West/Central Mountain" :8,
-  "Upper Stoney Creek" :9, 
-  "Lower Stoney Creek":10,
-  "Glanbrook" :11,
-  "Ancaster Area" :12, 
-  "Dundas Area" :13,
- "West Mountain" :14,
-  "Flamborough East" :15}
-
 // Create a Stripe client
 var stripe = Stripe('pk_test_JtV6ynbFKItsc8Ifu0OmRApw00aOLVqMbL');
 // Create an instance of Elements
 var elements = stripe.elements();
 
-//Add wards to dropdown menu
-$.each(wardsList, function(key, value) {
-  $("#dropdown").append("<option value='" + value + "'>" + key +"</option");
-});
-
 $(document).ready(function(){
 
+  //Add wards to dropdown menu
+  $.ajax({url: "php/charge.php",
+type: 'POST',
+data: {
+    action: 'wards'
+},
+success: function (data) {
+    var obj = JSON.parse(data);
+    $.each(obj, function(key, value) {
+      console.log(key + "  " + value);
+      $("#dropdown").append("<option value='" + value + "'>" + key +"</option");
+    }); 
+}
+});
+
   //Process button value
-    $('#amountButtons').click(function(e){
-      radioChecked = $('input[name="radioAmount"]:checked').val();
-      if (radioChecked == "other"){
-        $('#inputAmount').css("visibility", "visible");
-        amount = $('#inputAmount').val();
-        $('input[name=amount]').val(amount);
-      } else {
-        $('#inputAmount').css("visibility", "hidden").val("");
-        console.log(radioChecked);
-        $('input[name=amount]').val(radioChecked);  
-      }
-    });
+  $('#amountButtons').click(function(e){
+    radioChecked = $('input[name="radioAmount"]:checked').val();
+    //if other amount is selected
+    if (radioChecked == "other"){
+      $('#inputAmount').css("visibility", "visible");
+      amount = 0;
+        $('#inputAmount').change(function(){   
+          amount = $('#inputAmount').val();
+          console.log(amount);
+          $('input[name=amount]').val(amount);
+        });
+    //if radio button amout is selected
+    } else {
+      $('#inputAmount').css("visibility", "hidden").val("");
+      console.log(radioChecked);
+      $('input[name=amount]').val(radioChecked);  
+    }
   });
+  });
+
+
+
+ 
   
 
 // Custom styling can be passed to options when creating an Element.
@@ -86,7 +88,6 @@ card.addEventListener('change', function(event) {
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
   event.preventDefault();
-
   stripe.createToken(card).then(function(result) {
     if (result.error) {
       // Inform the user if there was an error
@@ -107,7 +108,6 @@ function stripeTokenHandler(token) {
   hiddenInput.setAttribute('name', 'stripeToken');
   hiddenInput.setAttribute('value', token.id);
   form.appendChild(hiddenInput);
-
   // Submit the form
   form.submit();
 }

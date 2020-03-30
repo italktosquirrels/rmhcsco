@@ -53,8 +53,13 @@ $(document).ready(function () {
     } else {
       $('#donationDescription').html("");
     }
-    
 });
+
+  $('#amountButtons').mouseleave(function(){
+    $('#donationDescription').html("");
+  });
+
+
 
   //Process button value
   $('#amountButtons').click(function (e) {

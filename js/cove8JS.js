@@ -10,31 +10,6 @@ $(document).ready(function () {
      */
     function metricsCall() {
         var rank = 1;
-        var styles_li = {
-            height: "63.63px",
-            // "text-transform": "uppercase"
-        };
-
-        var styles_span1 = {
-            "font-family": 'Futura Bold',
-            "font-size": ".9em",
-            padding: "0px 15px",
-            // "padding-left": "15px"
-        };
-
-        var styles_span2 = {
-            "font-size": ".90em",
-            "font-family": 'Futura',
-            // padding: "5px",
-        };
-
-        var styles_span3 = {
-            "font-family": 'Futura Bold',
-            "font-size": ".9em",
-            "text-align": "right",
-            // padding: "15px 0px 0px 15px",
-        };
-
         $.ajax({
             url: './php/controller.php',
             type: 'post',
@@ -63,12 +38,6 @@ $(document).ready(function () {
 
                     rank++;
                 });
-
-                // $(".sidebar li").css(styles_li);
-                // $(".span1").css(styles_span1);
-                // $(".span2").css(styles_span2);
-                // $(".span3").css(styles_span3);
-
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -32,7 +32,7 @@ $(document).ready(function () {
             "font-family": 'Futura Bold',
             "font-size": ".9em",
             "text-align": "right",
-            padding: "15px 0px 0px 15px",
+            // padding: "15px 0px 0px 15px",
         };
 
         $.ajax({
@@ -48,21 +48,26 @@ $(document).ready(function () {
                 console.log(data.totalAmountDonated[0].Total);
                 $("#total_donation_amount").text("$" + data.totalAmountDonated[0].Total + ".00");
                 console.log(data.totalDonations[0].Total);
-                $("#total_donations").text(data.totalDonations[0].Total);
+                $("#total_donated").text(data.totalDonations[0].Total);
 
                 $.each(data.totalByWard, function (key, value) {
-                    $(".sidebar").append('<li style="margin-top: 5px; border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
-                        data.totalByWard[key].Ward_Colour + ';"><span class="span1">' + rank + '</span><span class="span2">' + data.totalByWard[key].Ward_Name + '</span></br><span class="span3">$' + data.totalByWard[key].Amount + '.00</span></li > ');
-                    // console.log(rank, data.totalByWard[key].Ward_Name, data.totalByWard[key].Amount, data.totalByWard[key].Ward_Colour);
-                    console.log('<li style="border-bottom: 3px solid ' + data.totalByWard[key].Ward_Colour + '; border-left: 10px solid ' + data.totalByWard[key].Ward_Colour + ';"><span id="span1">' + rank + '</span>' + data.totalByWard[key].Ward_Name + ' ' + data.totalByWard[key].Amount + '</li>');
+                    $("#sidebar-col").append('<div id="sidebar-col-grid" style="border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
+                            data.totalByWard[key].Ward_Colour + ';">' +
+                            '<div class="rank"><h1>' + rank + '</h1></div>' +
+                            '<div class="ward-name"><p>' + data.totalByWard[key].Ward_Name + '</p></div>' +
+                            '<div class="ward-number"><p> Ward # ' + data.totalByWard[key].Ward_ID + '</p></div>' +
+                            '<div class="amount"><p>$' + data.totalByWard[key].Amount + '.00</p></div>' +
+                            '</div>'),
+                        console.log('<li style="margin-top: 5px; border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
+                            data.totalByWard[key].Ward_Colour + ';"><span class="span1">' + rank + '</span><span class="span2">' + data.totalByWard[key].Ward_Name + '</span></br><span class="span3">$' + data.totalByWard[key].Amount + '.00</span></li > ');
 
                     rank++;
                 });
 
-                $(".sidebar li").css(styles_li);
-                $(".span1").css(styles_span1);
-                $(".span2").css(styles_span2);
-                $(".span3").css(styles_span3);
+                // $(".sidebar li").css(styles_li);
+                // $(".span1").css(styles_span1);
+                // $(".span2").css(styles_span2);
+                // $(".span3").css(styles_span3);
 
 
             },

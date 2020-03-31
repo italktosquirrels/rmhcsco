@@ -1,5 +1,5 @@
 var map;
-var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
+
 
 function initMap() {
     // create the map
@@ -31,7 +31,6 @@ function initMap() {
 
             case "1":
                 color = "rgba(72, 114, 173, 1)";
-                strokeColor = "rgba(72, 114, 173, 1)";
                 break;
             case "2":
                 color = "rgba(81, 72, 173, 1)";
@@ -87,7 +86,7 @@ function initMap() {
 
 }
 
-
+// var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
 
 //   // load the kml data from the source 
 //   var kmlLayer = new google.maps.KmlLayer(src, {

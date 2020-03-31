@@ -95,28 +95,27 @@ figcaption.map_tag {
 }
 
 /* DONATIONS CAR - MAP PAGE */
-.donationsBar {
-    /* width: 85%; */
-    /* padding-left: 15%; */
-}
 
 .donationsBar ul {
     list-style: none;
     background-color: #353534;
-
+    height: 80%;
+    width: 100%;
     padding: 0;
     margin: 0;
 }
 
 .donationsBar li {
     display: inline-block;
-    width: 24%;
+    width: 80%;
     font-family: 'Futura Bold';
     color: #fff;
     font-size: 0.813em;
-    line-height: 40px;
+    line-height: 20px;
     text-align: center;
-    height: 20px;
+    padding: 0px;
+    margin: 0px;
+
 }
 
 .donationsBar h1 {
@@ -124,57 +123,118 @@ figcaption.map_tag {
 }
 
 .donationsBar h1 span {
-    /* width: 30%; */
-    /* margin: 0 auto; */
-    /* text-align: center; */
-
     border-bottom: 2px solid #ffca07;
 }
 
-.wardRankings {
-    /* margin-left: -%; */
-}
 
 /* ******************************
     GOOGLE MAPS CSS
 ******************************* */
 
-#map_wrapper {
-    height: 1000px;
-    /* The height is 400 pixels */
-    width: 100%;
-    min-width: 1200px;
-    /* The width is the width of the web page */
-    clear: both;
-}
 
-.donationsBar {
-    background-color: #353534;
-}
 
 /* Creates SideBar with Metrics */
-.sidebar {
-    float: left;
-    height: 1000px;
-    width: 20%;
-    padding: 0;
-    margin: 0;
-    color: #ffffff;
-    background-color: #353534;
-    /* display: table; */
 
-}
-
-.sidebar ul li {
-    height: 66px;
-}
 
 /* Set the size of the div element that contains the map */
-#map {
-    float: right;
-    height: 100%;
-    width: 80%;
-    /* max-width: 83%; */
+
+
+/* ******************************
+     MAP GRID WRAPPER
+******************************* */
+
+
+#map-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1.1fr 1.5fr 1.5fr 1.5fr;
+    grid-template-rows: 70px 1015px;
+    background-color: #353534;
+
+}
+
+#ranking-title {
+    /* background-color: red; */
+    line-height: 30px;
+    text-align: center;
+    margin: auto 0px;
+
+}
+
+#total-amount-donated {
+    /* background-color: green; */
+    text-align: center;
+    margin: auto;
+}
+
+#top-district {
+    /* background-color: yellow; */
+    text-align: center;
+    margin: auto 0px;
+}
+
+#total-donations {
+    /* background-color: pink; */
+    text-align: center;
+    margin: auto 0px;
+}
+
+
+#sidebar-col {
+    /* background-color: blue; */
+}
+
+#sidebar-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1.5fr;
+    grid-template-rows: 36.33px 30.33px;
+    grid-auto-rows: minmax(36.33px, auto);
+    font-family: 'Futura Bold';
+    color: #fff;
+    font-size: 0.813em;
+    background-color: #353534;
+    margin: 0;
     padding: 0;
 
+}
+
+#sidebar-col-grid p {
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+}
+
+#sidebar-col-grid .rank {
+    /* background-color: orange; */
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    text-align: center;
+    margin: auto 0px;
+    /* height: 100%; */
+}
+
+#sidebar-col-grid .ward-name {
+    /* background-color: aquamarine; */
+    margin: auto 0px;
+    text-align: center;
+}
+
+#sidebar-col-grid .ward-number {
+    /* background-color: mediumorchid; */
+    text-align: center;
+    font-family: 'Futura';
+    font-size: 0.9em;
+}
+
+#sidebar-col-grid .amount {
+    /* background-color: burlywood; */
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    text-align: center;
+    margin: auto 0px;
+}
+
+#map {
+    /* background-color: blueviolet; */
+    grid-column: 2 / 5;
+    text-align: center;
 }

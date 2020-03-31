@@ -1,35 +1,39 @@
 <?php
 
-//Gloabal Variable
+/**
+ * COVE 8 Copyright 2020
+ * All Work has been produced by Cove 8
+ *
+ * This Hanldles all Databse Logic
+ */
 
 /**
- * Function that inserts a new field into the phonebook Database
- * Returns propgateTable to update view
+ * Function that gets total by Ward. Error Handlings
  */
 
 function getTotalByWard($conn)
 {
     try
     {
-        // build the select query
+        // Build the select query
         $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Amount', w.Ward_ID, w.Ward_Name, w.Ward_Colour
                                 FROM Donation d
                                 JOIN Ward w ON d.Ward_ID = w.Ward_ID
                                 GROUP BY Ward_ID
                                 ORDER BY SUM(AMOUNT) DESC ");
 
-        // execute the query, save reference to results
+        // Execute the query, save reference to results
         $stmt->execute();
 
-        // grab results of query for as long as results, store in TPL
+        // Grab results of query for as long as results, store in TPL
         while ($nextRow = $stmt->fetch()) {
             $TPL['results'][] = $nextRow;
         }
-        // print_r($TPL['results']);
 
     } catch (PDOException $e) {
-        // echo "Select failed: " . $e->getMessage();
+        //Stores Error Message
         $TPL['error'] = "Select failed: " . $e->getMessage();
+        //Killes Connection if fail
         exit();
     }
 
@@ -38,8 +42,7 @@ function getTotalByWard($conn)
 }
 
 /**
- * Function that inserts a new field into the phonebook Database
- * Returns propgateTable to update view
+ * Function that retrieves Total Amount Donated with Error Handling
  */
 
 function getTotal($conn)
@@ -58,8 +61,9 @@ function getTotal($conn)
         }
 
     } catch (PDOException $e) {
-        // echo "Select failed: " . $e->getMessage();
+        //Stores Error Message
         $TPL['error'] = "Select failed: " . $e->getMessage();
+        //Killes Connection if fail
         exit();
     }
 
@@ -68,28 +72,28 @@ function getTotal($conn)
 }
 
 /**
- * Function that inserts a new field into the phonebook Database
- * Returns propgateTable to update view
+ * Function retrieves the total number of donations made with Error Handling
  */
 
 function getTotalDonations($conn)
 {
     try
     {
-        // build the select query
+        // Build the select query
         $stmt = $conn->prepare("SELECT COUNT(Donate_ID) AS 'Total' FROM Donation");
 
-        // execute the query, save reference to results
+        // Execute the query, save reference to results
         $stmt->execute();
 
-        // grab results of query for as long as results, store in TPL
+        // Grab results of query for as long as results, store in TPL
         while ($nextRow = $stmt->fetch()) {
             $TPL['results'][] = $nextRow;
         }
 
     } catch (PDOException $e) {
-        // echo "Select failed: " . $e->getMessage();
+        //Stores Error Message
         $TPL['error'] = "Select failed: " . $e->getMessage();
+        //Killes Connection if fail
         exit();
     }
 
@@ -104,18 +108,18 @@ function getTotalDonations($conn)
 function insert($conn, $amount, $date_time, $ward_id)
 {
     try {
+        // Build the select query
         $stmt = $conn->prepare("INSERT INTO Donation (Amount, Date_Time, Ward_ID) VALUES (?,?,?);");
+        // Execute the query, save reference to results
         $stmt->execute([$amount, $date_time, $ward_id]);
+        //Returns success Message
         return $success = "One Record Was Successfully Inserted";
 
     } catch (PDOException $e) {
-        return $error = "Insert failed: " . $e->getMessage();
+        //Stores Error Message
+        $TPL['error'] = "Insert failed: " . $e->getMessage();
+        //Killes Connection if fail
         exit();
     }
 
 }
-
-/**
- * Function that takes the arg of the the connection from the app.config.php
- * file. Accessess Databates and Retireves all from phonebook table
- */

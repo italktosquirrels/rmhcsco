@@ -24,41 +24,57 @@ $(document).ready(function () {
 
 
   //on hover for amount descriptions
-  $('#amountButtons input').mouseover(function () {
+  $('#amountButtons input').click(function () {
     value = $(this).val();
     if (value == 5) {
+      //Donate Description
       $('#donationDescription').html("A donation of $5 can help provide things like: " +
         "A much-needed snack for a mother to share with her sick daughter. ");
+      //Changes Donate Button to Amount Selected
+      $('#donate-button').text("Donate $5");
 
     } else if (value == 10) {
+      //Donate Description
       $('#donationDescription').html("A donation of $10 can help provide things like: " +
         "A cup of coffee for a father who’s been at his daughter’s bedside for 22 hours.");
+      //Changes Donate Button to Amount Selected
+      $('#donate-button').text("Donate $10");
 
     } else if (value == 15) {
+      //Donate Description
       $('#donationDescription').html("A donation of $15 can help provide things like: " +
         "A fun activity for a sister to share with her little brother on bedrest.");
+      //Changes Donate Button to Amount Selected
+      $('#donate-button').text("Donate $15");
 
     } else if (value == 20) {
+      //Donate Description
       $('#donationDescription').html("A donation of $20 can help provide things like: " +
         "A fun activity for a sister to share with her little brother on bedrest. A much-needed" +
         "snack for a mother to share with her sick daughter.");
+      //Changes Donate Button to Amount Selected
+      $('#donate-button').text("Donate $20");
 
     } else if (value == 30) {
+      //Donate Description
       $('#donationDescription').html("A donation of $30 can help provide things like: " +
         "A fun activity for a sister to share with her little brother on bedrest. A cup of " +
         "coffee for a father who’s been at his daughter’s bedside for 22 hours. A cup of coffee " +
         "for a father who’s been at his daughter’s bedside for 22 hours.");
+      //Changes Donate Button to Amount Selected
+      $('#donate-button').text("Donate $30");
 
     } else if (value == "other") {
+      //Donate Description
       $('#donationDescription').html("Thanks for donating to The Happy Wheels Cart. Anything helps.");
     } else {
       $('#donationDescription').html("");
     }
   });
 
-  $('#amountButtons').mouseleave(function () {
-    $('#donationDescription').html("");
-  });
+  // $('#amountButtons').click(function () {
+  //   $('#donationDescription').html("");
+  // });
 
 
 
@@ -72,6 +88,7 @@ $(document).ready(function () {
       $('#inputAmount').change(function () {
         amount = $('#inputAmount').val();
         $('input[name=amount]').val(amount);
+        $('#donate-button').text("Donate $" + amount);
       });
       //if radio button amout is selected
     } else {

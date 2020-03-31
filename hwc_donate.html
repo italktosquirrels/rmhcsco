@@ -207,8 +207,6 @@
         </div>
         <!-- STRIPE FORM -->
         <div class="container">
-            <h2 class="my-4 text-center">Complete the form below to make a donation</h2>
-
             <form id="payment-form">
                 <div class="form-row">
                     <!-- <div id="amountButtons">
@@ -226,11 +224,11 @@
                         <label for="donationAmount">Other</label>
                         <input id="inputAmount" style="visibility: hidden;" type="number" placeholder="example input: 50" />
                     </div> -->
-                    <div>
+                    <div id="donation-amount-wrapper">
                         <ul id="amountButtons">
                             <li>
                                 <input type="radio" id="amount5" name="radioAmount" autocomplete="off" value="5" />
-                                <label for="amount5">$5</label></span>
+                                <label for="amount5">$5</label>
                             </li>
                             <li>
                                 <input type="radio" id="amount10" name="radioAmount" autocomplete="off" value="10" />
@@ -238,37 +236,46 @@
                             </li>
                             <li>
                                 <input type="radio" id="amount15" name="radioAmount" autocomplete="off" value="15" />
-                                <label for="amount15">$15</label></span>
+                                <label for="amount15">$15</label>
                             </li>
                             <li>
                                 <input type="radio" id="amount20" name="radioAmount" autocomplete="off" value="20" />
-                                <label for="amount20">$20</label></span>
+                                <label for="amount20">$20</label>
                             </li>
                             <li>
                                 <input type="radio" id="amount30" name="radioAmount" autocomplete="off" value="30" />
-                                <label for="amount30">$30</label></span>
+                                <label for="amount30">$30</label>
                             </li>
-                            <li> <input type="radio" id="amountOther" name="radioAmount" autocomplete="off" value="other" />
+                            <li>
+                                <input type="radio" id="amountOther" name="radioAmount" autocomplete="off" value="other" />
                                 <label for="amountOther">Other</label>
                             </li>
-                            <li> <input id="inputAmount" style="visibility: hidden;" type="number" placeholder="0.00" /></li>
+                            <!-- <li> </li> -->
 
                         </ul>
                     </div>
-                    <div id="donationDescription"></div><br />
+                    <!--DONATION DESCRIPTIONS  -->
+                    <div id="donationDescription" class="introParagraph">
+                        <div id="donationDescriptionImage">
+                        </div>
+                        <div id="donationDescriptionMessage">
+                            <p></p>
+                        </div>
+                    </div>
+                    <!-- DONATION FORM -->
                     <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
                     <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name">
                     <select id="dropdown" name="ward" class="form-control mb-3"></select>
                     <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address">
                     <input id="donationAmount" name="amount" type="hidden" />
-                    <div id="card-element" class="form-control">
-                        <!-- a Stripe Element will be inserted here. -->
-                    </div>
+                    <div id="card-element" class="form-control"></div>
                     <!-- Used to display form errors -->
                     <div id="card-errors" role="alert" style="color:red;"></div>
                     <div id="form-errors" role="alert"></div>
                 </div>
-                <button id="donate-button">Donate</button>
+                <button id="donate-button">
+                    <h1 id="donate-buttonh1">Donate</h1>
+                </button>
             </form>
         </div>
 

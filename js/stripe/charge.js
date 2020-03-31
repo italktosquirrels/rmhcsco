@@ -26,38 +26,55 @@ $(document).ready(function () {
   //on hover for amount descriptions
   $('#amountButtons input').click(function () {
     value = $(this).val();
+    $('#donationDescriptionImage').html('<img src="img/sickKids.jpg" />');
     if (value == 5) {
+      //Remove Span
+      $('#donationDescriptionMessage span').remove();
+      //Donate Image
+
       //Donate Description
-      $('#donationDescription').html("A donation of $5 can help provide things like: " +
+      $('#donationDescriptionMessage p').html("A donation of $5 can help provide things like: </br> " +
         "A much-needed snack for a mother to share with her sick daughter. ");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $5");
 
     } else if (value == 10) {
+      //Remove Span
+      $('#donationDescriptionMessage span').remove();
+
       //Donate Description
-      $('#donationDescription').html("A donation of $10 can help provide things like: " +
+      $('#donationDescriptionMessage p').html("A donation of $10 can help provide things like: </br>" +
         "A cup of coffee for a father who’s been at his daughter’s bedside for 22 hours.");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $10");
 
     } else if (value == 15) {
+      //Remove Span
+      $('#donationDescriptionMessage span').remove();
+
       //Donate Description
-      $('#donationDescription').html("A donation of $15 can help provide things like: " +
+      $('#donationDescriptionMessage p').html("A donation of $15 can help provide things like: </br> " +
         "A fun activity for a sister to share with her little brother on bedrest.");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $15");
 
     } else if (value == 20) {
+      //Remove Span
+      $('#donationDescriptionMessage span').remove();
+
       //Donate Description
-      $('#donationDescription').html("A donation of $20 can help provide things like: " +
+      $('#donationDescriptionMessage p').html("A donation of $20 can help provide things like: </br>" +
         "A fun activity for a sister to share with her little brother on bedrest. A much-needed" +
         "snack for a mother to share with her sick daughter.");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $20");
 
     } else if (value == 30) {
+      //Remove Span
+      $('#donationDescriptionMessage span').remove();
+
       //Donate Description
-      $('#donationDescription').html("A donation of $30 can help provide things like: " +
+      $('#donationDescriptionMessage p').html("A donation of $30 can help provide things like: </br> " +
         "A fun activity for a sister to share with her little brother on bedrest. A cup of " +
         "coffee for a father who’s been at his daughter’s bedside for 22 hours. A cup of coffee " +
         "for a father who’s been at his daughter’s bedside for 22 hours.");
@@ -65,37 +82,41 @@ $(document).ready(function () {
       $('#donate-button').text("Donate $30");
 
     } else if (value == "other") {
+
+      //Add Span
+      if (!$('#donationDescriptionMessage span').length) {
+        $('#donationDescriptionMessage p').after('<span style="float: right;"></span>');
+      }
+
+      //Donate Image
+      // $('#donationDescriptionImage').html('<img src="img/heart.png" width="100px" height="100px"/>');
       //Donate Description
-      $('#donationDescription').html("Thanks for donating to The Happy Wheels Cart. Anything helps.");
+      $('#donationDescriptionMessage p').html("Thanks for donating to The Happy Wheels Cart. </br> Anything helps.");
+      $('#donationDescriptionMessage span').html('<input id="inputAmount" type="number" placeholder="$0.00" />');
+
     } else {
-      $('#donationDescription').html("");
+      $('#donationDescriptionMessage p').html("");
     }
-  });
 
-  // $('#amountButtons').click(function () {
-  //   $('#donationDescription').html("");
-  // });
-
-
-
-  //Process button value
-  $('#amountButtons').click(function (e) {
+    //Get Values from Selected button
     radioChecked = $('input[name="radioAmount"]:checked').val();
-    //if other amount is selected
+    //If OTHER is Selected
     if (radioChecked == "other") {
-      $('#inputAmount').css("visibility", "visible").focus();
+      // $('#inputAmount').css("visibility", "visible").focus();
+
       amount = 0;
       $('#inputAmount').change(function () {
         amount = $('#inputAmount').val();
         $('input[name=amount]').val(amount);
-        $('#donate-button').text("Donate $" + amount);
+        $('#donate-buttonh1').text("Donate $" + amount);
       });
-      //if radio button amout is selected
+      //If Radio Button Amount is Selected
     } else {
-      $('#inputAmount').css("visibility", "hidden").val("");
+      // $('#inputAmount').css("visibility", "hidden").val("");
       $('input[name=amount]').val(radioChecked);
     }
   });
+
 
 
   // Custom styling can be passed to options when creating an Element.

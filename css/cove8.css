@@ -245,11 +245,26 @@ figcaption.map_tag {
      DONATE PAGE
 ******************************* */
 
-#amountButtons {
-    list-style-type: none;
-    margin: 25px 0 0 0;
-    padding: 0;
+.container {
+    width: 700px;
+    margin-bottom: 100px;
 }
+
+#donation-amount-wrapper {
+    margin-bottom: 25px;
+    margin-left: 25px;
+
+}
+
+#amountButtons {
+
+    list-style-type: none;
+    margin: 25px 0 50px 0;
+    padding: 0;
+
+}
+
+#amountButtons {}
 
 #amountButtons li {
     float: left;
@@ -276,16 +291,100 @@ figcaption.map_tag {
 
 #amountButtons input[type="radio"]:checked+label,
 .Checked+label {
-    background: yellow;
+    background-color: #ffca07;
+    color: #dc1d00;
 }
 
 #amountButtons label {
-    padding: 5px;
-    border: 1px solid #CCC;
+    background-color: #dc1d00;
+    font-family: 'Futura Bold';
+    color: #ffca07;
+    font-size: 1em;
+    text-align: center;
+    height: 50px;
+    padding-top: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 17px 10px -10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
     cursor: pointer;
     z-index: 90;
 }
 
 #amountButtons label:hover {
-    background: #DDD;
+    box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
+    transform: translate(0, -3px);
+}
+
+/* DONATE DESCRIPTIONS */
+
+#donationDescription {
+    clear: both;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 25px;
+    border-bottom: 2px solid #ffca07;
+    margin: 0px 0px 25px 0px;
+}
+
+
+#donationDescriptionImage img {
+    box-shadow: inset 5 8px 5px -5px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding-bottom: 5px;
+}
+
+#donationDescriptionMessage {
+    /* background-color: coral; */
+    font-size: 1em;
+    text-align: left;
+    height: auto;
+
+}
+
+#donationDescriptionMessage span {
+    padding-right: 50px;
+}
+
+
+/* Donate Button */
+#donate-button {
+    background-color: #ffca07;
+    font-family: 'Futura Bold';
+    color: #dc1d00;
+    font-size: 20px;
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 17px 10px -10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+}
+
+#donate-button h1 {
+    font-size: 20px;
+
+}
+
+#donate-button:hover {
+    box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
+    transform: translate(0, -10px);
+}
+
+
+#inputAmount {
+    margin-bottom: 15px;
+    border: 1px solid #dc1d00;
+    font-family: 'Futura Bold';
+    color: #353534;
+    font-size: 1em;
+    text-align: center;
+    padding: 3px 3px 3px 3px;
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    /* transition: all ease-in-out 300ms; */
 }

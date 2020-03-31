@@ -23,7 +23,7 @@ $(document).ready(function () {
   });
 
 
-  //on hover for amount descriptions
+  //on click for amount descriptions
   $('#amountButtons input').click(function () {
     value = $(this).val();
     if (value == 5) {

@@ -162,7 +162,7 @@ $(document).ready(function () {
           var response = JSON.parse(data);
           if (response.status == "1") {
             //response receives parameters to pass to success.php
-            window.location.href = "../rmhcsco/success.php?tid=" + response.token + "&name=" + response.name;
+            window.location.href = "../rmhcsco/success.php?tid=" + response.token + "&name=" + response.name + "&ward=" + response.ward;
           } else {
             //repsonse receives error message to display
             $('#form-errors').html(response.message).css("color", "red");

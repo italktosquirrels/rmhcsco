@@ -251,24 +251,25 @@
         <!-- STRIPE FORM -->
         <div class="container">
             <h2 class="my-4 text-center">RMHCSCO</h2>
-            <div id="amountButtons">
-                <div id="donationDescription"></div><br />
-                <input type="radio" name="radioAmount" value="5" />
-                <label for="donationAmount">5</label></span>
-                <input type="radio" name="radioAmount" value="10" />
-                <label for="donationAmount">10</label></span>
-                <input type="radio" name="radioAmount" value="15" />
-                <label for="donationAmount">15</label></span>
-                <input type="radio" name="radioAmount" value="20" />
-                <label for="donationAmount">20</label></span>
-                <input type="radio" name="radioAmount" value="30" />
-                <label for="donationAmount">30</label></span>
-                <input type="radio" name="radioAmount" value="other" />
-                <label for="donationAmount">Other</label>
-                <input id="inputAmount" style="visibility: hidden;" type="number" placeholder="Enter Amount: e.g 50" />
-            </div>
-            <form action="php/charge.php" method="post" id="payment-form">
+           
+            <form id="payment-form">
                 <div class="form-row">
+                    <div id="amountButtons">
+                        <div id="donationDescription"></div><br />
+                        <input type="radio" name="radioAmount" value="5" />
+                        <label for="donationAmount">5</label></span>
+                        <input type="radio" name="radioAmount" value="10" />
+                        <label for="donationAmount">10</label></span>
+                        <input type="radio" name="radioAmount" value="15" />
+                        <label for="donationAmount">15</label></span>
+                        <input type="radio" name="radioAmount" value="20" />
+                        <label for="donationAmount">20</label></span>
+                        <input type="radio" name="radioAmount" value="30" />
+                        <label for="donationAmount">30</label></span>
+                        <input type="radio" name="radioAmount" value="other" />
+                        <label for="donationAmount">Other</label>
+                        <input id="inputAmount" style="visibility: hidden;" type="number" placeholder="example input: 50" />
+                    </div>
                     <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty"
                         placeholder="First Name">
                     <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty"
@@ -281,7 +282,8 @@
                         <!-- a Stripe Element will be inserted here. -->
                     </div>
                     <!-- Used to display form errors -->
-                    <div id="card-errors" role="alert"></div>
+                    <div id="card-errors" role="alert" style="color:red;"></div>
+                    <div id="form-errors" role="alert"></div>
                 </div>
                 <button>Submit Payment</button>
             </form>

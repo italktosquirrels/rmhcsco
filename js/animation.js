@@ -7,8 +7,6 @@ var startLocation = [];
 var endLocation = [];
 var timerHandle = [];
 var infoWindow = null;
-// the KML data with ward boundaries + colours 
-var src = 'https://csunix.mohawkcollege.ca/~000349779/RMHCSCO/DATA/WARDS.kml';
 
 var startLoc = [];
 var endLoc = [];
@@ -23,76 +21,67 @@ window.setRoutes = setRoutes;
 // called on body load
 function initialize() {
 
-    // initialize infoWindow
-//    infoWindow = new google.maps.InfoWindow({
-//        size: new google.maps.Size(150, 50)
-//    });
-
     var options = {
         // max zoom
         zoom: 18
     };
     map = new google.maps.Map(document.getElementById("map_canvas"), options);
     
+    
     // initial location which loads up on map
     address = 'Hamilton, ON'
-    
-    // KML functions adds the ward data onto the map
-    // comment out to see animation map without the eyesore ward colours 
-        var kmlLayer = new google.maps.KmlLayer(src, {
-          suppressInfoWindows: true,
-          preserveViewport: false,
-          map: map
-        });
-
-//        kmlLayer.addListener('click', function(event) {
-//          var content = event.featureData.infoWindowHtml;
-//          var testimonial = document.getElementById('capture');
-//          testimonial.innerHTML = content;
-//        });
 
     // Geocoder is used to encode or actually geocode textual addresses to lat long values
     geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function (results, status) {
         map.fitBounds(results[0].geometry.viewport);
     });
+
 }
 
-// returns the marker
+// returns the animated marker
 function createMarker(latlng, label, html) {
     var contentString = '';
     var cart = {
-        url: 'img/cart.png',
-        size: new google.maps.Size(50, 43) // 50 pixels wide x 43 pixels tall
+        url: 'img/happy-wheels-cart-icon.png',
+        size: new google.maps.Size(50, 76) // 50 pixels wide x 76 pixels tall
     }
     // using Marker api, marker is created
     var marker = new google.maps.Marker({
         position: latlng,
         map: map,
-       /// title: label,
         suppressInfoWindows: true,
         icon: cart,
         zIndex: 10
     });
-    //marker.myname = label;
-    // adding click listener to open up info window when marker is clicked
-   // google.maps.event.addListener(marker, 'click', function () {
-  //      infoWindow.setContent(contentString);
-  //      infoWindow.open(map, marker);
-  //  });
+
     return marker;
 }
 
-//function toggleError(msg){
-//    document.getElementById('error-msg').innerText = msg;
-//}
+// returns the house marker. NOT WORKING
+function createHouseMarker() {
+    var cart = {
+        url: '../css/images/logo-house-rmhcswo.svg',
+        size: new google.maps.Size(50, 76) // 50 pixels wide x 76 pixels tall
+    }
+    // using Marker api, marker is created
+    var marker = new google.maps.Marker({
+        position: {
+            lat: 43.258030,
+            lng: -79.922913
+        },
+        map: map,
+        suppressInfoWindows: true,
+        icon: cart
+    });
+    console.log("house marker log");
+    return marker;
+}
+
 
 // Using Directions Service find the route between the starting and ending points
 function setRoutes() {
     map && initialize();
-    // empty out the error msg
-    //toggleError("");
-    // set the values and check if any is empty, and if yes, show error and return
     var begin = document.getElementById('start');
     var startVal = begin.value; 
     var endVal = 'Ronald McDonald House Charities South Central Ontario';
@@ -147,15 +136,15 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
             // set up polyline for current route
             polyLine[routeNum] = new google.maps.Polyline({
                 path: [],
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.0000000001,
-      strokeWeight: 0
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.0000000001,
+                strokeWeight: 0
             });
             poly2[routeNum] = new google.maps.Polyline({
                 path: [],
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.000000000001,
-      strokeWeight: 0
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.000000000001,
+                strokeWeight: 0
             });
             // For each route, display summary information.
             var legs = response.routes[0].legs;
@@ -165,9 +154,7 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
             // if true, hides the A/B pointer markers
             disp.setOptions( { suppressMarkers: true } );
             // if true, hides the polyline while still driving on the route (does not delete)
-            // looks funky if hidden, don't know what the cart is doing or where its going.
-            // to do change colour + opacity to something more on brand if possible 
-            //disp.setOptions( { suppressPolylines: true } );
+            disp.setOptions( { suppressPolylines: false } );
             
             disp.setMap(map);
             disp.setDirections(response);
@@ -189,15 +176,14 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
                         polyLine[routeNum].getPath().push(nextSegment[k]);
                     }
                 }
+                console.log("here");
+                createHouseMarker();
             }
         }
         if (polyLine[routeNum]){
-            // render the line to map
-           // polyLine[routeNum].setMap(map);
-            // and start animation
             startAnimation(routeNum);
         }
-    }
+    }    
 }
 
 // Spawn a new polyLine every 20 vertices
@@ -240,5 +226,5 @@ function startAnimation(index) {
         strokeColor: "#FFFF00",
         strokeWeight: 0
     });
-    timerHandle[index] = setTimeout("animate(" + index + ",10)", 200);  // Allow time for the initial map display
+    timerHandle[index] = setTimeout("animate(" + index + ",10)", 500);  // Allow time for the initial map display
 }

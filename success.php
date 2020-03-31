@@ -10,7 +10,6 @@
     header('Location: index.html');
   }
 ?>
-
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -30,7 +29,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css?v=1.15">
     <link rel="stylesheet" href="css/cove8.css" />
-    <link rel="canonical" href="success.php">
+    <link rel="canonical" href="hwc_map.html">
 
     <meta property="og:url" content="http://rmhcsco.italktosquirrels.com/hwc_map.html" />
     <meta property="og:type" content="website" />
@@ -77,12 +76,11 @@
 
     <!-- COVE 8 MAIN CONTENT -->
     <!-- MAIN HEADER -->
-  </div>
     <section>
         <div class="wrapper">
             <div class="wysPageContent headerPadding">
-                <h2 style="text-align: center;">Thank you for Donation, <?php echo $name ?>!</h2>
-                <p class="introParagraph" style="text-align: center;">Your transaction ID is:</br> <?php echo $tid; ?></p>
+                <h2 style="text-align: center;">Happy Wheels Cart Live Map</h2>
+                <p class="introParagraph" style="text-align: center;">Donate to watch The Happy Wheels Cart travel across Hamilton, collecting donations and filling families with hope along the way.</p>
                 <ul class="share horizontal">
                     <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Frmhcsco.italktosquirrels.com%2Fhwc_map.html&amp;src=sdkpreparse" target="_blank">Share with Facebook</a></li>
                     <li class="text"><span>Share</span></li>
@@ -94,33 +92,60 @@
     <!-- </section> -->
     <!-- LIVE MAP -->
     <section>
-        <div id="map_wrapper">
-            <div class="donationsBar">
+        <div id="map-grid-wrapper" class="donationsBar">
+            <div id="ranking-title">
                 <ul>
                     <li class="wardRankings">
                         <h1><span>Ward Rankings</span></h1>
                     </li>
+                </ul>
+            </div>
+            <div id="total-amount-donated">
+                <ul>
                     <li>
-                        <h1><span id="total_donation_amount"></span></h1>
+                        <h1>
+                            <span id="total_donation_amount"></span>
+                        </h1>
                     </li>
+                    <li>Total Donated</li>
+                </ul>
+            </div>
+            <div id="top-district">
+                <ul>
                     <li>
                         <h1><span id="top_ward"></span></h1>
                     </li>
-                    <li>
-                        <h1><span id="total_donations"></span></h1>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="wardRankings"></li>
-                    <li>Total Donated</li>
                     <li>Top Ranking District</li>
+                </ul>
+            </div>
+            <div id="total-donations">
+                <ul>
+                    <li>
+                        <h1><span id="total_donated"></span></h1>
+                    </li>
                     <li>Total Happy Wheels Donations</li>
                 </ul>
             </div>
-            <div class="sidebar_wrapper">
-                <ul class="sidebar"></ul>
+            <div id="sidebar-col">
+                <!-- <div id="sidebar-col-grid">
+                    <div class="rank">
+                        <h1>1</h1>
+                    </div>
+                    <div class="ward-name">
+                        <p>Ancaster</p>
+                    </div>
+                    <div class="ward-number">
+                        <p>Ward # 10</p>
+                    </div>
+                    <div class="amount">
+                        <p>$5000.00</p>
+                    </div>
+                </div> -->
             </div>
+
             <div id="map"></div>
+
+
         </div>
         <div class="wysPageContent" style="margin-top: 70px;">
             <ul class="share horizontal">
@@ -306,6 +331,8 @@
     <script src="js/cove8JS.js"></script>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&sensor=false"></script>
     <script type="text/javascript" src="js/map.js"></script>
+
+    
     <!-- END -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js?v=1.4"></script>

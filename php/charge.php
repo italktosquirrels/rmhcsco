@@ -5,6 +5,7 @@ class NoTokenException extends Exception {};
 class FirstNameException extends Exception {};
 class LastNameException extends Exception {};
 class EmailException extends Exception {};
+class InvalidNameException extends Exception {};
 class WardException extends Exception {};
 
 include 'config.php';
@@ -65,10 +66,14 @@ try {
 
   if(empty($first_name) || !isset($first_name)){
     throw new FirstNameException();
+  } else if (!preg_match("/^[a-z ,.'-]+$/i", $first_name)){
+    throw new InvalidNameException();
   }
 
   if(empty($last_name) || !isset($last_name)){
     throw new LastNameException();
+  } else if (!preg_match("/^[a-z ,.'-]+$/i", $last_name)){
+    throw new InvalidNameException();
   }
 
   if(empty($email) || !isset($email)){
@@ -122,6 +127,9 @@ echo json_encode($response);
 } catch (EmailException $e){
   $response = array("message" => "Please provide an email");
   echo json_encode($response);
+} catch (InvalidNameException $e){
+  $response = array("message" => "Your first and last  name should only contain letters, dashes and apastrophes.");
+  echo json_encode($response);
 } catch (WardException $e){
   $response = array("message" => "Please select a ward");
   echo json_encode($response);
@@ -160,8 +168,11 @@ echo json_encode($response);
   break;
 }
 } else {
-
+  echo array("message" => "An unknown error has occured. Please refresh page and try again.");
 }
+
+
+
 
 // // Customer Data
 // $customerData = [

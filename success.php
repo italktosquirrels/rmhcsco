@@ -1,15 +1,33 @@
 <?php
-  if(!empty($_GET['tid'] && !empty($_GET['name']))) {
+<<<<<<< HEAD
+ if(!empty($_GET['token'] && !empty($_GET['name']&& !empty($_GET['ward'])))){
+    $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
+   // && !empty($_GET['ward'])
+    $tid = $GET['token'];
+    //$product = $GET['product'];
+    $product="hii";
+=======
+  if(!empty($_GET['tid'] && !empty($_GET['name']&& !empty($_GET['ward'])))) {
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
 
     $tid = $GET['tid'];
     // $product = $GET['product'];
+>>>>>>> 9f7d8401978a8b92b20430cb4fb344d317622ed6
     $name = $GET['name'];
-    // $ward = $GET['ward'];
+   // $ward = $GET['ward'];
+   $ward=$GET['ward'];;
   } else {
-    header('Location: index.html');
+    // header('Location: index.html');
+    $tid = "ss";
+    //$product = $GET['product'];
+    $product="hii";
+    $name = "ss";
+   // $ward = $GET['ward'];
+   $ward=1;
+
   }
 ?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -29,7 +47,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css?v=1.15">
     <link rel="stylesheet" href="css/cove8.css" />
-    <link rel="canonical" href="hwc_map.html">
+    <link rel="canonical" href="success.php">
 
     <meta property="og:url" content="http://rmhcsco.italktosquirrels.com/hwc_map.html" />
     <meta property="og:type" content="website" />
@@ -38,8 +56,13 @@
     <meta property="og:image" content="img/heart-sketch.svg" />
 
 </head>
+<<<<<<< HEAD
+<!-- //<?php$ward?> -->
+<body onload="initMap(15)">
+=======
 
-<body onload="initMap()">
+<body onload="initMap(<?php $ward ?>)">
+>>>>>>> 9f7d8401978a8b92b20430cb4fb344d317622ed6
     <header class="clearfix">
         <div class="bgBlue">
             <div class="wrapper">
@@ -73,14 +96,15 @@
         </div>
 
     </header>
-
+ 
     <!-- COVE 8 MAIN CONTENT -->
     <!-- MAIN HEADER -->
+  </div>
     <section>
         <div class="wrapper">
             <div class="wysPageContent headerPadding">
-                <h2 style="text-align: center;">Happy Wheels Cart Live Map</h2>
-                <p class="introParagraph" style="text-align: center;">Donate to watch The Happy Wheels Cart travel across Hamilton, collecting donations and filling families with hope along the way.</p>
+                <h2 style="text-align: center;">Thank you for Donationddddddddddddddd, <?php echo $name ?>!</h2>
+                <p class="introParagraph" style="text-align: center;">Your transaction ID is:</br> <?php echo $tid; ?></p>
                 <ul class="share horizontal">
                     <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Frmhcsco.italktosquirrels.com%2Fhwc_map.html&amp;src=sdkpreparse" target="_blank">Share with Facebook</a></li>
                     <li class="text"><span>Share</span></li>
@@ -88,7 +112,7 @@
                 <hr class="gold" />
             </div>
         </div>
-    </section>
+    
     <!-- </section> -->
     <!-- LIVE MAP -->
     <section>
@@ -147,15 +171,7 @@
 
 
         </div>
-        <div class="wysPageContent" style="margin-top: 70px;">
-            <ul class="share horizontal">
-                <li><a class="facebook" href="http://www.facebook.com/sharer/sharer.php?u={FACEBOOKSHAREURL}" target="_blank">Share with Facebook</a></li>
-                <li class="text"><span>Share</span></li>
-            </ul>
-            <hr class="gold" />
-        </div>
-
-    </section>
+        </section>
     <!-- </section> -->
 
     <!-- COVE 8 END -->
@@ -330,9 +346,8 @@
     <!-- COVE 8 JAVASCRIPT -->
     <script src="js/cove8JS.js"></script>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&sensor=false"></script>
-    <script type="text/javascript" src="js/map.js"></script>
-
-    
+    <script type="text/javascript" src="js/animatedMap.js"></script>
+    <script type="text/javascript" src="js/geoCode.js"></script>
     <!-- END -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js?v=1.4"></script>

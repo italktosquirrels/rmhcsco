@@ -1,30 +1,14 @@
 <?php
-<<<<<<< HEAD
- if(!empty($_GET['token'] && !empty($_GET['name']&& !empty($_GET['ward'])))){
-    $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
-   // && !empty($_GET['ward'])
-    $tid = $GET['token'];
-    //$product = $GET['product'];
-    $product="hii";
-=======
   if(!empty($_GET['tid'] && !empty($_GET['name']&& !empty($_GET['ward'])))) {
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
 
     $tid = $GET['tid'];
     // $product = $GET['product'];
->>>>>>> 9f7d8401978a8b92b20430cb4fb344d317622ed6
     $name = $GET['name'];
    // $ward = $GET['ward'];
-   $ward=$GET['ward'];;
+    $ward=(int)$GET['ward'];;
   } else {
-    // header('Location: index.html');
-    $tid = "ss";
-    //$product = $GET['product'];
-    $product="hii";
-    $name = "ss";
-   // $ward = $GET['ward'];
-   $ward=1;
-
+   header('Location: index.html');
   }
 ?>
 
@@ -56,13 +40,8 @@
     <meta property="og:image" content="img/heart-sketch.svg" />
 
 </head>
-<<<<<<< HEAD
-<!-- //<?php$ward?> -->
-<body onload="initMap(15)">
-=======
 
-<body onload="initMap(<?php $ward ?>)">
->>>>>>> 9f7d8401978a8b92b20430cb4fb344d317622ed6
+<body onload="initMap(<?php echo $ward ?>)">
     <header class="clearfix">
         <div class="bgBlue">
             <div class="wrapper">
@@ -103,8 +82,8 @@
     <section>
         <div class="wrapper">
             <div class="wysPageContent headerPadding">
-                <h2 style="text-align: center;">Thank you for Donationddddddddddddddd, <?php echo $name ?>!</h2>
-                <p class="introParagraph" style="text-align: center;">Your transaction ID is:</br> <?php echo $tid; ?></p>
+                <h2 style="text-align: center;">Thank you for Donation, <?php echo $name ?>!</h2>
+                <p class="introParagraph" style="text-align: center;">Your transaction ID is:</br><?php echo $tid; ?></p>
                 <ul class="share horizontal">
                     <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Frmhcsco.italktosquirrels.com%2Fhwc_map.html&amp;src=sdkpreparse" target="_blank">Share with Facebook</a></li>
                     <li class="text"><span>Share</span></li>

@@ -48,14 +48,17 @@ switch ($action){
 
   case ("submit"):
 try {
+
+  //sanitize form data
   parse_str($_POST['formData'], $formData);
-  $token =  filter_var($formData['stripeToken'], FILTER_SANITIZE_SPECIAL_CHARS);
-  $first_name = $formData ['first_name'];
-  $last_name = $formData ['last_name'];
-  $email = $formData ['email'];
-  $amount = $formData ['amount'];
-  $ward = $formData ['ward'];
+  $token =  filter_var($formData['stripeToken'], FILTER_SANITIZE_STRING);
+  $first_name = filter_var($formData ['first_name'],FILTER_SANITIZE_STRING);;
+  $last_name = filter_var($formData ['last_name'],FILTER_SANITIZE_STRING);;
+  $email = filter_var($formData ['email'],FILTER_SANITIZE_EMAIL);
+  $amount = filter_var($formData ['amount'],FILTER_SANITIZE_NUMBER_INT);
+  $ward = filter_var($formData['ward'],FILTER_SANITIZE_STRING);
   
+  //check if values are set, if not throw exceptions
   if(empty($amount) || !isset($amount)){
     throw new AmountException();
   }
@@ -109,10 +112,12 @@ $charge = \Stripe\Charge::create(array(
 insert($conn, $amount, $date_time, $ward);
 
 //successful response
+//send status, token and first name to ajax call for redirection to success.php
 $response = array("status" => "1", "token" => $charge->id, "name" => $first_name);
 echo json_encode($response);
-//catch thrown exceptions from forms and payement errors
-//send error message to form
+
+//handle thrown exceptions from forms and payement errors
+//send error response to form thru ajax
 } catch (AmountException $e){
   $response = array("message" => "Your amount is not selected or incorrect");
   echo json_encode($response);

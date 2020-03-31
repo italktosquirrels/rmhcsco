@@ -1,10 +1,18 @@
 <?php
+<<<<<<< HEAD
  if(!empty($_GET['token'] && !empty($_GET['name']&& !empty($_GET['ward'])))){
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
    // && !empty($_GET['ward'])
     $tid = $GET['token'];
     //$product = $GET['product'];
     $product="hii";
+=======
+  if(!empty($_GET['tid'] && !empty($_GET['name']&& !empty($_GET['ward'])))) {
+    $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
+
+    $tid = $GET['tid'];
+    // $product = $GET['product'];
+>>>>>>> 9f7d8401978a8b92b20430cb4fb344d317622ed6
     $name = $GET['name'];
    // $ward = $GET['ward'];
    $ward=$GET['ward'];;
@@ -48,8 +56,13 @@
     <meta property="og:image" content="img/heart-sketch.svg" />
 
 </head>
+<<<<<<< HEAD
 <!-- //<?php$ward?> -->
 <body onload="initMap(15)">
+=======
+
+<body onload="initMap(<?php $ward ?>)">
+>>>>>>> 9f7d8401978a8b92b20430cb4fb344d317622ed6
     <header class="clearfix">
         <div class="bgBlue">
             <div class="wrapper">

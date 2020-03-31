@@ -113,7 +113,7 @@ insert($conn, $amount, $date_time, $ward);
 
 //successful response
 //send status, token and first name to ajax call for redirection to success.php
-$response = array("status" => "1", "token" => $charge->id, "name" => $first_name);
+$response = array("status" => "1", "token" => $charge->id, "name" => $first_name, "ward" => $ward);
 echo json_encode($response);
 
 //handle thrown exceptions from forms and payement errors

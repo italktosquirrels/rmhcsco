@@ -111,7 +111,8 @@ insert($conn, $amount, $date_time, $ward);
 //successful response
 $response = array("status" => "1", "token" => $charge->id, "name" => $first_name);
 echo json_encode($response);
-//catch forms and payement errors
+//catch thrown exceptions from forms and payement errors
+//send error message to form
 } catch (AmountException $e){
   $response = array("message" => "Your amount is not selected or incorrect");
   echo json_encode($response);
@@ -168,11 +169,11 @@ echo json_encode($response);
   break;
 }
 } else {
-  echo array("message" => "An unknown error has occured. Please refresh page and try again.");
+  echo array("message" => "An unknown error has occured. Please reload the page and try again.");
 }
 
 
-
+//code can be used to pass to database
 
 // // Customer Data
 // $customerData = [

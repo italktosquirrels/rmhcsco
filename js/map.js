@@ -1,26 +1,24 @@
 // beginning of something
 var map;
+var lat_lng = {
+    lat: 43.258030,
+    lng: -79.922913
+};
+
+var metrics;
+var wardName;
+var wardID;
+var wardAmount;
+
 
 
 function initMap() {
     // create the map
     map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(43.258030, -79.922913),
+        center: new google.maps.LatLng(lat_lng),
         zoom: 11,
         mapTypeId: 'terrain'
     });
-
-    //RMHSCO LOCATION AND MARKER
-    var image = 'img/rmhcsco_map_icon.png';
-    var beachMarker = new google.maps.Marker({
-        position: {
-            lat: 43.258030,
-            lng: -79.922913
-        },
-        map: map,
-        icon: image
-    });
-
 
     var geoJsonData = map.data.loadGeoJson('data/Ward_Boundaries.json');
 
@@ -79,7 +77,115 @@ function initMap() {
         }
         return {
             fillColor: color,
-            strokeWeight: 0.75
+            strokeColor: color,
+            strokeWeight: 1.5
         }
     });
+
+
+
+
+    //RMHSCO LOCATION AND MARKER
+    var image = 'img/rmhcsco_map_icon.png';
+    var rmhcscoMarker = new google.maps.Marker({
+        position: {
+            lat: 43.258030,
+            lng: -79.922913
+        },
+        map: map,
+        icon: image,
+        title: 'RMHCSCO'
+    });
+
+    // When the user hovers, tempt them to click by outlining the letters.
+    // Call revertStyle() to remove all overrides. This will use the style rules
+    // defined in the function passed to setStyle()
+    map.data.addListener('mouseover', function (event) {
+        map.data.revertStyle();
+        map.data.overrideStyle(event.feature, {
+            strokeWeight: 3.5
+        });
+    });
+
+    map.data.addListener('mouseout', function (event) {
+        map.data.revertStyle();
+    });
+
+
+    /* ******************************
+         INFO BOX
+    ******************************* */
+
+
+
+    function metricsCall() {
+        return JSON.parse($.ajax({
+            url: './php/controller.php',
+            type: 'post',
+            data: {
+                action: 'metrics'
+            },
+            dataType: 'json',
+            global: false,
+            async: false,
+            success: function (data) {
+                return data;
+
+            }
+        }).responseText);
+
+    }
+
+    metrics = metricsCall();
+
+
+    map.data.addListener('click', function (event) {
+        var ward = event.feature.getProperty('WARD');
+        var i;
+        for (i = 0; i < 15; i++) {
+            if (ward == metrics.totalByWard[i].Ward_ID) {
+                // console.log(ward, metrics.totalByWard[i].Ward_ID);
+                // console.log(ward, metrics.totalByWard[i].Ward_Name);
+                // console.log(ward, metrics.totalByWard[i].Amount);
+
+                wardName = metrics.totalByWard[i].Ward_Name;
+                wardID = metrics.totalByWard[i].Ward_ID;
+                wardAmount = metrics.totalByWard[i].Amount;
+                console.log(wardName);
+                console.log(wardID);
+                console.log(wardAmount);
+            }
+        }
+
+
+        infowindow.setPosition(lat_lng);
+        infowindow.open(map);
+
+    });
+
+    var contents = '<div class="infobox">' +
+        '<div class="infobox-title">' +
+        '<h1>' + wardName + '</h1>' +
+        '</div>' +
+        '<div class="infobox-content">' +
+        '<p>Ward No. ' + wardID + '</p>' +
+        '<p>Donated: $' + wardAmount + '</p>' +
+        '<p style="text-align: center; font-family: Futura Bold;">Last Donation</p>' +
+        '<p>Today 07:30:10 PM</p>' +
+        '<p>$30</p>' +
+        '</div>' +
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contents,
+        pixelOffset: new google.maps.Size(-1, -45),
+    });
+
+    // // Set mouseover event for each feature.
+    // map.data.addListener('mouseover', function (event) {
+    //     document.getElementById('info-box').textContent =
+    //         event.feature.getProperty('WARD');
+    // });
+
+
 }

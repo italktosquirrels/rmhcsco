@@ -54,6 +54,7 @@ figcaption.map_tag {
     letter-spacing: -0.010em;
     right: -6px;
     padding: 5px 9px;
+    margin-top: 45px;
     position: absolute;
     text-transform: uppercase;
 }
@@ -387,4 +388,26 @@ figcaption.map_tag {
     box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     /* transition: all ease-in-out 300ms; */
+}
+
+
+/* ******************************
+     INFO BOX
+******************************* */
+
+.infobox {
+    font-family: 'Futura';
+    color: #353534;
+    text-align: center;
+}
+
+.infobox-title {
+    font-family: 'Futura Bold';
+    font-size: 0.75em;
+    text-align: left;
+    border-bottom: 2px solid #ffca07;
+}
+
+.infobox-content {
+    line-height: 1;
 }

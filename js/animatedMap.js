@@ -20,60 +20,60 @@ var eol = [];
 window.initialize = initialize;
 window.setRoutes = setRoutes;
 
-function setWard(wardNumber){
+function setWard(wardNumber) {
     // get the donors ward to start the cart animation from
-    console.log("start set ward with: " + wardNumber);  // testing log
+    console.log("start set ward with: " + wardNumber); // testing log
     switch (wardNumber) {
         case 1:
-            startingValue ="43.2535809,-79.9048477";
+            startingValue = "43.2535809,-79.9048477";
             break;
         case 2:
-            startingValue ="43.2533545,-79.8713059";
+            startingValue = "43.2533545,-79.8713059";
             break;
         case 3:
-            startingValue ="43.2513141,-79.8405899";
+            startingValue = "43.2513141,-79.8405899";
             break;
         case 4:
-            startingValue ="43.2468749,-79.7992347";
+            startingValue = "43.2468749,-79.7992347";
             break;
         case 5:
-            startingValue ="43.2300028,-79.7760708";
+            startingValue = "43.2300028,-79.7760708";
             break;
         case 6:
-            startingValue ="43.2080969,-79.8388357";
+            startingValue = "43.2080969,-79.8388357";
             break;
         case 7:
-            startingValue ="43.2138899,-79.8681587";
+            startingValue = "43.2138899,-79.8681587";
             break;
         case 8:
-            startingValue ="43.2199659,-79.8928887";
+            startingValue = "43.2199659,-79.8928887";
             break;
         case 9:
-            startingValue ="43.1878654,-79.7787937";
+            startingValue = "43.1878654,-79.7787937";
             break;
         case 10:
-            startingValue ="43.2226129,-79.7028177";
+            startingValue = "43.2226129,-79.7028177";
             break;
         case 11:
-            startingValue ="43.1598979,-79.9272297";
+            startingValue = "43.1598979,-79.9272297";
             break;
         case 12:
-            startingValue ="43.2097349,-80.0492837";
+            startingValue = "43.2097349,-80.0492837";
             break;
         case 13:
-            startingValue ="43.3211289,-80.0513307";
+            startingValue = "43.3211289,-80.0513307";
             break;
         case 14:
-            startingValue ="43.2337239,-79.9187647";
+            startingValue = "43.2337239,-79.9187647";
             break;
         case 15:
-            startingValue ="43.3803054,-79.9749105";
+            startingValue = "43.3803054,-79.9749105";
             break;
-        }
-        console.log("end SETWARD"); // testing log
-        // call setRoutes with the map and starting LatLong values
-        setRoutes(map, startingValue);
     }
+    console.log("end SETWARD"); // testing log
+    // call setRoutes with the map and starting LatLong values
+    setRoutes(map, startingValue);
+}
 
 
 // NOT CALLED.
@@ -95,7 +95,7 @@ function setWard(wardNumber){
 //         map: map,
 //         icon: image
 //     });
-    
+
 //     // initial location which loads up on map center
 //     address = 'Hamilton, ON'
 
@@ -165,7 +165,7 @@ function setWard(wardNumber){
 //             strokeWeight: 0.75
 //         }
 //     });
- 
+
 //     // sends the donors wardNum to the setWard function
 //     // which starts the calls to the animation functions
 //     setWard(wardNum);
@@ -198,7 +198,7 @@ function setRoutes(map, startingMarker) {
 
     startLoc[0] = startVal;
     endLoc[0] = endVal;
-    
+
     // empty out previous values if any
     startLocation = [];
     endLocation = [];
@@ -214,7 +214,7 @@ function setRoutes(map, startingMarker) {
             suppressPolylines: true,
             preserveViewport: false
         };
-        
+
         directionsService = new google.maps.DirectionsService();
         var travelMode = google.maps.DirectionsTravelMode.DRIVING;
         var request = {
@@ -223,7 +223,7 @@ function setRoutes(map, startingMarker) {
             travelMode: travelMode
         };
         directionsService.route(request, makeRouteCallback(i, directionsDisplay[i]), rendererOptions);
-        
+
     }
 }
 
@@ -236,11 +236,12 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
     }
     return function (response, status) {
         // if directions service successfully returns and no polylines exist already, then do the following
-        if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+        if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
             toggleError("No routes available for selected locations");
             return;
         }
         if (status == google.maps.DirectionsStatus.OK) {
+
             startLocation[routeNum] = new Object();
             endLocation[routeNum] = new Object();
             // set up polyline for current route
@@ -260,12 +261,16 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
             var legs = response.routes[0].legs;
             // directionsrenderer renders the directions obtained previously by the directions service
             disp = new google.maps.DirectionsRenderer(rendererOptions);
-            
+
             // if true, hides the A/B pointer markers
-            disp.setOptions( { suppressMarkers: true } );
+            disp.setOptions({
+                suppressMarkers: true
+            });
             // if true, hides the polyline while still driving on the route (does not delete)
-            disp.setOptions( { suppressPolylines: false } );
-            
+            disp.setOptions({
+                suppressPolylines: false
+            });
+
             disp.setMap(map);
             disp.setDirections(response);
 
@@ -288,10 +293,10 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
                 }
             }
         }
-        if (polyLine[routeNum]){
+        if (polyLine[routeNum]) {
             startAnimation(routeNum);
         }
-    }    
+    }
 }
 
 // Spawn a new polyLine every 20 vertices
@@ -324,17 +329,19 @@ function animate(index, d, tick) {
 
 // start marker movement by updating marker position every x milliseconds i.e. tick value
 function startAnimation(index) {
-    if (timerHandle[index]) 
+    if (timerHandle[index])
         clearTimeout(timerHandle[index]);
     eol[index] = polyLine[index].Distance();
     map.setCenter(polyLine[index].getPath().getAt(0));
+    map.setZoom(11);
+    console.log("CENTRE" + polyLine[index].getPath().getAt(0))
 
     poly2[index] = new google.maps.Polyline({
         path: [polyLine[index].getPath().getAt(0)],
         strokeColor: "#FFFF00",
         strokeWeight: 0
     });
-    timerHandle[index] = setTimeout("animate(" + index + ",10)", 500);  // Allow time for the initial map display
+    timerHandle[index] = setTimeout("animate(" + index + ",10)", 500); // Allow time for the initial map display
 }
 
 // initial body load call. accepts the ward number that will get passed to setWard
@@ -421,5 +428,5 @@ function initMap(wardNum) {
     });
 
     console.log('TESTING');
-setWard(wardNum);
+    setWard(wardNum);
 }

@@ -11,12 +11,47 @@
  * Function that gets total by Ward. Error Handlings
  */
 
+function getAllDonationInfo($conn)
+{
+    try
+    {
+        // Build the select query
+        $stmt = $conn->prepare("SELECT d.Amount, w.Ward_ID, w.Ward_Name, w.Ward_Colour, d.Date_Time
+                                FROM Donation d
+                                JOIN Ward w ON d.Ward_ID = w.Ward_ID
+                                GROUP BY Ward_ID
+                                ORDER BY SUM(AMOUNT) DESC ");
+
+        // Execute the query, save reference to results
+        $stmt->execute();
+
+        // Grab results of query for as long as results, store in TPL
+        while ($nextRow = $stmt->fetch()) {
+            $TPL['results'][] = $nextRow;
+        }
+
+    } catch (PDOException $e) {
+        //Stores Error Message
+        $TPL['error'] = "Select failed: " . $e->getMessage();
+        //Killes Connection if fail
+        exit();
+    }
+
+    return $TPL['results'];
+
+}
+
+
+/**
+ * Function that gets total by Ward. Error Handlings
+ */
+
 function getTotalByWard($conn)
 {
     try
     {
         // Build the select query
-        $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Amount', w.Ward_ID, w.Ward_Name, w.Ward_Colour
+        $stmt = $conn->prepare("SELECT SUM(Amount) AS 'Amount', w.Ward_ID, w.Ward_Name, w.Ward_Colour, d.Date_Time
                                 FROM Donation d
                                 JOIN Ward w ON d.Ward_ID = w.Ward_ID
                                 GROUP BY Ward_ID
@@ -75,7 +110,7 @@ function getTotal($conn)
  * Function retrieves the total number of donations made with Error Handling
  */
 
-function getTotalDonations($conn)
+function getDonationsCount($conn)
 {
     try
     {

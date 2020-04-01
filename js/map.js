@@ -1,4 +1,3 @@
-// beginning of something
 var map;
 var lat_lng = {
     lat: 43.258030,
@@ -6,9 +5,7 @@ var lat_lng = {
 };
 
 var metrics;
-var wardName;
-var wardID;
-var wardAmount;
+var infowindow;
 
 
 
@@ -140,22 +137,39 @@ function initMap() {
 
 
     map.data.addListener('click', function (event) {
+        if (infowindow) {
+            infowindow.close();
+        }
+
         var ward = event.feature.getProperty('WARD');
         var i;
         for (i = 0; i < 15; i++) {
             if (ward == metrics.totalByWard[i].Ward_ID) {
-                // console.log(ward, metrics.totalByWard[i].Ward_ID);
-                // console.log(ward, metrics.totalByWard[i].Ward_Name);
-                // console.log(ward, metrics.totalByWard[i].Amount);
-
-                wardName = metrics.totalByWard[i].Ward_Name;
-                wardID = metrics.totalByWard[i].Ward_ID;
-                wardAmount = metrics.totalByWard[i].Amount;
-                console.log(wardName);
-                console.log(wardID);
-                console.log(wardAmount);
+                var wardName = metrics.allDonationInfo[i].Ward_Name;
+                var wardID = metrics.allDonationInfo[i].Ward_ID;
+                var wardAmount = metrics.totalByWard[i].Amount;
+                var date = new Date(metrics.allDonationInfo[i].Date_Time);
+                var amount = metrics.allDonationInfo[i].Amount;
             }
         }
+        contents = '<div class="infobox">' +
+            '<div class="infobox-title">' +
+            '<h1>' + wardName + '</h1>' +
+            '</div>' +
+            '<div class="infobox-content">' +
+            '<p>Ward No. ' + wardID + '</p>' +
+            '<p>Total: $' + wardAmount + '.00</p>' +
+            '<p style="text-align: center; font-family: Futura Bold;">Last Donation</p>' +
+            '<p>' + date.toDateString() + '</p>' +
+            '<p>' + date.toLocaleTimeString() + '</p>' +
+            '<p>$' + amount + '.00</p>' +
+            '</div>' +
+            '</div>';
+
+        infowindow = new google.maps.InfoWindow({
+            content: contents,
+            pixelOffset: new google.maps.Size(-1, -45),
+        });
 
 
         infowindow.setPosition(lat_lng);
@@ -163,23 +177,6 @@ function initMap() {
 
     });
 
-    var contents = '<div class="infobox">' +
-        '<div class="infobox-title">' +
-        '<h1>' + wardName + '</h1>' +
-        '</div>' +
-        '<div class="infobox-content">' +
-        '<p>Ward No. ' + wardID + '</p>' +
-        '<p>Donated: $' + wardAmount + '</p>' +
-        '<p style="text-align: center; font-family: Futura Bold;">Last Donation</p>' +
-        '<p>Today 07:30:10 PM</p>' +
-        '<p>$30</p>' +
-        '</div>' +
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contents,
-        pixelOffset: new google.maps.Size(-1, -45),
-    });
 
     // // Set mouseover event for each feature.
     // map.data.addListener('mouseover', function (event) {

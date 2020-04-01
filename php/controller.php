@@ -26,7 +26,8 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         case 'metrics':
             $data['totalByWard'] = getTotalByWard($conn);
             $data['totalAmountDonated'] = getTotal($conn);
-            $data['totalDonations'] = getTotalDonations($conn);
+            $data['totalDonations'] = getDonationsCount($conn);
+            $data['allDonationInfo'] = getAllDonationInfo($conn);
             echo json_encode($data);
 
             break;

@@ -404,10 +404,9 @@ figcaption.map_tag {
 .infobox-title {
     font-family: 'Futura Bold';
     font-size: 0.75em;
-    text-align: left;
     border-bottom: 2px solid #ffca07;
 }
 
 .infobox-content {
-    line-height: 1;
+    line-height: 0.7;
 }

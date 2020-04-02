@@ -23,29 +23,39 @@ function initialize() {
 
     var options = {
         // max zoom
-        zoom: 18
+        zoom: 11
     };
     map = new google.maps.Map(document.getElementById("map_canvas"), options);
-    
-    
-    // initial location which loads up on map
+
+
+    //Initial location which loads up on map
     address = 'Hamilton, ON'
 
-    // Geocoder is used to encode or actually geocode textual addresses to lat long values
+    //Geocoder is used to encode or actually geocode textual addresses to lat long values
     geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'address': address}, function (results, status) {
-        map.fitBounds(results[0].geometry.viewport);
+    geocoder.geocode({
+        'address': address,
+    }, function (results, status) {
+        // map.fitBounds(results[0].geometry.viewport);
+
+
     });
 
 }
 
-// returns the animated marker
+/**
+ * Function that creates animated cart marker and returns it
+ * @param {*} latlng takes the latitude and long position
+ * @param {*} label 
+ * @param {*} html 
+ */
 function createMarker(latlng, label, html) {
     var contentString = '';
     var cart = {
         url: 'img/happy-wheels-cart-icon.png',
         size: new google.maps.Size(50, 76) // 50 pixels wide x 76 pixels tall
     }
+
     // using Marker api, marker is created
     var marker = new google.maps.Marker({
         position: latlng,
@@ -58,9 +68,11 @@ function createMarker(latlng, label, html) {
     return marker;
 }
 
-// returns the house marker. NOT WORKING
+/**
+ * Fucntion that creates the RMHCSCO MARKER and returns it.
+ */
 function createHouseMarker() {
-    var cart = {
+    var rmhcscoHouseMarkercart = {
         url: '../css/images/logo-house-rmhcswo.svg',
         size: new google.maps.Size(50, 76) // 50 pixels wide x 76 pixels tall
     }
@@ -72,23 +84,25 @@ function createHouseMarker() {
         },
         map: map,
         suppressInfoWindows: true,
-        icon: cart
+        icon: rmhcscoHouseMarkercart
     });
     console.log("house marker log");
     return marker;
 }
 
 
-// Using Directions Service find the route between the starting and ending points
+/**
+ * Using Directions Service find the route between the starting and ending points
+ */
 function setRoutes() {
     map && initialize();
     var begin = document.getElementById('start');
-    var startVal = begin.value; 
+    var startVal = begin.value;
     var endVal = 'Ronald McDonald House Charities South Central Ontario';
 
     startLoc[0] = startVal;
     endLoc[0] = endVal;
-    
+
     // empty out previous values
     startLocation = [];
     endLocation = [];
@@ -104,7 +118,7 @@ function setRoutes() {
             suppressPolylines: true,
             preserveViewport: false
         };
-        
+
         directionsService = new google.maps.DirectionsService();
         var travelMode = google.maps.DirectionsTravelMode.DRIVING;
         var request = {
@@ -113,20 +127,26 @@ function setRoutes() {
             travelMode: travelMode
         };
         directionsService.route(request, makeRouteCallback(i, directionsDisplay[i]), rendererOptions);
-        
+
     }
 }
 
-// called after getting route from directions service, does all the heavylifting
+// 
+/**
+ * Called after getting route from directions service, does all the heavylifting
+ * @param {*} routeNum 
+ * @param {*} disp 
+ * @param {*} rendererOptions 
+ */
 function makeRouteCallback(routeNum, disp, rendererOptions) {
-    // check if polyline and map exists, if yes, no need to do anything else, just start the animation
+    //Check if polyline and map exists, if yes, no need to do anything else, just start the animation
     if (polyLine[routeNum] && (polyLine[routeNum].getMap() != null)) {
         startAnimation(routeNum);
         return;
     }
     return function (response, status) {
-        // if directions service successfully returns and no polylines exist already, then do the following
-        if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+        //If directions service successfully returns and no polylines exist already, then do the following
+        if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
             toggleError("No routes available for selected locations");
             return;
         }
@@ -146,20 +166,24 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
                 strokeOpacity: 0.000000000001,
                 strokeWeight: 0
             });
-            // For each route, display summary information.
+            //For each route, display summary information.
             var legs = response.routes[0].legs;
-            // directionsrenderer renders the directions obtained previously by the directions service
+            //Directionsrenderer renders the directions obtained previously by the directions service
             disp = new google.maps.DirectionsRenderer(rendererOptions);
-            
-            // if true, hides the A/B pointer markers
-            disp.setOptions( { suppressMarkers: true } );
-            // if true, hides the polyline while still driving on the route (does not delete)
-            disp.setOptions( { suppressPolylines: false } );
-            
+
+            //If true, hides the A/B pointer markers
+            disp.setOptions({
+                suppressMarkers: true
+            });
+            //If true, hides the polyline while still driving on the route (does not delete)
+            disp.setOptions({
+                suppressPolylines: false
+            });
+
             disp.setMap(map);
             disp.setDirections(response);
 
-            // create Markers
+            //Create Markers
             for (i = 0; i < legs.length; i++) {
                 // for first marker only
                 if (i == 0) {
@@ -176,17 +200,22 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
                         polyLine[routeNum].getPath().push(nextSegment[k]);
                     }
                 }
-                console.log("here");
+                // console.log("here");
                 createHouseMarker();
             }
         }
-        if (polyLine[routeNum]){
+        if (polyLine[routeNum]) {
             startAnimation(routeNum);
         }
-    }    
+    }
 }
 
-// Spawn a new polyLine every 20 vertices
+
+/**
+ * Spawn a new polyLine every 20 vertices
+ * @param {*} i 
+ * @param {*} d 
+ */
 function updatePoly(i, d) {
     if (poly2[i].getPath().getLength() > 20) {
         poly2[i] = new google.maps.Polyline([polyLine[i].getPath().getAt(lastVertex - 1)]);
@@ -202,7 +231,13 @@ function updatePoly(i, d) {
     }
 }
 
-// updates marker position to make the animation and update the polyline
+
+/**
+ * Updates marker position to make the animation and update the polyline
+ * @param {*} index 
+ * @param {*} d 
+ * @param {*} tick 
+ */
 function animate(index, d, tick) {
     if (d > eol[index]) {
         marker[index].setPosition(endLocation[index].latlng);
@@ -211,12 +246,17 @@ function animate(index, d, tick) {
     var p = polyLine[index].GetPointAtDistance(d);
     marker[index].setPosition(p);
     updatePoly(index, d);
-    timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+    timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick);
+    // timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
 }
 
-// start marker movement by updating marker position every x milliseconds i.e. tick value
+
+/**
+ * Start marker movement by updating marker position every x milliseconds i.e.tick value
+ * @param {*} index 
+ */
 function startAnimation(index) {
-    if (timerHandle[index]) 
+    if (timerHandle[index])
         clearTimeout(timerHandle[index]);
     eol[index] = polyLine[index].Distance();
     map.setCenter(polyLine[index].getPath().getAt(0));
@@ -226,5 +266,5 @@ function startAnimation(index) {
         strokeColor: "#FFFF00",
         strokeWeight: 0
     });
-    timerHandle[index] = setTimeout("animate(" + index + ",10)", 500);  // Allow time for the initial map display
+    timerHandle[index] = setTimeout("animate(" + index + ",10)", 500); // Allow time for the initial map display
 }

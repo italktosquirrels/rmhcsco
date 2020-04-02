@@ -82,7 +82,7 @@ $(document).ready(function () {
       $('#donate-button').text("Donate $30");
 
     } else if (value == "other") {
-
+      $('#donate-button').text("Donate");
       //Add Span
       if (!$('#donationDescriptionMessage span').length) {
         $('#donationDescriptionMessage p').after('<span style="float: right;"></span>');

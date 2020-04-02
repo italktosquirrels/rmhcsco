@@ -94,9 +94,7 @@ function initMap() {
         title: 'RMHCSCO'
     });
 
-    // When the user hovers, tempt them to click by outlining the letters.
-    // Call revertStyle() to remove all overrides. This will use the style rules
-    // defined in the function passed to setStyle()
+
     map.data.addListener('mouseover', function (event) {
         map.data.revertStyle();
         map.data.overrideStyle(event.feature, {
@@ -113,27 +111,11 @@ function initMap() {
          INFO BOX
     ******************************* */
 
+    // metricsCall();
+
+    // setInterval(metricsCall, 5000);
 
 
-    function metricsCall() {
-        return JSON.parse($.ajax({
-            url: './php/controller.php',
-            type: 'post',
-            data: {
-                action: 'metrics'
-            },
-            dataType: 'json',
-            global: false,
-            async: false,
-            success: function (data) {
-                return data;
-
-            }
-        }).responseText);
-
-    }
-
-    metrics = metricsCall();
 
 
     map.data.addListener('click', function (event) {
@@ -141,15 +123,41 @@ function initMap() {
             infowindow.close();
         }
 
+        function metricsCall() {
+            return JSON.parse($.ajax({
+                url: './php/controller.php',
+                type: 'post',
+                data: {
+                    action: 'metrics'
+                },
+                dataType: 'json',
+                global: false,
+                async: false,
+                success: function (data) {
+                    console.log(data);
+                    return data;
+
+
+                }
+            }).responseText);
+
+        }
+
+        metrics = metricsCall();
+
         var ward = event.feature.getProperty('WARD');
         var i;
         for (i = 0; i < 15; i++) {
+            // console.log(i);
             if (ward == metrics.totalByWard[i].Ward_ID) {
                 var wardName = metrics.allDonationInfo[i].Ward_Name;
                 var wardID = metrics.allDonationInfo[i].Ward_ID;
                 var wardAmount = metrics.totalByWard[i].Amount;
                 var date = new Date(metrics.allDonationInfo[i].Date_Time);
                 var amount = metrics.allDonationInfo[i].Amount;
+
+                console.log(metrics.allDonationInfo[i].Date_Time);
+                console.log(metrics.allDonationInfo[i].Amount);
             }
         }
         contents = '<div class="infobox">' +
@@ -176,13 +184,4 @@ function initMap() {
         infowindow.open(map);
 
     });
-
-
-    // // Set mouseover event for each feature.
-    // map.data.addListener('mouseover', function (event) {
-    //     document.getElementById('info-box').textContent =
-    //         event.feature.getProperty('WARD');
-    // });
-
-
 }

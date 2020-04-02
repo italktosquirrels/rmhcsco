@@ -19,8 +19,7 @@ function getAllDonationInfo($conn)
         $stmt = $conn->prepare("SELECT d.Amount, w.Ward_ID, w.Ward_Name, w.Ward_Colour, d.Date_Time
                                 FROM Donation d
                                 JOIN Ward w ON d.Ward_ID = w.Ward_ID
-                                GROUP BY Ward_ID
-                                ORDER BY SUM(AMOUNT) DESC ");
+                                ORDER BY Date_Time DESC");
 
         // Execute the query, save reference to results
         $stmt->execute();

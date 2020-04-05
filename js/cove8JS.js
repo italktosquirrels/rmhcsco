@@ -18,7 +18,7 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 $("#top_ward").text(data.totalByWard[0].Ward_Name);
                 // console.log(data.totalAmountDonated[0].Total);
                 $("#total_donation_amount").text("$" + data.totalAmountDonated[0].Total + ".00");
@@ -26,6 +26,7 @@ $(document).ready(function () {
                 $("#total_donated").text(data.totalDonations[0].Total);
                 // console.log(data.totalDonations[0].);
 
+                $("#sidebar-col").empty();
                 $.each(data.totalByWard, function (key, value) {
                     $("#sidebar-col").append('<div id="sidebar-col-grid" style="border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
                             data.totalByWard[key].Ward_Colour + ';">' +

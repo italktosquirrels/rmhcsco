@@ -35,7 +35,7 @@
 
     <meta property="og:url" content="http://rmhcsco.italktosquirrels.com/hwc_map.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="The Happy Wheels Cart is in town!" />
+    <meta property="og:title" content="My Donation Helps Sick Kids in Hamilton." />
     <meta property="og:description" content="The Happy Wheels Cart, stocked with snacks, drinks, toys and activities, travels room to room to provide a much-needed break for parents and children unable to leave their hospital beds. Donate today to help keep families close, room by room." />
     <meta property="og:image" content="img/heart-sketch.svg" />
 
@@ -145,10 +145,15 @@
                     </div>
                 </div> -->
             </div>
-
             <div id="map"></div>
+        </div>
 
-
+        <div class="wysPageContent" style="margin-top: 70px;">
+            <ul class="share horizontal">
+                <li><a class="facebook" href="http://www.facebook.com/sharer/sharer.php?u={FACEBOOKSHAREURL}" target="_blank">Share with Facebook</a></li>
+                <li class="text"><span>Share</span></li>
+            </ul>
+            <hr class="gold" />
         </div>
         </section>
     <!-- </section> -->

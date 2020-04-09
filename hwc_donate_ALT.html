@@ -208,23 +208,13 @@
         <!-- STRIPE FORM -->
         <div class="container">
             <form id="payment-form">
-                <div class="form-row">
-                    <!-- <div id="amountButtons">
-                        <input type="radio" name="radioAmount" value="5" />
-                        <label for="donationAmount">$5</label></span>
-                        <input type="radio" name="radioAmount" value="10" />
-                        <label for="donationAmount">$10</label></span>
-                        <input type="radio" name="radioAmount" value="15" />
-                        <label for="donationAmount">$15</label></span>
-                        <input type="radio" name="radioAmount" value="20" />
-                        <label for="donationAmount">$20</label></span>
-                        <input type="radio" name="radioAmount" value="30" />
-                        <label for="donationAmount">$30</label></span>
-                        <input type="radio" name="radioAmount" value="other" />
-                        <label for="donationAmount">Other</label>
-                        <input id="inputAmount" style="visibility: hidden;" type="number" placeholder="example input: 50" />
-                    </div> -->
+                <div class="form-row headers">
+                    <div class="pickWard">
+                        <h3>1. Pick Your Ward</h3>
+                        <select id="dropdown" name="ward" class="form-control mb-3"></select>
+                    </div>
                     <div id="donation-amount-wrapper">
+                        <h3>2. Fill Out The Form</h3>
                         <ul id="amountButtons">
                             <li>
                                 <input type="radio" id="amount5" name="radioAmount" autocomplete="off" value="5" />
@@ -259,15 +249,14 @@
                         <div id="donationDescriptionImage">
                         </div>
                         <div id="donationDescriptionMessage">
-                            <h1></h1>
                             <p></p>
                         </div>
                     </div>
                     <!-- DONATION FORM -->
-                    <input type="text" name="first_name" class="form-control form-control-sm mb-3 StripeElement StripeElement--empty first-name" placeholder="First Name" required>
-                    <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name" required>
-                    <select id="dropdown" name="ward" class="form-control mb-3"></select>
-                    <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address" required>
+                    <input type="text" name="first_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="First Name">
+                    <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name">
+
+                    <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address">
                     <input id="donationAmount" name="amount" type="hidden" />
                     <div id="card-element" class="form-control"></div>
                     <!-- Used to display form errors -->
@@ -277,9 +266,6 @@
                 <button id="donate-button">
                     <h1 id="donate-buttonh1">Donate</h1>
                 </button>
-                <div id="receipt" class="introParagraph">
-                    <p></p>
-                </div>
             </form>
         </div>
 

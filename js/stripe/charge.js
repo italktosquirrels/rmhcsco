@@ -25,6 +25,9 @@ $(document).ready(function () {
 
   //on click for amount descriptions
   $('#amountButtons input').click(function () {
+    $("#donationDescription").css("visibility", "visible");
+    $("#receipt").css("visibility", "visible");
+    $('#receipt p').html("Anything Under $20 Will Not Receive a Tax Receipt");
     value = $(this).val();
     $('#donationDescriptionImage').html('<img src="img/sickKids.jpg" />');
     if (value == 5) {
@@ -33,8 +36,8 @@ $(document).ready(function () {
       //Donate Image
 
       //Donate Description
-      $('#donationDescriptionMessage p').html("A donation of $5 can help provide things like: </br> " +
-        "A much-needed snack for a mother to share with her sick daughter. ");
+      $('#donationDescriptionMessage h1').html("A donation of $5 can help provide things like:");
+      $('#donationDescriptionMessage p').html("A much-needed snack for a mother to share with her sick daughter. ");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $5");
 
@@ -43,8 +46,8 @@ $(document).ready(function () {
       $('#donationDescriptionMessage span').remove();
 
       //Donate Description
-      $('#donationDescriptionMessage p').html("A donation of $10 can help provide things like: </br>" +
-        "A cup of coffee for a father who’s been at his daughter’s bedside for 22 hours.");
+      $('#donationDescriptionMessage h1').html("A donation of $10 can help provide things like:");
+      $('#donationDescriptionMessage p').html("A cup of coffee for a father who’s been at his daughter’s bedside for 22 hours.");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $10");
 
@@ -53,8 +56,8 @@ $(document).ready(function () {
       $('#donationDescriptionMessage span').remove();
 
       //Donate Description
-      $('#donationDescriptionMessage p').html("A donation of $15 can help provide things like: </br> " +
-        "A fun activity for a sister to share with her little brother on bedrest.");
+      $('#donationDescriptionMessage h1').html("A donation of $15 can help provide things like:");
+      $('#donationDescriptionMessage p').html("A fun activity for a sister to share with her little brother on bedrest.");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $15");
 
@@ -63,8 +66,8 @@ $(document).ready(function () {
       $('#donationDescriptionMessage span').remove();
 
       //Donate Description
-      $('#donationDescriptionMessage p').html("A donation of $20 can help provide things like: </br>" +
-        "A fun activity for a sister to share with her little brother on bedrest. A much-needed" +
+      $('#donationDescriptionMessage h1').html("A donation of $20 can help provide things like:");
+      $('#donationDescriptionMessage p').html("A fun activity for a sister to share with her little brother on bedrest. A much-needed" +
         "snack for a mother to share with her sick daughter.");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $20");
@@ -74,24 +77,22 @@ $(document).ready(function () {
       $('#donationDescriptionMessage span').remove();
 
       //Donate Description
-      $('#donationDescriptionMessage p').html("A donation of $30 can help provide things like: </br> " +
-        "A fun activity for a sister to share with her little brother on bedrest. A cup of " +
+      $('#donationDescriptionMessage h1').html("A donation of $30 can help provide things like:");
+      $('#donationDescriptionMessage p').html("A fun activity for a sister to share with her little brother on bedrest. A cup of " +
         "coffee for a father who’s been at his daughter’s bedside for 22 hours. A cup of coffee " +
         "for a father who’s been at his daughter’s bedside for 22 hours.");
       //Changes Donate Button to Amount Selected
       $('#donate-button').text("Donate $30");
 
     } else if (value == "other") {
+      $('#donationDescriptionMessage p').html("");
       $('#donate-button').text("Donate");
       //Add Span
       if (!$('#donationDescriptionMessage span').length) {
         $('#donationDescriptionMessage p').after('<span style="float: right;"></span>');
       }
 
-      //Donate Image
-      // $('#donationDescriptionImage').html('<img src="img/heart.png" width="100px" height="100px"/>');
-      //Donate Description
-      $('#donationDescriptionMessage p').html("Thanks for donating to The Happy Wheels Cart. </br> Anything helps.");
+      $('#donationDescriptionMessage h1').html("Thanks for donating to The Happy Wheels Cart. </br> Anything helps.");
       $('#donationDescriptionMessage span').html('<input id="inputAmount" type="number" placeholder="$0.00" />');
 
     } else {
@@ -102,17 +103,14 @@ $(document).ready(function () {
     radioChecked = $('input[name="radioAmount"]:checked').val();
     //If OTHER is Selected
     if (radioChecked == "other") {
-      // $('#inputAmount').css("visibility", "visible").focus();
-
       amount = 0;
       $('#inputAmount').change(function () {
         amount = $('#inputAmount').val();
         $('input[name=amount]').val(amount);
-        $('#donate-buttonh1').text("Donate $" + amount);
+        $('#donate-button').text("Donate $" + amount);
       });
       //If Radio Button Amount is Selected
     } else {
-      // $('#inputAmount').css("visibility", "hidden").val("");
       $('input[name=amount]').val(radioChecked);
     }
   });
@@ -183,10 +181,13 @@ $(document).ready(function () {
           var response = JSON.parse(data);
           if (response.status == "1") {
             //response receives parameters to pass to success.php
-            window.location.href = "../success.php?tid=" + response.token + "&name=" + response.name + "&ward=" + response.ward;
+            window.location.href = "success.php?tid=" + response.token + "&name=" + response.name + "&ward=" + response.ward;
           } else {
             //repsonse receives error message to display
             $('#form-errors').html(response.message).css("color", "red");
+            // if (response.message == "Please provide a first name") {
+            //   $('.first-name').css("border", "1.5px solid #dc1d00");
+            // }
           }
         }
       });

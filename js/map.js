@@ -134,10 +134,7 @@ function initMap() {
                 global: false,
                 async: false,
                 success: function (data) {
-                    console.log(data);
                     return data;
-
-
                 }
             }).responseText);
 
@@ -148,16 +145,13 @@ function initMap() {
         var ward = event.feature.getProperty('WARD');
         var i;
         for (i = 0; i < 15; i++) {
-            // console.log(i);
-            if (ward == metrics.totalByWard[i].Ward_ID) {
+            if (ward == metrics.allDonationInfo[i].Ward_ID) {
                 var wardName = metrics.allDonationInfo[i].Ward_Name;
                 var wardID = metrics.allDonationInfo[i].Ward_ID;
                 var wardAmount = metrics.totalByWard[i].Amount;
                 var date = new Date(metrics.allDonationInfo[i].Date_Time);
                 var amount = metrics.allDonationInfo[i].Amount;
 
-                console.log(metrics.allDonationInfo[i].Date_Time);
-                console.log(metrics.allDonationInfo[i].Amount);
             }
         }
         contents = '<div class="infobox">' +

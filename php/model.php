@@ -18,8 +18,10 @@ function getAllDonationInfo($conn)
         // Build the select query
         $stmt = $conn->prepare("SELECT d.Amount, w.Ward_ID, w.Ward_Name, w.Ward_Colour, d.Date_Time
                                 FROM Donation d
-                                JOIN Ward w ON d.Ward_ID = w.Ward_ID
-                                ORDER BY Date_Time DESC");
+                                JOIN Ward w on d.Ward_ID = w.Ward_ID
+                                WHERE d.Date_Time = (SELECT max(d2.Date_Time)
+                                                     FROM Donation d2
+                                                     WHERE d.Ward_ID = d2.Ward_ID)");
 
         // Execute the query, save reference to results
         $stmt->execute();

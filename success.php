@@ -84,6 +84,7 @@
             <div class="wysPageContent headerPadding">
                 <h2 style="text-align: center;">Thank you for Donation, <?php echo $name ?>!</h2>
                 <p class="introParagraph" style="text-align: center;">Your transaction ID is:</br><?php echo $tid; ?></p>
+                <p class="introParagraph" style="text-align: center;">Check out the top-ranking neighbourhoods. Did yours make the cut? Share with friends to encourage fellow Hamiltonians to donate to sick kids in our city.</p>
                 <ul class="share horizontal">
                     <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Frmhcsco.italktosquirrels.com%2Fhappywheelscart_JONS.html&amp;src=sdkpreparse" target="_blank">Share with Facebook</a></li>
                     <li class="text"><span>Share</span></li>

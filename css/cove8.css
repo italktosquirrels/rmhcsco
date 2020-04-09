@@ -59,19 +59,45 @@ figcaption.map_tag {
     text-transform: uppercase;
 }
 
-/* DONATIONS BAR - HWC MAIN PAGE */
-.donationsBar_hwc ul {
+/* DONATIONS BAR */
+
+#donationsBar-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-rows: 70px 1015px; */
+    background-color: #618ecc;
+
+}
+
+#total-amount-donated {
+    text-align: center;
+    margin: auto 0px;
+}
+
+#top-district {
+    text-align: center;
+    margin: auto 0px;
+}
+
+#total-donations {
+    text-align: center;
+    margin: auto 0px;
+}
+
+
+#donationsBar-grid-wrapper ul {
     list-style: none;
     background-color: #618ecc;
-    text-align: center;
+    height: 80%;
+    width: 100%;
     padding: 0;
     margin: 0;
 
 }
 
-.donationsBar_hwc li {
+#donationsBar-grid-wrapper ul li {
     display: inline-block;
-    width: 33%;
+    width: 100%;
     font-family: 'Futura Bold';
     color: #fff;
     font-size: 0.813em;
@@ -79,23 +105,22 @@ figcaption.map_tag {
     height: 20px;
 }
 
-.donationsBar_hwc h1 span {
-    width: 30%;
-    margin: 0 auto;
-    text-align: center;
+#donationsBar-grid-wrapper h1 span {
     border-bottom: 2px solid #ffca07;
+    font-size: 1em;
 }
+
+
 
 /* ******************************
     HWC - LIVE MAP PAGE
 ******************************* */
 
-
 .wysPageContent.headerPadding {
     padding-top: 75px;
 }
 
-/* DONATIONS CAR - MAP PAGE */
+/* DONATIONS BAR - MAP PAGE */
 
 .donationsBar ul {
     list-style: none;
@@ -112,7 +137,7 @@ figcaption.map_tag {
     font-family: 'Futura Bold';
     color: #fff;
     font-size: 0.813em;
-    line-height: 20px;
+    /* line-height: 20px; */
     text-align: center;
     padding: 0px;
     margin: 0px;
@@ -128,21 +153,7 @@ figcaption.map_tag {
 }
 
 
-/* ******************************
-    GOOGLE MAPS CSS
-******************************* */
-
-
-
-/* Creates SideBar with Metrics */
-
-
-/* Set the size of the div element that contains the map */
-
-
-/* ******************************
-     MAP GRID WRAPPER
-******************************* */
+/*  MAP GRID WRAPPER  */
 
 
 #map-grid-wrapper {
@@ -247,25 +258,43 @@ figcaption.map_tag {
 ******************************* */
 
 .container {
-    width: 700px;
+    max-width: 700px;
     margin-bottom: 100px;
 }
 
+.headers h3 {
+    text-align: center;
+    color: #ffca07;
+    font-family: 'Futura Bold';
+    font-size: 1.750em;
+    line-height: 1;
+    letter-spacing: -0.010em;
+    text-transform: uppercase;
+}
+
+.pickWard {
+    width: 100%;
+}
+
+.pickWard select {
+    margin: 30px 0px;
+    /* width: 100%; */
+}
+
+
+
+
 #donation-amount-wrapper {
+    margin-top: 50px;
     margin-bottom: 25px;
     margin-left: 25px;
-
 }
 
 #amountButtons {
-
     list-style-type: none;
     margin: 25px 0 50px 0;
     padding: 0;
-
 }
-
-#amountButtons {}
 
 #amountButtons li {
     float: left;
@@ -287,7 +316,7 @@ figcaption.map_tag {
 
 #amountButtons input[type="radio"] {
     opacity: 0.01;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 #amountButtons input[type="radio"]:checked+label,
@@ -310,7 +339,7 @@ figcaption.map_tag {
     cursor: pointer;
     transition: all ease-in-out 300ms;
     cursor: pointer;
-    z-index: 90;
+    /* z-index: 90; */
 }
 
 #amountButtons label:hover {
@@ -318,10 +347,12 @@ figcaption.map_tag {
     transform: translate(0, -3px);
 }
 
+
+
 /* DONATE DESCRIPTIONS */
 
 #donationDescription {
-    clear: both;
+    visibility: hidden;
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-gap: 25px;
@@ -336,10 +367,21 @@ figcaption.map_tag {
     padding-bottom: 5px;
 }
 
+#donationDescriptionMessage h1 {
+    font-family: 'Futura Bold';
+    font-size: 1em;
+    line-height: 20px;
+    /* text-align: center; */
+    padding-top: 15px;
+    margin: 0px;
+    /* border-bottom: 2px solid #ffca07; */
+
+}
+
 #donationDescriptionMessage {
     /* background-color: coral; */
-    font-size: 1em;
-    text-align: left;
+    font-size: 0.9em;
+    /* text-align: left; */
     height: auto;
 
 }
@@ -359,8 +401,9 @@ figcaption.map_tag {
     border: none;
     border-radius: 5px;
     box-shadow: 0 17px 10px -10px rgba(0, 0, 0, 0.4);
+    transform: translate(0, -3px);
     cursor: pointer;
-    transition: all ease-in-out 300ms;
+    transition: all ease-in-out 100ms;
 }
 
 #donate-button h1 {
@@ -370,9 +413,14 @@ figcaption.map_tag {
 
 #donate-button:hover {
     box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
-    transform: translate(0, -10px);
+    transform: translate(0, -6px);
 }
 
+#donate-button:active {
+    background-color: #dc1d00;
+    color: #ffca07;
+    transform: translate(0, -3px);
+}
 
 #inputAmount {
     margin-bottom: 15px;
@@ -388,6 +436,11 @@ figcaption.map_tag {
     box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     /* transition: all ease-in-out 300ms; */
+}
+
+#receipt {
+    visibility: hidden;
+    text-align: center;
 }
 
 
@@ -410,3 +463,62 @@ figcaption.map_tag {
 .infobox-content {
     line-height: 0.7;
 }
+
+
+/* ******************************
+     RESPONSIVE
+******************************* */
+
+/* HAPPY WHEELS CART PAGE */
+
+@media only screen and (max-width: 800px) {
+    section.heroSecondary h1 {
+        font-size: 3.188em;
+    }
+
+    #donationsBar-grid-wrapper h1 span {
+        font-size: 0.7em;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    #donationsBar-grid-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 70px 70px 70px;
+        background-color: #618ecc;
+
+    }
+
+    #total-amount-donated,
+    #top-district {
+        width: 100%;
+        border-bottom: 1px solid #ffffff;
+    }
+
+    figcaption {
+        bottom: 210px;
+    }
+
+}
+
+/* DONATE PAGE*/
+
+@media only screen and (max-width: 675px) {
+
+    #amountButtons li {
+        padding: 35px;
+    }
+
+    #donationDescriptionMessage h1 {
+        padding-top: 0px;
+    }
+}
+
+
+/* LIVE MAP & CONFIRMATION PAGE*/
+
+@media only screen and (max-width: 800px) {}
+
+@media only screen and (max-width: 450px) {}

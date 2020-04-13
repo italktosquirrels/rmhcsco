@@ -7,8 +7,6 @@ var lat_lng = {
 var metrics;
 var infowindow;
 
-
-
 function initMap() {
     // create the map
     map = new google.maps.Map(document.getElementById('map'), {
@@ -80,8 +78,6 @@ function initMap() {
     });
 
 
-
-
     //RMHSCO LOCATION AND MARKER
     var image = 'img/rmhcsco_map_icon.png';
     var rmhcscoMarker = new google.maps.Marker({
@@ -95,6 +91,7 @@ function initMap() {
     });
 
 
+    //Border around boundries
     map.data.addListener('mouseover', function (event) {
         map.data.revertStyle();
         map.data.overrideStyle(event.feature, {
@@ -102,6 +99,7 @@ function initMap() {
         });
     });
 
+    //Increase Border Stroke on Hover
     map.data.addListener('mouseout', function (event) {
         map.data.revertStyle();
     });
@@ -116,9 +114,9 @@ function initMap() {
     // setInterval(metricsCall, 5000);
 
 
-
-
     map.data.addListener('click', function (event) {
+
+
         if (infowindow) {
             infowindow.close();
         }
@@ -168,6 +166,7 @@ function initMap() {
             '</div>' +
             '</div>';
 
+        console.log("CLICKED");
         infowindow = new google.maps.InfoWindow({
             content: contents,
             pixelOffset: new google.maps.Size(-1, -45),

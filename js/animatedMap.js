@@ -17,6 +17,13 @@ var lastVertex = 1;
 var step = 50; // 5; // metres
 var eol = [];
 
+var metrics;
+var infowindow;
+var lat_lng = {
+    lat: 43.258030,
+    lng: -79.922913
+};
+
 window.initialize = initialize;
 window.setRoutes = setRoutes;
 
@@ -269,6 +276,91 @@ function initMap(wardNum) {
         icon: image
     });
 
+    //Border around boundries
+    map.data.addListener('mouseover', function (event) {
+        map.data.revertStyle();
+        map.data.overrideStyle(event.feature, {
+            strokeWeight: 3.5
+        });
+    });
+
+    //Increase Border Stroke on Hover
+    map.data.addListener('mouseout', function (event) {
+        map.data.revertStyle();
+    });
+
+    /* ******************************
+         INFO BOX
+    ******************************* */
+
+    // metricsCall();
+
+    // setInterval(metricsCall, 5000);
+
+
+
+
+    map.data.addListener('click', function (event) {
+
+        if (infowindow) {
+            infowindow.close();
+        }
+
+        function metricsCall() {
+            return JSON.parse($.ajax({
+                url: './php/controller.php',
+                type: 'post',
+                data: {
+                    action: 'metrics'
+                },
+                dataType: 'json',
+                global: false,
+                async: false,
+                success: function (data) {
+                    return data;
+                }
+            }).responseText);
+
+        }
+
+        metrics = metricsCall();
+
+        var ward = event.feature.getProperty('WARD');
+        var i;
+        for (i = 0; i < 15; i++) {
+            if (ward == metrics.allDonationInfo[i].Ward_ID) {
+                var wardName = metrics.allDonationInfo[i].Ward_Name;
+                var wardID = metrics.allDonationInfo[i].Ward_ID;
+                var wardAmount = metrics.totalByWard[i].Amount;
+                var date = new Date(metrics.allDonationInfo[i].Date_Time);
+                var amount = metrics.allDonationInfo[i].Amount;
+
+            }
+        }
+        contents = '<div class="infobox">' +
+            '<div class="infobox-title">' +
+            '<h1>' + wardName + '</h1>' +
+            '</div>' +
+            '<div class="infobox-content">' +
+            '<p>Ward No. ' + wardID + '</p>' +
+            '<p>Total: $' + wardAmount + '.00</p>' +
+            '<p style="text-align: center; font-family: Futura Bold;">Last Donation</p>' +
+            '<p>' + date.toDateString() + '</p>' +
+            '<p>' + date.toLocaleTimeString() + '</p>' +
+            '<p>$' + amount + '.00</p>' +
+            '</div>' +
+            '</div>';
+
+        infowindow = new google.maps.InfoWindow({
+            content: contents,
+            pixelOffset: new google.maps.Size(-1, -45),
+        });
+
+        infowindow.setPosition(lat_lng);
+        infowindow.open(map);
+
+    });
+
 
     // grab the geojson data
     var geoJsonData = map.data.loadGeoJson('data/Ward_Boundaries.json');
@@ -328,10 +420,14 @@ function initMap(wardNum) {
         }
         return {
             fillColor: color,
-            strokeWeight: 0.75
+            strokeColor: color,
+            strokeWeight: 1.5
         }
     });
-
-    console.log('TESTING');
     setWard(wardNum);
+
+
+
+
+
 }

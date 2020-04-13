@@ -97,14 +97,14 @@
     <!-- LIVE MAP -->
     <section>
         <div id="map-grid-wrapper" class="donationsBar">
-            <div id="ranking-title">
+            <div id="ranking-title-map">
                 <ul>
                     <li class="wardRankings">
                         <h1><span>Ward Rankings</span></h1>
                     </li>
                 </ul>
             </div>
-            <div id="total-amount-donated">
+            <div id="total-amount-donated-map">
                 <ul>
                     <li>
                         <h1>
@@ -114,7 +114,7 @@
                     <li>Total Donated</li>
                 </ul>
             </div>
-            <div id="top-district">
+            <div id="top-district-map">
                 <ul>
                     <li>
                         <h1><span id="top_ward"></span></h1>
@@ -122,7 +122,7 @@
                     <li>Top Ranking District</li>
                 </ul>
             </div>
-            <div id="total-donations">
+            <div id="total-donations-map">
                 <ul>
                     <li>
                         <h1><span id="total_donated"></span></h1>

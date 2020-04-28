@@ -1,9 +1,22 @@
-// Loads when document when ready
+/* ******************************
+    COVE 8 MAIN JS FILE
+
+    Elizabeth Southward
+    Bartosz Wojcik
+    Johns Varughese Meppurath
+    Aleksandar Spasic
+
+******************************* */
+
 $(document).ready(function () {
 
+
+    //Calls Funtion at Page Load
     metricsCall();
 
+    //Calls Funtion every 5 Seconds
     setInterval(metricsCall, 5000);
+
 
     /**
      * Ajax call to get metrics from database

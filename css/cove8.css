@@ -1,9 +1,22 @@
-/* Remove bottom margin from title */
+/* ******************************
+    COVE 8 CSS
+
+    Elizabeth Southward
+    Bartosz Wojcik
+    Johns Varughese Meppurath
+    Aleksandar Spasic
+
+******************************* */
+
+/* GENERAL / RANDOM FIXES*/
+
+/* Removes Margin/Padding from bottom */
 .wysPageContent.removeBottom {
     margin-bottom: 0px;
     padding-bottom: 0px;
 }
 
+/* Removes Padding from Top */
 .introInfo.removeTop {
     padding-top: 0px;
     /* margin-top: 0px; */
@@ -13,6 +26,13 @@
 .volunteerDonation.volunteer {
     margin-top: 50px;
 }
+
+/* Adds White Background */
+.whiteBackground {
+    background-color: #ffffff;
+}
+
+
 
 /* ******************************
     HAPPY WHEELS CART PAGE
@@ -112,6 +132,7 @@ figcaption.map_tag {
 
 
 
+
 /* ******************************
     HWC - LIVE MAP PAGE
 ******************************* */
@@ -121,7 +142,6 @@ figcaption.map_tag {
 }
 
 /* DONATIONS BAR - MAP PAGE */
-
 .donationsBar ul {
     list-style: none;
     background-color: #353534;
@@ -137,7 +157,6 @@ figcaption.map_tag {
     font-family: 'Futura Bold';
     color: #fff;
     font-size: 0.813em;
-    /* line-height: 20px; */
     text-align: center;
     padding: 0px;
     margin: 0px;
@@ -154,8 +173,6 @@ figcaption.map_tag {
 
 
 /*  MAP GRID WRAPPER  */
-
-
 #map-grid-wrapper {
     display: grid;
     grid-template-columns: 1.1fr 1.5fr 1.5fr 1.5fr;
@@ -190,11 +207,7 @@ figcaption.map_tag {
     margin: auto 0px;
 }
 
-
-#sidebar-col {
-    /* background-color: blue; */
-}
-
+/*  MAP SIDE BAR  */
 #sidebar-col-grid {
     display: grid;
     grid-template-columns: 1fr 3fr 1.5fr;
@@ -216,40 +229,58 @@ figcaption.map_tag {
 }
 
 #sidebar-col-grid .rank {
-    /* background-color: orange; */
     grid-column: 1;
     grid-row: 1 / span 2;
     text-align: center;
     margin: auto 0px;
-    /* height: 100%; */
 }
 
 #sidebar-col-grid .ward-name {
-    /* background-color: aquamarine; */
     margin: auto 0px;
     text-align: center;
 }
 
 #sidebar-col-grid .ward-number {
-    /* background-color: mediumorchid; */
     text-align: center;
     font-family: 'Futura';
     font-size: 0.9em;
 }
 
 #sidebar-col-grid .amount {
-    /* background-color: burlywood; */
     grid-column: 3;
     grid-row: 1 / span 2;
     text-align: center;
     margin: auto 0px;
 }
 
+/*  MAP   */
 #map {
-    /* background-color: blueviolet; */
     grid-column: 2 / 5;
     text-align: center;
 }
+
+
+
+/* ******************************
+     INFO WINDOW - MAPS
+******************************* */
+
+.infobox {
+    font-family: 'Futura';
+    color: #353534;
+    text-align: center;
+}
+
+.infobox-title {
+    font-family: 'Futura Bold';
+    font-size: 0.75em;
+    border-bottom: 2px solid #ffca07;
+}
+
+.infobox-content {
+    line-height: 0.7;
+}
+
 
 
 
@@ -281,9 +312,7 @@ figcaption.map_tag {
     /* width: 100%; */
 }
 
-
-
-
+/*  DONATION AMOUNT BUTTONS  */
 #donation-amount-wrapper {
     margin-top: 50px;
     margin-bottom: 25px;
@@ -350,7 +379,6 @@ figcaption.map_tag {
 
 
 /* DONATE DESCRIPTIONS */
-
 #donationDescription {
     visibility: hidden;
     display: grid;
@@ -359,7 +387,6 @@ figcaption.map_tag {
     border-bottom: 2px solid #ffca07;
     margin: 0px 0px 25px 0px;
 }
-
 
 #donationDescriptionImage img {
     box-shadow: inset 5 8px 5px -5px rgba(0, 0, 0, 0.4);
@@ -371,19 +398,13 @@ figcaption.map_tag {
     font-family: 'Futura Bold';
     font-size: 1em;
     line-height: 20px;
-    /* text-align: center; */
     padding-top: 15px;
     margin: 0px;
-    /* border-bottom: 2px solid #ffca07; */
-
 }
 
 #donationDescriptionMessage {
-    /* background-color: coral; */
     font-size: 0.9em;
-    /* text-align: left; */
     height: auto;
-
 }
 
 #donationDescriptionMessage span {
@@ -391,7 +412,7 @@ figcaption.map_tag {
 }
 
 
-/* Donate Button */
+/* DONATE BUTTON */
 #donate-button {
     background-color: #ffca07;
     font-family: 'Futura Bold';
@@ -422,47 +443,13 @@ figcaption.map_tag {
     transform: translate(0, -3px);
 }
 
-#inputAmount {
-    margin-bottom: 15px;
-    border: 1px solid #dc1d00;
-    font-family: 'Futura Bold';
-    color: #353534;
-    font-size: 1em;
-    text-align: center;
-    padding: 3px 3px 3px 3px;
-    height: 50px;
-    width: 150px;
-    border-radius: 5px;
-    box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    /* transition: all ease-in-out 300ms; */
-}
-
+/*  DISPLAY MESSAGE FOR RECEIPT AMOUNT NEEDED  */
 #receipt {
     visibility: hidden;
     text-align: center;
 }
 
 
-/* ******************************
-     INFO BOX
-******************************* */
-
-.infobox {
-    font-family: 'Futura';
-    color: #353534;
-    text-align: center;
-}
-
-.infobox-title {
-    font-family: 'Futura Bold';
-    font-size: 0.75em;
-    border-bottom: 2px solid #ffca07;
-}
-
-.infobox-content {
-    line-height: 0.7;
-}
 
 
 /* ******************************

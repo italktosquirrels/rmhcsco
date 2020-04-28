@@ -49,27 +49,27 @@
                     <li class="link homeLink mobile">
                         <a href="index.html">Home</a>
                     </li>
-                    <li class="link mobile"><a class="" href="http://rmhcsco.velocitystudio.com/news-and-events">News & Events</a></li>
-                    <li class="link lastlink mobile"><a class="" href="http://rmhcsco.velocitystudio.com/contact-us">Contact Us</a></li>
+                    <li class="link mobile"><a class="" href="">News & Events</a></li>
+                    <li class="link lastlink mobile"><a class="" href="">Contact Us</a></li>
                     <li class="search mobile">
                         <div class="searchFormBlock">
                             <form id="searchForm" method="get" action="/search" autocomplete="off"><label class="hidden">Search Our Site</label><i class="icon"></i><input type="text" class="search" name="search" placeholder="Search Site"><input type="submit" class="submit" name="submit" value="Search"><input type="reset" class="reset" name="reset" value="Reset"></form>
                         </div><a class="search" href="#">Search</a><button class="search-button center-position"><span class="search-icon"></span></button>
                     </li>
                     <li class="social mobile">
-                        <a title="Visit our Twitter Account" class="twitter social" target="_blank" onclick="trackOutboundLink('https://twitter.com/RMHCSCO/');" href="https://twitter.com/RMHCSCO/">Visit our Twitter Account</a>
+                        <a title="Visit our Twitter Account" class="twitter social" target="_blank" onclick="trackOutboundLink('https://twitter.com/RMHCSCO/');" href="">Visit our Twitter Account</a>
                     </li>
                     <li class="social mobile">
-                        <a title="View our Facebook Page" class="facebook social" target="_blank" onclick="trackOutboundLink('https://www.facebook.com/RMHCSCO/');" href="https://www.facebook.com/RMHCSCO/">View our Facebook Page</a>
+                        <a title="View our Facebook Page" class="facebook social" target="_blank" onclick="trackOutboundLink('https://www.facebook.com/RMHCSCO/');" href="">View our Facebook Page</a>
                     </li>
                     <li class="social mobile">
-                        <a title="View our Instagram Photos" class="instagram social" target="_blank" onclick="trackOutboundLink('https://www.instagram.com/rmhcsco/');" href="https://www.instagram.com/rmhcsco/">View our Instagram Photos</a>
+                        <a title="View our Instagram Photos" class="instagram social" target="_blank" onclick="trackOutboundLink('https://www.instagram.com/rmhcsco/');" href="">View our Instagram Photos</a>
                     </li>
                     <li class="social last mobile">
-                        <a title="Watch our YouTube Channel" class="youtube social" target="_blank" onclick="trackOutboundLink('https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/');" href="https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/">Watch our YouTube Channel</a>
+                        <a title="Watch our YouTube Channel" class="youtube social" target="_blank" onclick="trackOutboundLink('https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/');" href="">Watch our YouTube Channel</a>
                     </li>
-                    <li><a class="bgYellow txtColBrown navLink center" href="http://rmhcsco.velocitystudio.com/volunteer/benefits">Volunteer</a></li>
-                    <li><a class="bgRed txtColWhite navLink center" href="hwc_donate.html">Donate Now</a></li>
+                    <li><a class="bgYellow txtColBrown navLink center" href="">Volunteer</a></li>
+                    <li><a class="bgRed txtColWhite navLink center" href="donations.html">Donate</a></li>
                 </ul>
             </div>
         </div>
@@ -163,50 +163,59 @@
     <!-- COVE 8 END -->
     <!-- COVE 8 END -->
 
-    <!-- VOLUNTEER / DONATION -->
+ <!-- VOLUNTEER / DONATION -->
     <section class="volunteerDonation">
         <div class="wrapper">
             <ul>
                 <li class="left">
                     <h5><span>Become a</span> Volunteer</h5>
-                    <a class="" href="http://rmhcsco.velocitystudio.com/volunteer/benefits">click here to find our more information about Volunteer</a>
+                    <a class="" href="">click here to find our more
+                        information about Volunteer</a>
                 </li>
                 <li class="bgYellow">
                     <div class="middle">
                         <p>your support can</p>
                         <h5>Keep Families Close</h5>
                         <p>
-                            <img class="arrowChalk" src="img/arrow-left-chalk.svg"><img class="arrowChalk" src="img/arrow-right-chalk.svg">
+                            <img class="arrowChalk" src="img/arrow-left-chalk.svg" /><img class="arrowChalk" src="img/arrow-right-chalk.svg" />
                         </p>
                     </div>
                 </li>
                 <li class="right">
                     <h5><span>Make a</span> Donation</h5>
-                    <a class="" href="http://rmhcsco.velocitystudio.com/donate">click here to learn about how to Donate</a>
+                    <a class="" href="">click here to learn about how to Donate</a>
                 </li>
             </ul>
         </div>
-    </section><!-- NEWSLETTER -->
+    </section>
+    <!-- NEWSLETTER -->
     <section class="newsletterContainer">
         <div class="wrapper">
             <div class="newsletterContainer">
                 <h5>Our House Insider Newsletter</h5>
-                <p class="intro">Sign up for our e-newsletter to read inspiring stories from our families and keep up to date with Ronald McDonald House Charities<sup>&reg;</sup> South Central Ontario news.</p>
+                <p class="intro">
+                    Sign up for our e-newsletter to read inspiring stories from our
+                    families, keep up to date with Ronald McDonald House South Central
+                    Ontario news and stay in touch with your fellow RMH friends and
+                    supporters.
+                </p>
                 <div class="response"></div>
-                <form id="formNewsletter" class="form formNewsletter" method="post" action="" autocomplete="off">
+                <form id="formNewsletter" class="form formNewsletter" method="post" action="#" autocomplete="off">
                     <fieldset>
                         <legend class="hidden">Newsletter Contact Information</legend>
                         <ul>
                             <li class="outdent">
                                 <label for="newsletterFullName" class="hidden">Name<abbr title="required">*</abbr></label>
-                                <input id="newsletterFullName" class="text" type="text" name="newsletterFullName" value="" placeholder="Enter your name">
+                                <input id="newsletterFullName" class="text" type="text" name="newsletterFullName" value="" placeholder="Enter your name" />
                             </li>
                             <li class="outdent">
                                 <label for="newsletterEmail" class="hidden">Email Address<abbr title="required">*</abbr></label>
-                                <input id="newsletterEmail" class="text" type="email" name="newsletterEmail" value="" placeholder="Enter your email address">
+                                <input id="newsletterEmail" class="text" type="email" name="newsletterEmail" value="" placeholder="Enter your email address" />
                             </li>
-                            <li class="buttonNewsletter">
-                                <button class="btnSubmit bgYellow txtColBrown hoverBgRed hoverTxtWhite">Subscribe</button>
+                            <li>
+                                <button class="btnSubmit bgYellow txtColBrown hoverBgRed hoverTxtWhite">
+                                    Subscribe
+                                </button>
                             </li>
                         </ul>
                     </fieldset>
@@ -216,80 +225,151 @@
     </section>
     <footer>
         <div class="wrapper">
-
             <ul class="footerNav">
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/about-us/how-we-help">About Us</a></h6>
+                    <h6>
+                        <a class="" href="">About Us</a>
+                    </h6>
                     <ul class="footerNavMinerMenu">
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/how-we-help">How We Help</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/our-staff">Our Staff</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/our-families">Our Families</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/board-of-directors">Board of Directors</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/reports">Reports</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/about-us/career-opportunities">Career Opportunities</a></li>
+                        <li>
+                            <a class="" href="">How We Help</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Our Staff</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Our Families</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Board of Directors</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Reports</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Career
+                                Opportunities</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/how-can-i-stay-here">Staying With Us</a></h6>
+                    <h6>
+                        <a class="" href="">Staying With Us</a>
+                    </h6>
                     <ul class="footerNavMinerMenu">
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/how-can-i-stay-here">How Can I Stay Here?</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/what-you-should-know">What You Should Know</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/family-services">Family Services</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/house-facilities">House Facilities</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/house-tour">House Tour</a></li>
+                        <li>
+                            <a class="" href="">How Can I Stay
+                                Here?</a>
+                        </li>
+                        <li>
+                            <a class="" href="">What You Should
+                                Know</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Family Services</a>
+                        </li>
+                        <li>
+                            <a class="" href="">House Facilities</a>
+                        </li>
+                        <li>
+                            <a class="" href="">House Tour</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help">Ways To Help</a></h6>
+                    <h6>
+                        <a class="" href="">Ways To Help</a>
+                    </h6>
                     <ul class="footerNavMinerMenu">
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/donate">Make A Donation</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/meals-that-heal">Meals That Heal</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/monthly-planned-and-sustainable-giving">Monthly, Planned, & Sustainable Giving</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/community-involvement-and-events">Community Involvement & Events</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/corporate-partnerships">Corporate Partnerships</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/donate-a-car-canada">Donate A Car Canada</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/fundscrip">Fundscrip</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/online-wishlist">Online Wishlist</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help/host-a-gift-card-drive">Host A Gift Card Drive</a></li>
+                        <li>
+                            <a class="" href="">Make A Donation</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Meals That Heal</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Monthly,
+                                Planned, & Sustainable Giving</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Community
+                                Involvement & Events</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Corporate
+                                Partnerships</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Donate A Car
+                                Canada</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Fundscrip</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Online Wishlist</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Host A Gift Card
+                                Drive</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/benefits">Volunteer</a></h6>
+                    <h6>
+                        <a class="" href="">Volunteer</a>
+                    </h6>
                     <ul class="footerNavMinerMenu">
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/benefits">Benefits</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/individual-volunteer-opportunities">Individual Volunteer Opportunities</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/group-volunteer-opportunities">Group Volunteer Opportunities</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/volunteer/apply-today">Apply Today</a></li>
+                        <li>
+                            <a class="" href="">Benefits</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Individual
+                                Volunteer Opportunities</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Group
+                                Volunteer Opportunities</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Apply Today</a>
+                        </li>
+                        <li>
+                            <a class="" href="">Awards</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/our-family-rooms">Our Family Rooms</a></h6>
+                    <h6>
+                        <a class="" href="">Our Family Rooms</a>
+                    </h6>
                 </li>
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/donate">Donate</a></h6>
-                    <ul class="footerNavMinerMenu">
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/in-honour-in-memory-donation">In Honour/ In Memory Donation</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/corporate-business-donation">Corporate / Business Donation</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/individual-general-donation">Individual / General Donation</a></li>
-                        <li><a class="" href="http://rmhcsco.velocitystudio.com/donate/become-a-monthly-donor">Become A Monthly Donor</a></li>
-                    </ul>
+                    <h6>
+                        <a class="" href="">Donate</a>
+                    </h6>
                 </li>
             </ul>
             <ul class="footerLastNav">
-                <li class="mobileLIHide">
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/news-and-events">News & Events</a></h6>
-                </li>
-                <li class="desktopLIHide">
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/ways-to-help">Ways To Help</a></h6>
+                <li>
+                    <h6>
+                        <a class="" href="">News & Events</a>
+                    </h6>
                 </li>
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/contact-us">Contact Us</a></h6>
-                </li>
-                <li class="desktopLIHide">
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/staying-with-us/how-can-i-stay-here">Staying With Us</a></h6>
+                    <h6>
+                        <a class="" href="">Contact Us</a>
+                    </h6>
                 </li>
                 <li>
-                    <h6><a class="" href="http://rmhcsco.velocitystudio.com/privacy-policy">Privacy Policy</a></h6>
+                    <h6>
+                        <a class="" href="">Terms & Conditions</a>
+                    </h6>
+                </li>
+                <li>
+                    <h6>
+                        <a class="" href="">Privacy Policy</a>
+                    </h6>
                 </li>
                 <li>
                     <ul class="social">
@@ -299,26 +379,35 @@
                             </h6>
                         </li>
                         <li>
-                            <a class="twitter" target="_blank" onclick="trackOutboundLink('https://twitter.com/RMHCSCO/');" href="https://twitter.com/RMHCSCO/">Twitter</a>
+                            <a class="twitter" target="_blank" onclick="trackOutboundLink('https://twitter.com/RMHCSCO/');" href="">Twitter</a>
                         </li>
                         <li>
-                            <a class="facebook" target="_blank" onclick="trackOutboundLink('https://www.facebook.com/RMHCSCO/');" href="https://www.facebook.com/RMHCSCO/">Facebook</a>
+                            <a class="facebook" target="_blank" onclick="trackOutboundLink('https://www.facebook.com/RMHCSCO/');" href="">Facebook</a>
                         </li>
                         <li>
-                            <a class="instagram" target="_blank" onclick="trackOutboundLink('https://www.instagram.com/rmhcsco/');" href="https://www.instagram.com/rmhcsco/">Instagram</a>
+                            <a class="instagram" target="_blank" onclick="trackOutboundLink('https://www.instagram.com/rmhcsco/');" href="">Instagram</a>
                         </li>
                         <li>
-                            <a class="youtube" target="_blank" onclick="trackOutboundLink('https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/');" href="https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/">YouTube</a>
+                            <a class="youtube" target="_blank" onclick="trackOutboundLink('https://www.youtube.com/channel/UCkKSf8Rf00TFKLPkxOxolbQ/');" href="">YouTube</a>
                         </li>
                     </ul>
                 </li>
             </ul>
             <div class="copyrightAuthor clearfix">
-                <p class="photo"><img src="css/images/logo-house-rmhcswo.svg"></p>
+                <p class="photo">
+                    <img src="http://rmhcsco.velocitystudio.com/css/images/logo-house-rmhcswo.svg" />
+                </p>
                 <div class="details">
-                    <small>&copy; 2019 McDonald's<br>
-                        The following trademarks used herein are owned by McDonald's Corporation and its affiliates; McDonald's, Ronald McDonald House Charities, Ronald McDonald House Charities Logo, RMHC, Ronald McDonald House, Ronald McDonald Family Room, and Ronald McDonald Care Mobile<br>Charitable Registration #13277 9836 RR0001</small>
-                    <p class="author">Site created by <a target="_blank" href="http://www.velocitystudio.com/">Velocity Studio</a></p>
+                    <small>&copy; 2019 McDonald's<br />
+                        The following trademarks used herein are owned by McDonald's
+                        Corporation and its affiliates; McDonald's, Ronald McDonald House
+                        Charities, Ronald McDonald House Charities Logo, RMHC, Ronald
+                        McDonald House, Ronald McDonald Family Room, and Ronald McDonald
+                        Care Mobile<br />Charitable Registration #13277 9836 RR0001</small>
+                    <p class="author">
+                        Site created by
+                        <a target="_blank" href="">Velocity Studio</a>
+                    </p>
                 </div>
             </div>
         </div>

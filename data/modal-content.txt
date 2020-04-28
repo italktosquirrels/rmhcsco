@@ -1,0 +1,29 @@
+Header 1
+-------------------
+Happy Wheels Cart Prototype
+
+
+Paragraph
+---------------
+
+
+Welcome to the Happy Wheels Cart Prototype site!
+
+
+The Senior Communications / Branding Manager at RMHCSCO and The Agency Team at Mohawk College presented 
+us with the Happy Wheels Cart idea to build into an interactive experience for accepting smaller donations 
+and building a sense of community while helping families in need. 
+
+The Happy Wheels Cart provides things like snacks and hot drinks to families at the hospital. 
+By incorporating the Happy Wheels Cart idea, we can accept these smaller donations to support 
+the Cart and keep it stocked as it makes its way around the hospital. 
+
+
+
+Warning
+Please be advised that this website is not part of the RMHCSCO website. Click on the link below to be
+taken to the Ronald Mcdonald House Website for South Central Ontario.
+
+www.rmhcsco.ca
+
+All links have been disabled that lead to the original site.

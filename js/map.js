@@ -91,7 +91,7 @@ function initMap() {
     });
 
 
-    //Border around boundries
+    //Increase Border Stroke Width on Hover
     map.data.addListener('mouseover', function (event) {
         map.data.revertStyle();
         map.data.overrideStyle(event.feature, {
@@ -99,7 +99,7 @@ function initMap() {
         });
     });
 
-    //Increase Border Stroke on Hover
+    //Revert to Original Border Stroke Width on MouseOut
     map.data.addListener('mouseout', function (event) {
         map.data.revertStyle();
     });
@@ -149,9 +149,27 @@ function initMap() {
                 var wardAmount = metrics.totalByWard[i].Amount;
                 var date = new Date(metrics.allDonationInfo[i].Date_Time);
                 var amount = metrics.allDonationInfo[i].Amount;
-
             }
         }
+
+
+        $(".sidebar-col-grid").each(function () {
+
+            $(this).css('background-color', '#353534');
+            var wardNumberSideBar = $(this).attr('ward');
+            var colour = $(this).css('border-left-color');
+
+            // console.log(ward);
+            // console.log(wardNumberSideBar);
+            console.log(wardNumberSideBar);
+            if (wardNumberSideBar == ward) {
+
+                $(this).css('background-color', colour);
+            }
+
+        });
+
+
         contents = '<div class="infobox">' +
             '<div class="infobox-title">' +
             '<h1>' + wardName + '</h1>' +
@@ -166,7 +184,6 @@ function initMap() {
             '</div>' +
             '</div>';
 
-        console.log("CLICKED");
         infowindow = new google.maps.InfoWindow({
             content: contents,
             pixelOffset: new google.maps.Size(-1, -45),

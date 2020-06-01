@@ -15,7 +15,7 @@ $(document).ready(function () {
     metricsCall();
 
     //Calls Funtion every 5 Seconds
-    setInterval(metricsCall, 5000);
+    // setInterval(metricsCall, 5000);
 
 
     /**
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
                 $("#sidebar-col").empty();
                 $.each(data.totalByWard, function (key, value) {
-                    $("#sidebar-col").append('<div id="sidebar-col-grid" style="border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
+                    $("#sidebar-col").append('<div class="sidebar-col-grid"  ward="' + data.totalByWard[key].Ward_ID + '" style="border-bottom: 1.5px solid ' + data.totalByWard[key].Ward_Colour + ';border-left: 5px solid ' +
                             data.totalByWard[key].Ward_Colour + ';">' +
                             '<div class="rank"><h1>' + rank + '</h1></div>' +
                             '<div class="ward-name"><p>' + data.totalByWard[key].Ward_Name + '</p></div>' +
@@ -58,14 +58,12 @@ $(document).ready(function () {
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log("Status: " + textStatus);
                 console.log("Error: " + errorThrown);
-                $("#top_ward").text("Data Not Available");
-                $("#total_donation_amount").text("Data Not Available");
-                $("#total_donations").text("Data Not Available");
+                $('#top_ward').text("Data Not Available");
+                $('#total_donation_amount').text("Data Not Available");
+                $('#total_donated').text("Data Not Available");
             }
         });
 
     }
-
-
 
 });

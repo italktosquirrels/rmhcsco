@@ -208,7 +208,7 @@ figcaption.map_tag {
 }
 
 /*  MAP SIDE BAR  */
-#sidebar-col-grid {
+.sidebar-col-grid {
     display: grid;
     grid-template-columns: 1fr 3fr 1.5fr;
     grid-template-rows: 36.33px 30.33px;
@@ -222,31 +222,31 @@ figcaption.map_tag {
 
 }
 
-#sidebar-col-grid p {
+.sidebar-col-grid p {
     margin: 0;
     padding: 0;
     line-height: 1em;
 }
 
-#sidebar-col-grid .rank {
+.sidebar-col-grid .rank {
     grid-column: 1;
     grid-row: 1 / span 2;
     text-align: center;
     margin: auto 0px;
 }
 
-#sidebar-col-grid .ward-name {
+.sidebar-col-grid .ward-name {
     margin: auto 0px;
     text-align: center;
 }
 
-#sidebar-col-grid .ward-number {
+.sidebar-col-grid .ward-number {
     text-align: center;
     font-family: 'Futura';
     font-size: 0.9em;
 }
 
-#sidebar-col-grid .amount {
+.sidebar-col-grid .amount {
     grid-column: 3;
     grid-row: 1 / span 2;
     text-align: center;

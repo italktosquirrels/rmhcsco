@@ -141,6 +141,17 @@ function initMap() {
         metrics = metricsCall();
 
         var ward = event.feature.getProperty('WARD');
+        var geometry = event.feature.getGeometry('coordinates');
+
+        var bounds = new google.maps.LatLngBounds();
+        map.data.forEach(function (feature) {
+            event.feature.getGeometry().forEachLatLng(function (latlng) {
+                bounds.extend(latlng);
+            });
+        });
+
+
+        console.log(geometry);
         var i;
         for (i = 0; i < 15; i++) {
             if (ward == metrics.allDonationInfo[i].Ward_ID) {
@@ -165,6 +176,7 @@ function initMap() {
             if (wardNumberSideBar == ward) {
 
                 $(this).css('background-color', colour);
+                $(this).css('border', '1px solid' + colour);
             }
 
         });
@@ -194,4 +206,8 @@ function initMap() {
         infowindow.open(map);
 
     });
+}
+
+function sidebarSelect() {
+
 }

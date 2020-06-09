@@ -24,12 +24,15 @@ var lat_lng = {
     lng: -79.922913
 };
 
+//Stores Current Zoom Level of Map
+var zoomLevel;
+
 window.initialize = initialize;
 window.setRoutes = setRoutes;
 
 function setWard(wardNumber) {
     // get the donors ward to start the cart animation from
-    console.log("start set ward with: " + wardNumber); // testing log
+    // console.log("start set ward with: " + wardNumber); // testing log
     switch (wardNumber) {
         case 1:
             startingValue = "43.2535809,-79.9048477";
@@ -77,7 +80,7 @@ function setWard(wardNumber) {
             startingValue = "43.3803054,-79.9749105";
             break;
     }
-    console.log("end SETWARD"); // testing log
+    // console.log("end SETWARD"); // testing log
     // call setRoutes with the map and starting LatLong values
     setRoutes(map, startingValue);
 }
@@ -227,6 +230,8 @@ function updatePoly(i, d) {
     }
 }
 
+
+
 // updates marker position to make the animation and update the polyline
 function animate(index, d, tick) {
     if (d > eol[index]) {
@@ -236,15 +241,45 @@ function animate(index, d, tick) {
     var p = polyLine[index].GetPointAtDistance(d);
     marker[index].setPosition(p);
     updatePoly(index, d);
-    timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+
+    switch (zoomLevel) {
+
+        case 11:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 10);
+            break;
+        case 12:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 15);
+            break;
+        case 13:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 20);
+            break;
+        case 14:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 50);
+            break;
+        case 15:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+            break;
+        case 16:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+            break;
+        default:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+            break;
+
+    }
+
+
+
 }
 
 // start marker movement by updating marker position every x milliseconds i.e. tick value
 function startAnimation(index) {
+
     if (timerHandle[index])
         clearTimeout(timerHandle[index]);
     eol[index] = polyLine[index].Distance();
     map.setCenter(polyLine[index].getPath().getAt(0));
+    //DOES THIS EVEN WORK?
     map.setZoom(11);
     console.log("CENTRE" + polyLine[index].getPath().getAt(0))
 
@@ -253,7 +288,20 @@ function startAnimation(index) {
         strokeColor: "#FFFF00",
         strokeWeight: 0
     });
+
     timerHandle[index] = setTimeout("animate(" + index + ",10)", 500); // Allow time for the initial map display
+
+}
+
+/**
+ * Function that gets the current Zoom Level on the map
+ */
+function getZoomLevel() {
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+        zoomLevel = map.getZoom();
+        // console.log(zoomLevel);
+    });
+
 }
 
 // initial body load call. accepts the ward number that will get passed to setWard
@@ -275,6 +323,10 @@ function initMap(wardNum) {
         map: map,
         icon: image
     });
+
+    //Calls function to get current zoom level on change
+    getZoomLevel();
+
 
     //Border around boundries
     map.data.addListener('mouseover', function (event) {

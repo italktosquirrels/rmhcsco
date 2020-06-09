@@ -185,9 +185,10 @@ $(document).ready(function () {
           } else {
             //repsonse receives error message to display
             $('#form-errors').html(response.message).css("color", "red");
-            // if (response.message == "Please provide a first name") {
-            //   $('.first-name').css("border", "1.5px solid #dc1d00");
-            // }
+            if (response.message == "Please Select an Amount") {
+              console.log(response.message);
+              //   $('.first-name').css("border", "1.5px solid #dc1d00");
+            }
           }
         }
       });

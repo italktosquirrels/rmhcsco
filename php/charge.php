@@ -119,7 +119,7 @@ echo json_encode($response);
 //handle thrown exceptions from forms and payement errors
 //send error response to form thru ajax
 } catch (AmountException $e){
-  $response = array("message" => "Your amount is not selected or incorrect");
+  $response = array("message" => "Please Select an Amount");
   echo json_encode($response);
 } catch (NoTokenException $e){
   $response = array("message" => "No token has been processed. Please try again.");

@@ -31,7 +31,7 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 $("#top_ward").text(data.totalByWard[0].Ward_Name);
                 // console.log(data.totalAmountDonated[0].Total);
                 $("#total_donation_amount").text("$" + data.totalAmountDonated[0].Total + ".00");

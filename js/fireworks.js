@@ -13,6 +13,13 @@ myConfetti({
 });
 
 var duration = 15 * 1000;
+
+function setDuration(duration) {
+    this.duration = val;
+    console.log(this.duration);
+}
+
+
 var animationEnd = Date.now() + duration;
 var defaults = {
     startVelocity: 30,

@@ -30,9 +30,192 @@ var zoomLevel;
 // window.initialize = initialize;
 window.setRoutes = setRoutes;
 
+/**
+ * Intiaites Google Maps. Takes parameter to set ward location on map
+ * @param {*} wardNum 
+ */
+function initMap(wardNum) {
+    // create the map
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: new google.maps.LatLng(43.258030, -79.922913),
+        zoom: 11,
+        mapTypeId: 'terrain'
+    });
+
+    //RMHSCO LOCATION AND MARKER
+    var image = 'img/rmhcsco_map_icon.png';
+    var beachMarker = new google.maps.Marker({
+        position: {
+            lat: 43.258030,
+            lng: -79.922913
+        },
+        map: map,
+        icon: image
+    });
+
+    // grab the geojson data
+    var geoJsonData = map.data.loadGeoJson('data/Ward_Boundaries.json');
 
 
+    //Fucntion to Set Ward Colours
+    setWardColours();
 
+    //Calls Fucntion to set Ward 
+    setWard(wardNum);
+
+    //Calls function to get current zoom level on change
+    getZoomLevel();
+
+
+    //Border around boundries
+    map.data.addListener('mouseover', function (event) {
+        map.data.revertStyle();
+        map.data.overrideStyle(event.feature, {
+            strokeWeight: 3.5
+        });
+    });
+
+    //Increase Border Stroke on Hover
+    map.data.addListener('mouseout', function (event) {
+        map.data.revertStyle();
+    });
+
+    /* ******************************
+         INFO BOX
+    ******************************* */
+
+    map.data.addListener('click', function (event) {
+
+        if (infowindow) {
+            infowindow.close();
+        }
+
+        function metricsCall() {
+            return JSON.parse($.ajax({
+                url: './php/controller.php',
+                type: 'post',
+                data: {
+                    action: 'metrics'
+                },
+                dataType: 'json',
+                global: false,
+                async: false,
+                success: function (data) {
+                    return data;
+                }
+            }).responseText);
+
+        }
+
+        metrics = metricsCall();
+
+        var ward = event.feature.getProperty('WARD');
+        var i;
+        for (i = 0; i < 15; i++) {
+            if (ward == metrics.allDonationInfo[i].Ward_ID) {
+                var wardName = metrics.allDonationInfo[i].Ward_Name;
+                var wardID = metrics.allDonationInfo[i].Ward_ID;
+                var wardAmount = metrics.totalByWard[i].Amount;
+                var date = new Date(metrics.allDonationInfo[i].Date_Time);
+                var amount = metrics.allDonationInfo[i].Amount;
+
+            }
+        }
+        contents = '<div class="infobox">' +
+            '<div class="infobox-title">' +
+            '<h1>' + wardName + '</h1>' +
+            '</div>' +
+            '<div class="infobox-content">' +
+            '<p>Ward No. ' + wardID + '</p>' +
+            '<p>Total: $' + wardAmount + '.00</p>' +
+            '<p style="text-align: center; font-family: Futura Bold;">Last Donation</p>' +
+            '<p>' + date.toDateString() + '</p>' +
+            '<p>' + date.toLocaleTimeString() + '</p>' +
+            '<p>$' + amount + '.00</p>' +
+            '</div>' +
+            '</div>';
+
+        infowindow = new google.maps.InfoWindow({
+            content: contents,
+            pixelOffset: new google.maps.Size(-1, -45),
+        });
+
+        infowindow.setPosition(lat_lng);
+        infowindow.open(map);
+
+    });
+
+}
+
+/**
+ * Sets Ward Colours
+ */
+function setWardColours() {
+    // set the ward colours based on geojson coordinates
+    map.data.setStyle(function (feature) {
+        var WARD = feature.getProperty('WARD');
+        var color = "gray";
+        switch (WARD) {
+            case "1":
+                color = "rgba(72, 114, 173, 1)";
+                strokeColor = "rgba(72, 114, 173, 1)";
+                break;
+            case "2":
+                color = "rgba(81, 72, 173, 1)";
+                break;
+            case "3":
+                color = "rgba(131, 72, 173, 1)";
+                break;
+            case "4":
+                color = "rgba(173, 72, 165, 1)";
+                break;
+            case "5":
+                color = "rgba(173, 72, 114, 1)";
+                break;
+            case "6":
+                color = "rgba(234, 47, 92, 1)";
+                break;
+            case "7":
+                color = "rgba(218, 26, 0, 1)";
+                break;
+            case "8":
+                color = "rgba(242, 215, 56, 1)";
+                break;
+            case "9":
+                color = "rgba(255, 200, 41, 1)";
+                break;
+            case "10":
+                color = "rgba(114, 173, 72, 1)";
+                break;
+            case "11":
+                color = "rgba(72, 173, 81, 1)";
+                break;
+            case "12":
+                color = " rgba(72, 173, 131, 1)";
+                break;
+            case "13":
+                color = "rgba(72, 165, 173, 1)";
+                break;
+            case "14":
+                color = "rgba(148, 221, 219, 1)";
+                break;
+            case "15":
+                color = "rgba(247, 147, 30, 1)";
+                break;
+
+        }
+        return {
+            fillColor: color,
+            strokeColor: color,
+            strokeWeight: 1.5
+        }
+    });
+}
+
+/**
+ * 
+ * @param {} wardNumber 
+ */
 function setWard(wardNumber) {
     // get the donors ward to start the cart animation from
     // console.log("start set ward with: " + wardNumber); // testing log
@@ -90,7 +273,7 @@ function setWard(wardNumber) {
 
 
 // creates the animated marker
-function createMarker(latlng, label, html) {
+function createMarker(latlng, url, width, hieght) {
     var cart = {
         url: 'img/happy-wheels-cart-icon.png',
         size: new google.maps.Size(50, 76) // 50 pixels wide x 76 pixels tall
@@ -240,10 +423,17 @@ function updatePoly(i, d) {
 
 // updates marker position to make the animation and update the polyline
 function animate(index, d, tick) {
+    //Checks to see if Route is Finsished
     if (d > eol[index]) {
         marker[index].setPosition(endLocation[index].latlng);
+        marker[0].visible = false;
+        firworks();
+        setZoomLevel(11.5, 43.258030, -79.922913)
+
+        console.log(marker[0].visible);
         return;
     }
+
     var p = polyLine[index].GetPointAtDistance(d);
     marker[index].setPosition(p);
     updatePoly(index, d);
@@ -309,178 +499,91 @@ function getZoomLevel() {
 
 }
 
-// initial body load call. accepts the ward number that will get passed to setWard
-function initMap(wardNum) {
-    // create the map
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(43.258030, -79.922913),
-        zoom: 11,
-        mapTypeId: 'terrain'
+/**
+ * Function that gets the current Zoom Level on the map
+ */
+function setZoomLevel(zoomLevel, lat, lng) {
+    var centre = new google.maps.LatLng(lat, lng);
+    map.setCenter(centre);
+    map.setZoom(zoomLevel);
+}
+
+function firworks() {
+    var myCanvas = document.createElement('canvas');
+    // document.appendChild(myCanvas);
+
+    var myConfetti = confetti.create(myCanvas, {
+        resize: true,
+        useWorker: true
+    });
+    myConfetti({
+        particleCount: 100,
+        spread: 160
+        // any other options from the global
+        // confetti function
     });
 
-    //RMHSCO LOCATION AND MARKER
-    var image = 'img/rmhcsco_map_icon.png';
-    var beachMarker = new google.maps.Marker({
-        position: {
-            lat: 43.258030,
-            lng: -79.922913
-        },
-        map: map,
-        icon: image
+    var count = 200;
+    var defaults = {
+        origin: {
+            y: 0.7
+        }
+    };
+
+    function fire(particleRatio, opts) {
+        confetti(Object.assign({}, defaults, opts, {
+            particleCount: Math.floor(count * particleRatio)
+        }));
+    }
+
+    fire(0.25, {
+        spread: 26,
+        startVelocity: 55,
+    });
+    fire(0.2, {
+        spread: 60,
+    });
+    fire(0.35, {
+        spread: 100,
+        decay: 0.91,
+    });
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 25,
+        decay: 0.92,
+    });
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 45,
     });
 
-    //Calls function to get current zoom level on change
-    getZoomLevel();
+    var end = Date.now() + (3 * 1000);
 
+    // go Buckeyes!
+    var colors = ['#bb0000', '#ffffff'];
 
-    //Border around boundries
-    map.data.addListener('mouseover', function (event) {
-        map.data.revertStyle();
-        map.data.overrideStyle(event.feature, {
-            strokeWeight: 3.5
+    (function frame() {
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 55,
+            origin: {
+                x: 0
+            },
+            colors: colors
         });
-    });
-
-    //Increase Border Stroke on Hover
-    map.data.addListener('mouseout', function (event) {
-        map.data.revertStyle();
-    });
-
-    /* ******************************
-         INFO BOX
-    ******************************* */
-
-    // metricsCall();
-
-    // setInterval(metricsCall, 5000);
-
-
-
-
-    map.data.addListener('click', function (event) {
-
-        if (infowindow) {
-            infowindow.close();
-        }
-
-        function metricsCall() {
-            return JSON.parse($.ajax({
-                url: './php/controller.php',
-                type: 'post',
-                data: {
-                    action: 'metrics'
-                },
-                dataType: 'json',
-                global: false,
-                async: false,
-                success: function (data) {
-                    return data;
-                }
-            }).responseText);
-
-        }
-
-        metrics = metricsCall();
-
-        var ward = event.feature.getProperty('WARD');
-        var i;
-        for (i = 0; i < 15; i++) {
-            if (ward == metrics.allDonationInfo[i].Ward_ID) {
-                var wardName = metrics.allDonationInfo[i].Ward_Name;
-                var wardID = metrics.allDonationInfo[i].Ward_ID;
-                var wardAmount = metrics.totalByWard[i].Amount;
-                var date = new Date(metrics.allDonationInfo[i].Date_Time);
-                var amount = metrics.allDonationInfo[i].Amount;
-
-            }
-        }
-        contents = '<div class="infobox">' +
-            '<div class="infobox-title">' +
-            '<h1>' + wardName + '</h1>' +
-            '</div>' +
-            '<div class="infobox-content">' +
-            '<p>Ward No. ' + wardID + '</p>' +
-            '<p>Total: $' + wardAmount + '.00</p>' +
-            '<p style="text-align: center; font-family: Futura Bold;">Last Donation</p>' +
-            '<p>' + date.toDateString() + '</p>' +
-            '<p>' + date.toLocaleTimeString() + '</p>' +
-            '<p>$' + amount + '.00</p>' +
-            '</div>' +
-            '</div>';
-
-        infowindow = new google.maps.InfoWindow({
-            content: contents,
-            pixelOffset: new google.maps.Size(-1, -45),
+        confetti({
+            particleCount: 2,
+            angle: 120,
+            spread: 55,
+            origin: {
+                x: 1
+            },
+            colors: colors
         });
 
-        infowindow.setPosition(lat_lng);
-        infowindow.open(map);
-
-    });
-
-
-    // grab the geojson data
-    var geoJsonData = map.data.loadGeoJson('data/Ward_Boundaries.json');
-
-    // set the ward colours based on geojson coordinates
-    map.data.setStyle(function (feature) {
-        var WARD = feature.getProperty('WARD');
-        var color = "gray";
-        switch (WARD) {
-            case "1":
-                color = "rgba(72, 114, 173, 1)";
-                strokeColor = "rgba(72, 114, 173, 1)";
-                break;
-            case "2":
-                color = "rgba(81, 72, 173, 1)";
-                break;
-            case "3":
-                color = "rgba(131, 72, 173, 1)";
-                break;
-            case "4":
-                color = "rgba(173, 72, 165, 1)";
-                break;
-            case "5":
-                color = "rgba(173, 72, 114, 1)";
-                break;
-            case "6":
-                color = "rgba(234, 47, 92, 1)";
-                break;
-            case "7":
-                color = "rgba(218, 26, 0, 1)";
-                break;
-            case "8":
-                color = "rgba(242, 215, 56, 1)";
-                break;
-            case "9":
-                color = "rgba(255, 200, 41, 1)";
-                break;
-            case "10":
-                color = "rgba(114, 173, 72, 1)";
-                break;
-            case "11":
-                color = "rgba(72, 173, 81, 1)";
-                break;
-            case "12":
-                color = " rgba(72, 173, 131, 1)";
-                break;
-            case "13":
-                color = "rgba(72, 165, 173, 1)";
-                break;
-            case "14":
-                color = "rgba(148, 221, 219, 1)";
-                break;
-            case "15":
-                color = "rgba(247, 147, 30, 1)";
-                break;
-
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
         }
-        return {
-            fillColor: color,
-            strokeColor: color,
-            strokeWeight: 1.5
-        }
-    });
-    setWard(wardNum);
-
+    }());
 }

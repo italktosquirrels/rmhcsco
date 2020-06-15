@@ -423,8 +423,8 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.2.0/dist/confetti.browser.min.js"></script>
 
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&sensor=false"></script>
-    <script type="text/javascript" src="js/animatedMap.js"></script>
     <script type="text/javascript" src="js/fireworks.js"></script>
+    <script type="text/javascript" src="js/animatedMap.js"></script>
     <script type="text/javascript" src="js/geoCode.js"></script>
     <!-- END -->
     <script src="js/plugins.js"></script>

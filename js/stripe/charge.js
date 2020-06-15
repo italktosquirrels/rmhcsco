@@ -26,6 +26,7 @@ $(document).ready(function () {
   //on click for amount descriptions
   $('#amountButtons input').click(function () {
     $("#donationDescription").css("visibility", "visible");
+    // $(".feedback").css("visibility", "hidden");
     $("#receipt").css("visibility", "visible");
     $('#receipt p').html("Anything Under $20 Will Not Receive a Tax Receipt");
     value = $(this).val();
@@ -147,7 +148,7 @@ $(document).ready(function () {
   // Add an instance of the card Element into the `card-element` <div>
   card.mount('#card-element');
 
-  // Handle real-time validation errors from the card Element.
+  // Handle real - time validation errors from the card Element.
   card.addEventListener('change', function (event) {
     var displayError = document.getElementById('card-errors');
     if (event.error) {
@@ -183,12 +184,87 @@ $(document).ready(function () {
             //response receives parameters to pass to success.php
             window.location.href = "success.php?tid=" + response.token + "&name=" + response.name + "&ward=" + response.ward;
           } else {
+            console.log(response);
             //repsonse receives error message to display
             $('#form-errors').html(response.message).css("color", "red");
             if (response.message == "Please Select an Amount") {
               console.log(response.message);
-              //   $('.first-name').css("border", "1.5px solid #dc1d00");
+              $('#amountButtons').css({
+                "border": "1.5px solid red",
+                // "display": "block"
+              });
             }
+            if (response.message == "Please Provide Your First Name") {
+              console.log(response.message);
+              // $('.feedback').text(response.message).css({
+              //   "color": "red",
+              //   "display": "block"
+              // });
+              $('[name ="first_name"]').attr({
+                "placeholder": "Please Provide Your First Name",
+                "color": "red"
+              }).css({
+                "border": "1.5px solid red",
+              }).keypress(function () {
+                $('[name ="first_name"]').css({
+                  "border": "none",
+                });
+              });
+            }
+            if (response.message == "Please Provide Your Last Name") {
+              console.log(response.message);
+              // $('.feedback').text(response.message).css({
+              //   "color": "red",
+              //   "display": "block"
+              // });
+              $('[name ="last_name"]').attr({
+                "placeholder": "Please Provide Your Last Name",
+                "color": "red"
+              }).css({
+                "border": "2px solid red"
+              }).keypress(function () {
+                $('[name ="first_name"]').css({
+                  "border": "none",
+                });
+              });
+            }
+            if (response.message == "Please Provide Your Email") {
+              console.log(response.message);
+              // $('.feedback').text(response.message).css({
+              //   "color": "red",
+              //   "display": "block"
+              // });
+              $('[name ="email"]').attr({
+                "placeholder": "Please Provide Your Email",
+                "color": "red"
+              }).css({
+                "border": "2px solid red"
+              }).keypress(function () {
+                $('[name ="first_name"]').css({
+                  "border": "none",
+                });
+              });
+            }
+            if (response.message == "Please Select a Ward") {
+              console.log(response.message);
+              // $('.feedback').text(response.message).css({
+              //   "color": "red",
+              //   "display": "block"
+              // });
+              $('[name ="email"]').attr({
+                "placeholder": "Please Select a Ward",
+                "color": "red"
+              }).css({
+                "border": "2px solid red"
+              }).keypress(function () {
+                $('[name ="first_name"]').css({
+                  "border": "none",
+                });
+              });
+            }
+
+
+
           }
         }
       });

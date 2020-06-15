@@ -135,7 +135,7 @@
         </div>
         <!-- STRIPE FORM -->
         <div class="container">
-            <form class="needs-validation" id="payment-form">
+            <form class="needs-validation" novalidate id="payment-form">
                 <div class="form-row">
                     <div id="donation-amount-wrapper">
                         <ul id="amountButtons">
@@ -163,36 +163,42 @@
                                 <input type="radio" id="amountOther" name="radioAmount" autocomplete="off" value="other" />
                                 <label for="amountOther">Other</label>
                             </li>
-                            <!-- <li> </li> -->
-
                         </ul>
-                    </div>
-                    <!--DONATION DESCRIPTIONS  -->
-                    <div id="donationDescription" class="introParagraph">
-                        <div id="donationDescriptionImage">
+                        <!--DONATION DESCRIPTIONS  -->
+                        <div id="donationDescription" class="introParagraph">
+                            <div id="donationDescriptionImage">
+                            </div>
+                            <div id="donationDescriptionMessage">
+                                <h1></h1>
+                                <p></p>
+                            </div>
                         </div>
-                        <div id="donationDescriptionMessage">
-                            <h1></h1>
-                            <p></p>
-                        </div>
+                        <!-- DONATION FORM -->
+
+                        <!-- First Name -->
+                        <input type="text" name="first_name" class="form-control form-control-sm mb-3 StripeElement StripeElement--empty first-name" id="" placeholder="First Name" required />
+
+                        <!-- Last Name -->
+                        <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name" required />
+
+                        <!-- Email -->
+                        <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address" required />
+
+                        <!-- Ward -->
+                        <select id="dropdown" name="ward" class="form-control mb-3" required></select>
+
+                        <input id="donationAmount" name="amount" type="hidden" />
+                        <div id="card-element" class="form-control"></div>
+                        <!-- Used to display form errors -->
+                        <div id="card-errors" role="alert" style="color:red;"></div>
+                        <!-- <div id="form-errors" role="alert"></div> -->
                     </div>
-                    <!-- DONATION FORM -->
-                    <input type="text" name="first_name" class="form-control form-control-sm mb-3 StripeElement StripeElement--empty first-name" placeholder="First Name" required />
-                    <input type="text" name="last_name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Last Name" required />
-                    <select id="dropdown" name="ward" class="form-control mb-3" required></select>
-                    <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address" required />
-                    <input id="donationAmount" name="amount" type="hidden" />
-                    <div id="card-element" class="form-control"></div>
-                    <!-- Used to display form errors -->
-                    <div id="card-errors" role="alert" style="color:red;"></div>
-                    <div id="form-errors" role="alert"></div>
-                </div>
-                <button id="donate-button">
-                    <h1 id="donate-buttonh1">Donate</h1>
-                </button>
-                <div id="receipt" class="introParagraph">
-                    <p></p>
-                </div>
+                    <button id="donate-button">
+                        <h1 id="donate-buttonh1">Donate</h1>
+                    </button>
+                    <div id="receipt" class="introParagraph">
+                        <p></p>
+                    </div>
             </form>
         </div>
 

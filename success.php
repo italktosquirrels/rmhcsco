@@ -39,6 +39,7 @@
     <meta property="og:description" content="The Happy Wheels Cart, stocked with snacks, drinks, toys and activities, travels room to room to provide a much-needed break for parents and children unable to leave their hospital beds. Donate today to help keep families close, room by room." />
     <meta property="og:image" content="img/heart-sketch.svg" />
 
+
 </head>
 
 <body onload="initMap(<?php echo $ward ?>)">
@@ -419,8 +420,11 @@
     </script>
     <!-- COVE 8 JAVASCRIPT -->
     <script src="js/cove8JS.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.2.0/dist/confetti.browser.min.js"></script>
+
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&sensor=false"></script>
     <script type="text/javascript" src="js/animatedMap.js"></script>
+    <script type="text/javascript" src="js/fireworks.js"></script>
     <script type="text/javascript" src="js/geoCode.js"></script>
     <!-- END -->
     <script src="js/plugins.js"></script>

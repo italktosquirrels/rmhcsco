@@ -121,23 +121,23 @@ echo json_encode($response);
 } catch (AmountException $e){
   $response = array("message" => "Please Select an Amount");
   echo json_encode($response);
-} catch (NoTokenException $e){
-  $response = array("message" => "No token has been processed. Please try again.");
-  echo json_encode($response);
+// } catch (NoTokenException $e){
+//   $response = array("message" => "No token has been processed. Please try again.");
+//   echo json_encode($response);
 } catch (FirstNameException $e){
-  $response = array("message" => "Please provide a first name");
+  $response = array("message" => "Please Provide Your First Name");
   echo json_encode($response);
 } catch (LastNameException $e){
-  $response = array("message" => "Please provide a last name");
+  $response = array("message" => "Please Provide Your Last Name");
   echo json_encode($response);
 } catch (EmailException $e){
-  $response = array("message" => "Please provide an email");
+  $response = array("message" => "Please Provide Your Email");
   echo json_encode($response);
 } catch (InvalidNameException $e){
-  $response = array("message" => "Your first and last  name should only contain letters, dashes and apastrophes.");
+  $response = array("message" => "Invalid Name. No Symbols or Numbers");
   echo json_encode($response);
 } catch (WardException $e){
-  $response = array("message" => "Please select a ward");
+  $response = array("message" => "Please Select a Ward");
   echo json_encode($response);
 } catch(\Stripe\Exception\CardException $e) {
   //Since it's a decline, \Stripe\Exception\CardException will be caught

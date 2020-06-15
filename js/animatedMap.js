@@ -27,8 +27,11 @@ var lat_lng = {
 //Stores Current Zoom Level of Map
 var zoomLevel;
 
-window.initialize = initialize;
+// window.initialize = initialize;
 window.setRoutes = setRoutes;
+
+
+
 
 function setWard(wardNumber) {
     // get the donors ward to start the cart animation from
@@ -159,6 +162,7 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
 
             startLocation[routeNum] = new Object();
             endLocation[routeNum] = new Object();
+
             // set up polyline for current route
             polyLine[routeNum] = new google.maps.Polyline({
                 path: [],
@@ -211,6 +215,7 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
         if (polyLine[routeNum]) {
             startAnimation(routeNum);
         }
+
     }
 }
 
@@ -227,6 +232,7 @@ function updatePoly(i, d) {
         poly2[i].getPath().insertAt(poly2[i].getPath().getLength(), polyLine[i].GetPointAtDistance(d));
     } else {
         poly2[i].getPath().insertAt(poly2[i].getPath().getLength(), endLocation[i].latlng);
+
     }
 }
 
@@ -241,6 +247,7 @@ function animate(index, d, tick) {
     var p = polyLine[index].GetPointAtDistance(d);
     marker[index].setPosition(p);
     updatePoly(index, d);
+
 
     switch (zoomLevel) {
 
@@ -267,8 +274,6 @@ function animate(index, d, tick) {
             break;
 
     }
-
-
 
 }
 
@@ -477,9 +482,5 @@ function initMap(wardNum) {
         }
     });
     setWard(wardNum);
-
-
-
-
 
 }

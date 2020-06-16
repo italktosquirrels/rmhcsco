@@ -189,14 +189,12 @@ $(document).ready(function () {
 
             if (response.message == "Please Provide Your First Name") {
               console.log(response.message);
-              $('.feedbackFN').text(response.message).css({
+              $('#feedbackFN').text(response.message).css({
+                "font-size": "12px",
                 "color": "red",
                 "display": "block"
               });
-              $('[name ="first_name"]').attr({
-                "placeholder": "Please Provide Your First Name",
-                "color": "red"
-              }).css({
+              $('[name ="first_name"]').css({
                 "border": "1.5px solid red",
               }).keypress(function () {
                 $('[name ="first_name"]').css({

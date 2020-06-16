@@ -1,6 +1,5 @@
 <?php
 //https://stripe.com/docs/testing stripe testing numbers
-//TEST COMMMIT // THIS IS BSSS
 class AmountException extends Exception {};
 class NoTokenException extends Exception {};
 class FirstNameException extends Exception {};

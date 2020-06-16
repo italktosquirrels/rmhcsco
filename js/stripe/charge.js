@@ -189,10 +189,7 @@ $(document).ready(function () {
             $('#form-errors').html(response.message).css("color", "red");
             if (response.message == "Please Select an Amount") {
               console.log(response.message);
-              $('#amountButtons').css({
-                "border": "1.5px solid red",
-                // "display": "block"
-              });
+
             }
             if (response.message == "Please Provide Your First Name") {
               console.log(response.message);
@@ -223,7 +220,7 @@ $(document).ready(function () {
               }).css({
                 "border": "2px solid red"
               }).keypress(function () {
-                $('[name ="first_name"]').css({
+                $('[name ="last_name"]').css({
                   "border": "none",
                 });
               });
@@ -240,7 +237,7 @@ $(document).ready(function () {
               }).css({
                 "border": "2px solid red"
               }).keypress(function () {
-                $('[name ="first_name"]').css({
+                $('[name ="email"]').css({
                   "border": "none",
                 });
               });
@@ -251,13 +248,13 @@ $(document).ready(function () {
               //   "color": "red",
               //   "display": "block"
               // });
-              $('[name ="email"]').attr({
+              $('[name ="ward"]').attr({
                 "placeholder": "Please Select a Ward",
                 "color": "red"
               }).css({
                 "border": "2px solid red"
-              }).keypress(function () {
-                $('[name ="first_name"]').css({
+              }).change(function () {
+                $('[name ="ward"]').css({
                   "border": "none",
                 });
               });

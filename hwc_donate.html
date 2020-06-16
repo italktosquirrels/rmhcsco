@@ -185,7 +185,9 @@
                         <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address" required />
 
                         <!-- Ward -->
-                        <select id="dropdown" name="ward" class="form-control mb-3" required></select>
+                        <select id="dropdown" name="ward" class="form-control mb-3" required>
+                            <option disabled selected value> -- Select a Ward -- </option>
+                        </select>
 
                         <input id="donationAmount" name="amount" type="hidden" />
                         <div id="card-element" class="form-control"></div>

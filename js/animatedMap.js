@@ -9,6 +9,9 @@ var timerHandle = [];
 var infoWindow = null;
 var donorWard;
 var startingValue = "";
+var rendererOptions;
+var directionsDisplay;
+var disp;
 
 var startLoc = [];
 var endLoc = [];
@@ -80,6 +83,8 @@ function initMap(wardNum) {
         map.data.revertStyle();
     });
 
+
+
     /* ******************************
          INFO BOX
     ******************************* */
@@ -121,6 +126,25 @@ function initMap(wardNum) {
 
             }
         }
+
+        //Highlights Side Bar  
+        $(".sidebar-col-grid").each(function () {
+
+            $(this).css('background-color', '#353534');
+            var wardNumberSideBar = $(this).attr('ward');
+            var colour = $(this).css('border-left-color');
+
+            // console.log(ward);
+            // console.log(wardNumberSideBar);
+            console.log(wardNumberSideBar);
+            if (wardNumberSideBar == ward) {
+
+                $(this).css('background-color', colour);
+                $(this).css('border', '1px solid' + colour);
+            }
+        });
+
+
         contents = '<div class="infobox">' +
             '<div class="infobox-title">' +
             '<h1>' + wardName + '</h1>' +
@@ -307,9 +331,9 @@ function setRoutes(map, startingMarker) {
     poly2 = [];
     timerHandle = [];
 
-    var directionsDisplay = new Array();
+    directionsDisplay = new Array();
     for (var i = 0; i < startLoc.length; i++) {
-        var rendererOptions = {
+        rendererOptions = {
             map: map,
             suppressInfoWindows: true,
             suppressPolylines: true,
@@ -329,7 +353,8 @@ function setRoutes(map, startingMarker) {
 }
 
 // called after getting route from directions service, does all the heavylifting
-function makeRouteCallback(routeNum, disp, rendererOptions) {
+function makeRouteCallback(routeNum, display, rendererOptions) {
+    disp = display;
     // check if polyline and map exists, if yes, no need to do anything else, just start the animation
     if (polyLine[routeNum] && (polyLine[routeNum].getMap() != null)) {
         startAnimation(routeNum);
@@ -376,6 +401,7 @@ function makeRouteCallback(routeNum, disp, rendererOptions) {
             disp.setMap(map);
             disp.setDirections(response);
 
+
             // create Markers
             for (i = 0; i < legs.length; i++) {
                 // for first marker only
@@ -421,16 +447,22 @@ function updatePoly(i, d) {
 
 
 
+
+
 // updates marker position to make the animation and update the polyline
 function animate(index, d, tick) {
     //Checks to see if Route is Finsished
     if (d > eol[index]) {
         marker[index].setPosition(endLocation[index].latlng);
+        //Hides Happy Wheels Cart Marker
         marker[0].visible = false;
+        console.log(poly2);
+        disp.setDirections({
+            routes: []
+        });
+        //Starts Fireworks
         firworks();
-        setZoomLevel(11.5, 43.258030, -79.922913)
-
-        console.log(marker[0].visible);
+        animateMapZoomTo(map, 10);
         return;
     }
 
@@ -499,6 +531,8 @@ function getZoomLevel() {
 
 }
 
+
+
 /**
  * Function that gets the current Zoom Level on the map
  */
@@ -508,6 +542,28 @@ function setZoomLevel(zoomLevel, lat, lng) {
     map.setZoom(zoomLevel);
 }
 
+/**
+ * Animates Zoom to zoom out slower
+ * @param {*} map takes map object
+ * @param {*} targetZoom takes numeric value of zoom
+ */
+function animateMapZoomTo(map, targetZoom) {
+    var currentZoom = arguments[2] || map.getZoom();
+    if (currentZoom != targetZoom) {
+        google.maps.event.addListenerOnce(map, 'zoom_changed', function (event) {
+            animateMapZoomTo(map, targetZoom, currentZoom + (targetZoom > currentZoom ? 1 : -1));
+        });
+        setTimeout(function () {
+            map.setZoom(currentZoom)
+        }, 50);
+    }
+}
+
+
+
+/**
+ * Creates the fireworks
+ */
 function firworks() {
     var myCanvas = document.createElement('canvas');
     // document.appendChild(myCanvas);
@@ -523,15 +579,21 @@ function firworks() {
         // confetti function
     });
 
-    var count = 200;
+    var count = 1000;
     var defaults = {
         origin: {
-            y: 0.7
+            y: 0.9
         }
     };
 
     function fire(particleRatio, opts) {
         confetti(Object.assign({}, defaults, opts, {
+            particleCount: Math.floor(count * particleRatio)
+        }));
+        confetti(Object.assign({}, 0.5, opts, {
+            particleCount: Math.floor(count * particleRatio)
+        }));
+        confetti(Object.assign({}, 0.3, opts, {
             particleCount: Math.floor(count * particleRatio)
         }));
     }
@@ -559,12 +621,13 @@ function firworks() {
 
     var end = Date.now() + (3 * 1000);
 
-    // go Buckeyes!
-    var colors = ['#bb0000', '#ffffff'];
+
+    // SIDE CONFETTI EXPLOSIONS
+    var colors = ['#FFC829', '#DA1A00'];
 
     (function frame() {
         confetti({
-            particleCount: 2,
+            particleCount: 7,
             angle: 60,
             spread: 55,
             origin: {
@@ -573,7 +636,7 @@ function firworks() {
             colors: colors
         });
         confetti({
-            particleCount: 2,
+            particleCount: 7,
             angle: 120,
             spread: 55,
             origin: {

@@ -316,7 +316,7 @@ figcaption.map_tag {
 #donation-amount-wrapper {
     margin-top: 50px;
     margin-bottom: 25px;
-    margin-left: 25px;
+    margin: auto;
 }
 
 #amountButtons {
@@ -386,12 +386,18 @@ figcaption.map_tag {
     grid-gap: 25px;
     border-bottom: 2px solid #ffca07;
     margin: 0px 0px 25px 0px;
+    width: 100%;
 }
+
+/* #donationDescriptionImage {
+    grid-column: 1;
+} */
 
 #donationDescriptionImage img {
     box-shadow: inset 5 8px 5px -5px rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     padding-bottom: 5px;
+    margin-top: 25px;
 }
 
 #donationDescriptionMessage h1 {
@@ -403,8 +409,10 @@ figcaption.map_tag {
 }
 
 #donationDescriptionMessage {
+    /* grid-column: 2; */
     font-size: 0.9em;
     height: auto;
+    margin-top: 25px;
 }
 
 #donationDescriptionMessage span {
@@ -413,6 +421,8 @@ figcaption.map_tag {
 
 
 /* DONATE BUTTON */
+
+
 #donate-button {
     background-color: #ffca07;
     font-family: 'Futura Bold';
@@ -425,6 +435,8 @@ figcaption.map_tag {
     transform: translate(0, -3px);
     cursor: pointer;
     transition: all ease-in-out 100ms;
+    margin-left: 25px;
+    width: 93%;
 }
 
 #donate-button h1 {
@@ -447,6 +459,7 @@ figcaption.map_tag {
 #receipt {
     visibility: hidden;
     text-align: center;
+    margin: auto;
 }
 
 

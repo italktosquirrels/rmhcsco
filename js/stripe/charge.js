@@ -26,7 +26,6 @@ $(document).ready(function () {
   //on click for amount descriptions
   $('#amountButtons input').click(function () {
     $("#donationDescription").css("visibility", "visible");
-    // $(".feedback").css("visibility", "hidden");
     $("#receipt").css("visibility", "visible");
     $('#receipt p').html("Anything Under $20 Will Not Receive a Tax Receipt");
     value = $(this).val();
@@ -187,16 +186,13 @@ $(document).ready(function () {
             console.log(response);
             //repsonse receives error message to display
             $('#form-errors').html(response.message).css("color", "red");
-            if (response.message == "Please Select an Amount") {
-              console.log(response.message);
 
-            }
             if (response.message == "Please Provide Your First Name") {
               console.log(response.message);
-              // $('.feedback').text(response.message).css({
-              //   "color": "red",
-              //   "display": "block"
-              // });
+              $('.feedbackFN').text(response.message).css({
+                "color": "red",
+                "display": "block"
+              });
               $('[name ="first_name"]').attr({
                 "placeholder": "Please Provide Your First Name",
                 "color": "red"
@@ -259,6 +255,8 @@ $(document).ready(function () {
                 });
               });
             }
+
+
 
 
 

@@ -30,8 +30,13 @@ var lat_lng = {
 //Stores Current Zoom Level of Map
 var zoomLevel;
 
+var myCanvas;
+var myConfetti;
+
 // window.initialize = initialize;
 window.setRoutes = setRoutes;
+
+sidebarClickEvent();
 
 /**
  * Intiaites Google Maps. Takes parameter to set ward location on map
@@ -68,6 +73,9 @@ function initMap(wardNum) {
 
     //Calls function to get current zoom level on change
     getZoomLevel();
+
+    createCanvas();
+    setTimeout(initialFireworks, 400);
 
 
     //Border around boundries
@@ -136,7 +144,7 @@ function initMap(wardNum) {
 
             // console.log(ward);
             // console.log(wardNumberSideBar);
-            console.log(wardNumberSideBar);
+            // console.log(wardNumberSideBar);
             if (wardNumberSideBar == ward) {
 
                 $(this).css('background-color', colour);
@@ -445,10 +453,6 @@ function updatePoly(i, d) {
     }
 }
 
-
-
-
-
 // updates marker position to make the animation and update the polyline
 function animate(index, d, tick) {
     //Checks to see if Route is Finsished
@@ -456,12 +460,11 @@ function animate(index, d, tick) {
         marker[index].setPosition(endLocation[index].latlng);
         //Hides Happy Wheels Cart Marker
         marker[0].visible = false;
-        console.log(poly2);
         disp.setDirections({
             routes: []
         });
         //Starts Fireworks
-        firworks();
+        finaleFirworks();
         animateMapZoomTo(map, 10);
         return;
     }
@@ -508,7 +511,7 @@ function startAnimation(index) {
     map.setCenter(polyLine[index].getPath().getAt(0));
     //DOES THIS EVEN WORK?
     map.setZoom(11);
-    console.log("CENTRE" + polyLine[index].getPath().getAt(0))
+    // console.log("CENTRE" + polyLine[index].getPath().getAt(0))
 
     poly2[index] = new google.maps.Polyline({
         path: [polyLine[index].getPath().getAt(0)],
@@ -530,8 +533,6 @@ function getZoomLevel() {
     });
 
 }
-
-
 
 /**
  * Function that gets the current Zoom Level on the map
@@ -560,15 +561,12 @@ function animateMapZoomTo(map, targetZoom) {
 }
 
 
+function createCanvas() {
 
-/**
- * Creates the fireworks
- */
-function firworks() {
-    var myCanvas = document.createElement('canvas');
+    myCanvas = document.createElement('canvas');
     // document.appendChild(myCanvas);
 
-    var myConfetti = confetti.create(myCanvas, {
+    myConfetti = confetti.create(myCanvas, {
         resize: true,
         useWorker: true
     });
@@ -578,11 +576,62 @@ function firworks() {
         // any other options from the global
         // confetti function
     });
+}
 
-    var count = 1000;
+/**
+ * Creates the Iniyial Fireworks background
+ */
+function initialFireworks() {
+
+    var duration = 15 * 1000;
+    var animationEnd = Date.now() + duration;
+    var defaults = {
+        startVelocity: 15,
+        spread: 360,
+        ticks: 60,
+        zIndex: 0
+    };
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    var interval = setInterval(function () {
+        var timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        var particleCount = 150 * (timeLeft / duration);
+        // since particles fall down, start a bit higher than random
+        confetti(Object.assign({}, defaults, {
+            particleCount,
+            origin: {
+                x: randomInRange(0.1, 0.3),
+                y: Math.random() - 0.2
+            }
+        }));
+        confetti(Object.assign({}, defaults, {
+            particleCount,
+            origin: {
+                x: randomInRange(0.7, 0.9),
+                y: Math.random() - 0.2
+            }
+        }));
+    }, 250);
+}
+
+/**
+ * Creates the fireworks
+ */
+function finaleFirworks() {
+
+
+    var count = 200;
     var defaults = {
         origin: {
-            y: 0.9
+            y: 0.7
         }
     };
 
@@ -649,4 +698,154 @@ function firworks() {
             requestAnimationFrame(frame);
         }
     }());
+}
+
+function closeInfoWindow() {
+    if (infowindow) {
+        infowindow.close();
+    }
+}
+
+function sidebarClickEvent() {
+    $("#sidebar-col").hover(function () {
+        // console.log("HOVER");
+        $(".sidebar-col-grid").css('cursor', 'pointer');
+        $(".sidebar-col-grid").click(function () {
+
+            var ward = $(this).attr('ward');
+
+            var greyBackground = 'rgb(53, 53, 52)';
+            var colour = $(this).css('border-left-color');
+            $(".sidebar-col-grid").each(function () {
+                if (!$(".sidebar-col-grid").css('background-color', greyBackground)) {
+                    $(".sidebar-col-grid").css('background-color', greyBackground)
+                }
+
+            });
+
+            $(this).css('background-color', colour);
+            $(this).css('border', '1px solid' + colour);
+
+            closeInfoWindow();
+
+            map.data.setStyle(function (feature) {
+                var WARD = feature.getProperty('WARD');
+                var color = "red";
+                if (ward == WARD) {
+                    switch (WARD) {
+
+                        case "1":
+                            color = "rgba(72, 114, 173, 1)";
+                            break;
+                        case "2":
+                            color = "rgba(81, 72, 173, 1)";
+                            break;
+                        case "3":
+                            color = "rgba(131, 72, 173, 1)";
+                            break;
+                        case "4":
+                            color = "rgba(173, 72, 165, 1)";
+                            break;
+                        case "5":
+                            color = "rgba(173, 72, 114, 1)";
+                            break;
+                        case "6":
+                            color = "rgba(234, 47, 92, 1)";
+                            break;
+                        case "7":
+                            color = "rgba(218, 26, 0, 1)";
+                            break;
+                        case "8":
+                            color = "rgba(242, 215, 56, 1)";
+                            break;
+                        case "9":
+                            color = "rgba(255, 200, 41, 1)";
+                            break;
+                        case "10":
+                            color = "rgba(114, 173, 72, 1)";
+                            break;
+                        case "11":
+                            color = "rgba(72, 173, 81, 1)";
+                            break;
+                        case "12":
+                            color = " rgba(72, 173, 131, 1)";
+                            break;
+                        case "13":
+                            color = "rgba(72, 165, 173, 1)";
+                            break;
+                        case "14":
+                            color = "rgba(148, 221, 219, 1)";
+                            break;
+                        case "15":
+                            color = "rgba(247, 147, 30, 1)";
+                            break;
+                    }
+
+                    return {
+                        fillColor: color,
+                        strokeColor: color,
+                        strokeWeight: 3.5
+                    }
+                } else {
+                    switch (WARD) {
+
+                        case "1":
+                            color = "rgba(72, 114, 173, 1)";
+                            break;
+                        case "2":
+                            color = "rgba(81, 72, 173, 1)";
+                            break;
+                        case "3":
+                            color = "rgba(131, 72, 173, 1)";
+                            break;
+                        case "4":
+                            color = "rgba(173, 72, 165, 1)";
+                            break;
+                        case "5":
+                            color = "rgba(173, 72, 114, 1)";
+                            break;
+                        case "6":
+                            color = "rgba(234, 47, 92, 1)";
+                            break;
+                        case "7":
+                            color = "rgba(218, 26, 0, 1)";
+                            break;
+                        case "8":
+                            color = "rgba(242, 215, 56, 1)";
+                            break;
+                        case "9":
+                            color = "rgba(255, 200, 41, 1)";
+                            break;
+                        case "10":
+                            color = "rgba(114, 173, 72, 1)";
+                            break;
+                        case "11":
+                            color = "rgba(72, 173, 81, 1)";
+                            break;
+                        case "12":
+                            color = " rgba(72, 173, 131, 1)";
+                            break;
+                        case "13":
+                            color = "rgba(72, 165, 173, 1)";
+                            break;
+                        case "14":
+                            color = "rgba(148, 221, 219, 1)";
+                            break;
+                        case "15":
+                            color = "rgba(247, 147, 30, 1)";
+                            break;
+                    }
+
+                    return {
+                        fillColor: color,
+                        strokeColor: color,
+                        strokeWeight: 1.5
+                    }
+                }
+
+            });
+
+
+        });
+    });
 }

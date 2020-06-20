@@ -394,7 +394,7 @@ figcaption.map_tag {
 } */
 
 #donationDescriptionImage img {
-    box-shadow: inset 5 8px 5px -5px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 5px 8px 5px -5px rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     padding-bottom: 5px;
     margin-top: 25px;

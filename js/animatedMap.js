@@ -455,6 +455,7 @@ function updatePoly(i, d) {
 
 // updates marker position to make the animation and update the polyline
 function animate(index, d, tick) {
+
     //Checks to see if Route is Finsished
     if (d > eol[index]) {
         marker[index].setPosition(endLocation[index].latlng);
@@ -465,7 +466,18 @@ function animate(index, d, tick) {
         });
         //Starts Fireworks
         finaleFirworks();
-        animateMapZoomTo(map, 10);
+        var mapWidth = $('#map').width()
+        if (mapWidth <= 400) {
+            animateMapZoomTo(map, 8);
+            console.log("iPad");
+        } else if (mapWidth < 790 && mapWidth > 400) {
+            animateMapZoomTo(map, 9);
+            console.log("Phone");
+        } else {
+            animateMapZoomTo(map, 10);
+            console.log("Desktop");
+        }
+
         return;
     }
 
@@ -492,7 +504,7 @@ function animate(index, d, tick) {
             timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
             break;
         case 16:
-            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 110);
             break;
         default:
             timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
@@ -519,7 +531,7 @@ function startAnimation(index) {
         strokeWeight: 0
     });
 
-    timerHandle[index] = setTimeout("animate(" + index + ",10)", 500); // Allow time for the initial map display
+    timerHandle[index] = setTimeout("animate(" + index + ",10)", 1000); // Allow time for the initial map display
 
 }
 
@@ -556,11 +568,16 @@ function animateMapZoomTo(map, targetZoom) {
         });
         setTimeout(function () {
             map.setZoom(currentZoom)
-        }, 50);
+        }, 150);
     }
 }
 
+// [-80.24590663846293, 43.32640897129521],
+//     [-79.96460987574329, 43.124957472139506],
 
+/**
+ * Creates the canvas for the fireworks
+ */
 function createCanvas() {
 
     myCanvas = document.createElement('canvas');
@@ -700,15 +717,22 @@ function finaleFirworks() {
     }());
 }
 
+/**
+ * Closes any info box window
+ */
 function closeInfoWindow() {
     if (infowindow) {
         infowindow.close();
     }
 }
 
+/**
+ * Creates Sidebar Click Event
+ */
 function sidebarClickEvent() {
-    $("#sidebar-col").hover(function () {
-        // console.log("HOVER");
+
+    $("#sidebar-col").on('touchstart touchend mouseover', function () {
+        console.log("touchstart");
         $(".sidebar-col-grid").css('cursor', 'pointer');
         $(".sidebar-col-grid").click(function () {
 

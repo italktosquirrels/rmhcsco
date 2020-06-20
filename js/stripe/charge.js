@@ -28,7 +28,7 @@ $(document).ready(function () {
     $("#donationDescription").css("visibility", "visible");
     $("#receipt").css("visibility", "visible");
     $('#receipt p').html("Anything Under $20 Will Not Receive a Tax Receipt");
-    value = $(this).val();
+    var value = $(this).val();
     $('#donationDescriptionImage').html('<img src="img/sickKids.jpg" />');
     if (value == 5) {
       //Remove Span
@@ -99,11 +99,13 @@ $(document).ready(function () {
       $('#donationDescriptionMessage p').html("");
     }
 
+    $('#feedbackA').text("");
+
     //Get Values from Selected button
-    radioChecked = $('input[name="radioAmount"]:checked').val();
+    var radioChecked = $('input[name="radioAmount"]:checked').val();
     //If OTHER is Selected
     if (radioChecked == "other") {
-      amount = 0;
+      var amount = 0;
       $('#inputAmount').change(function () {
         amount = $('#inputAmount').val();
         $('input[name=amount]').val(amount);
@@ -163,6 +165,7 @@ $(document).ready(function () {
     stripe.createToken(card).then(function (result) {
       if (result.error) {
         // Inform the user if there was an error
+        $("#payment-form").append('<input type="hidden" name="stripeToken" value=""/>');
         var errorElement = document.getElementById('card-errors');
         errorElement.textContent = result.error.message;
       } else {
@@ -178,85 +181,97 @@ $(document).ready(function () {
           action: 'submit'
         },
         success: function (data) {
+          
           var response = JSON.parse(data);
+          
           if (response.status == "1") {
             //response receives parameters to pass to success.php
+            $('#form-errors').text("");
             window.location.href = "success.php?tid=" + response.token + "&name=" + response.name + "&ward=" + response.ward;
           } else {
             console.log(response);
-            //repsonse receives error message to display
-            $('#form-errors').html(response.message).css("color", "red");
 
-            if (response.message == "Please Provide Your First Name") {
-              console.log(response.message);
-              $('#feedbackFN').text(response.message).css({
+            if (response == "*Please Provide Your First Name") {
+              $('#feedbackFN').text(response).css({
                 "font-size": "12px",
                 "color": "red",
                 "display": "block"
               });
               $('[name ="first_name"]').css({
                 "border": "1.5px solid red",
-              }).keypress(function () {
+              }).focus(function () {
                 $('[name ="first_name"]').css({
                   "border": "none",
                 });
+                $('#feedbackFN').text("");
               });
             }
-            if (response.message == "Please Provide Your Last Name") {
-              console.log(response.message);
-              // $('.feedback').text(response.message).css({
-              //   "color": "red",
-              //   "display": "block"
-              // });
-              $('[name ="last_name"]').attr({
-                "placeholder": "Please Provide Your Last Name",
-                "color": "red"
-              }).css({
-                "border": "2px solid red"
-              }).keypress(function () {
+
+            else if (response == "*Please Provide Your Last Name") {
+              $('#feedbackLN').text(response).css({
+                "font-size": "12px",
+                "color": "red",
+                "display": "block"
+              });
+              $('[name ="last_name"]').css({
+                "border": "1.5px solid red",
+              }).focus(function () {
                 $('[name ="last_name"]').css({
                   "border": "none",
                 });
+                $('#feedbackLN').text("");
               });
             }
-            if (response.message == "Please Provide Your Email") {
-              console.log(response.message);
-              // $('.feedback').text(response.message).css({
-              //   "color": "red",
-              //   "display": "block"
-              // });
-              $('[name ="email"]').attr({
-                "placeholder": "Please Provide Your Email",
-                "color": "red"
-              }).css({
-                "border": "2px solid red"
-              }).keypress(function () {
+
+            else if (response == "*Please Provide Your Email") {
+              $('#feedbackE').text(response).css({
+                "font-size": "12px",
+                "color": "red",
+                "display": "block"
+              });
+              $('[name ="email"]').css({
+                "border": "1.5px solid red",
+              }).focus(function () {
                 $('[name ="email"]').css({
                   "border": "none",
                 });
+                $('#feedbackE').text("");
               });
             }
-            if (response.message == "Please Select a Ward") {
-              console.log(response.message);
-              // $('.feedback').text(response.message).css({
-              //   "color": "red",
-              //   "display": "block"
-              // });
-              $('[name ="ward"]').attr({
-                "placeholder": "Please Select a Ward",
-                "color": "red"
-              }).css({
-                "border": "2px solid red"
-              }).change(function () {
+            else if (response == "*Please Select a Ward") {
+              $('#feedbackW').text(response).css({
+                "font-size": "12px",
+                "color": "red",
+                "display": "block"
+              });
+              $('[name ="ward"]').css({
+                "border": "1.5px solid red",
+              }).focus(function () {
                 $('[name ="ward"]').css({
                   "border": "none",
                 });
+                $('#feedbackW').text("");
               });
             }
 
+            else if (response == "*Please Select an Amount") {
+              $('#feedbackA').text(response).css({
+                "font-size": "12px",
+                "color": "red",
+                "display": "block"
+              });
+            }
 
-
-
+            else {
+              $('#form-errors').text(response).css({
+                "font-size": "12px",
+                "color": "red",
+                "display": "block"
+              });
+              $('#card-element').focus(function () {
+                $('#form-errors').text("");
+              });
+            }
 
           }
         }
@@ -271,8 +286,5 @@ $(document).ready(function () {
     $("#payment-form").append('<input type="hidden" name="stripeToken" value="' + token.id + '"/>');
 
   }
-
-
-
 
 });

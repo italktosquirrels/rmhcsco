@@ -60,13 +60,10 @@ try {
   $ward = filter_var($formData['ward'],FILTER_SANITIZE_STRING);
   
   //check if values are set, if not throw exceptions
-  if(empty($amount) || !isset($amount)){
-    throw new AmountException();
-  }
-
-  if(empty($token) || !isset($token)){
-    throw new NoTokenException();
-  }
+ 
+  // if(empty($token) || !isset($token)){
+  //   throw new NoTokenException();
+  // }
 
   if(empty($first_name) || !isset($first_name)){
     throw new FirstNameException();
@@ -84,8 +81,12 @@ try {
     throw new EmailException();
   }
 
-  if(empty($ward) || !isset($ward)){
+  if(empty($ward) || !isset($ward) || $ward == "-- Select a Ward --"){
     throw new WardException();
+  }
+
+  if(empty($amount) || !isset($amount)){
+    throw new AmountException();
   }
 
   date_default_timezone_set('America/Toronto');
@@ -120,64 +121,53 @@ echo json_encode($response);
 //handle thrown exceptions from forms and payement errors
 //send error response to form thru ajax
 } catch (AmountException $e){
-  $response = array("message" => "Please Select an Amount");
+  $response = "*Please Select an Amount";
   echo json_encode($response);
-// } catch (NoTokenException $e){
-//   $response = array("message" => "No token has been processed. Please try again.");
-//   echo json_encode($response);
-} catch (FirstNameException $e){
-  $response = array("message" => "Please Provide Your First Name");
+}  catch (FirstNameException $e){
+  $response = "*Please Provide Your First Name";
   echo json_encode($response);
 } catch (LastNameException $e){
-  $response = array("message" => "Please Provide Your Last Name");
+  $response = "*Please Provide Your Last Name";
   echo json_encode($response);
 } catch (EmailException $e){
-  $response = array("message" => "Please Provide Your Email");
+  $response = "*Please Provide Your Email";
   echo json_encode($response);
 } catch (InvalidNameException $e){
-  $response = array("message" => "Invalid Name. No Symbols or Numbers");
+  $response = "*Invalid First or Last Name. No Symbols or Numbers";
   echo json_encode($response);
 } catch (WardException $e){
-  $response = array("message" => "Please Select a Ward");
+  $response = "*Please Select a Ward";
   echo json_encode($response);
-} catch(\Stripe\Exception\CardException $e) {
+} 
+ catch(\Stripe\Exception\CardException $e) {
   //Since it's a decline, \Stripe\Exception\CardException will be caught
-  $response = array("message" => $e->getError()->message);
+  $response = $e->getError()->message;
   echo json_encode($response);
 } catch (\Stripe\Exception\RateLimitException $e) {
   // Too many requests made to the API too quickly
-  $response = array("message" => $e->getError()->message);
+  $response = $e->getError()->message;
   echo json_encode($response);
 } catch (\Stripe\Exception\InvalidRequestException $e) {
    // Invalid parameters were supplied to Stripe's API
-  $response = array("message" => $e->getError()->message);
+   $response = $e->getError()->message;
   echo json_encode($response);
 } catch (\Stripe\Exception\AuthenticationException $e) {
    // Authentication with Stripe's API failed
   // (maybe you changed API keys recently)
-  $response = array("message" => $e->getError()->message);
+  $response = $e->getError()->message;
   echo json_encode($response);
 } catch (\Stripe\Exception\ApiConnectionException $e) {
   // Network communication with Stripe failed
-  $response = array("message" => $e->getError()->message);
+  $response = $e->getError()->message;
   echo json_encode($response);
-} catch (\Stripe\Exception\ApiErrorException $e) {
-  /// Display a very generic error to the user, and maybe send
-  // yourself an email
-  $response = array("message" => $e->getError()->message);
-  echo json_encode($response);
-} catch (Exception $e) {
-  // Something else happened, completely unrelated to Stripe
-  $response = array("message" => $e->getError()->message);
-  echo json_encode($response);
-}
+} 
   default:
   break;
 }
 } else {
-  echo array("message" => "An unknown error has occured. Please reload the page and try again.");
+  $response = "An unknown error has occured. Please reload the page and try again.";
+  echo json_encode($response);
 }
-
 
 //code can be used to pass to database
 

@@ -469,13 +469,13 @@ function animate(index, d, tick) {
         var mapWidth = $('#map').width()
         if (mapWidth <= 400) {
             animateMapZoomTo(map, 8);
-            console.log("iPad");
+            // console.log("iPad");
         } else if (mapWidth < 790 && mapWidth > 400) {
             animateMapZoomTo(map, 9);
-            console.log("Phone");
+            // console.log("Phone");
         } else {
             animateMapZoomTo(map, 10);
-            console.log("Desktop");
+            // console.log("Desktop");
         }
 
         return;
@@ -687,34 +687,39 @@ function finaleFirworks() {
 
     var end = Date.now() + (3 * 1000);
 
+    var mapWidth = $('#map').width()
+    if (mapWidth >= 700) {
+        // SIDE CONFETTI EXPLOSIONS
+        var colors = ['#FFC829', '#DA1A00'];
 
-    // SIDE CONFETTI EXPLOSIONS
-    var colors = ['#FFC829', '#DA1A00'];
+        (function frame() {
+            confetti({
+                particleCount: 7,
+                angle: 60,
+                spread: 55,
+                origin: {
+                    x: 0
+                },
+                colors: colors
+            });
+            confetti({
+                particleCount: 7,
+                angle: 120,
+                spread: 55,
+                origin: {
+                    x: 1
+                },
+                colors: colors
+            });
 
-    (function frame() {
-        confetti({
-            particleCount: 7,
-            angle: 60,
-            spread: 55,
-            origin: {
-                x: 0
-            },
-            colors: colors
-        });
-        confetti({
-            particleCount: 7,
-            angle: 120,
-            spread: 55,
-            origin: {
-                x: 1
-            },
-            colors: colors
-        });
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
-    }());
+    }
+
+
 }
 
 /**

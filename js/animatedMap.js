@@ -12,9 +12,12 @@ var startingValue = "";
 var rendererOptions;
 var directionsDisplay;
 var disp;
+var hwcMarker;
+var rmhscoMarker
 
 var startLoc = [];
 var endLoc = [];
+var startVal;
 
 var lastVertex = 1;
 var step = 50; // 5; // metres
@@ -52,7 +55,7 @@ function initMap(wardNum) {
 
     //RMHSCO LOCATION AND MARKER
     var image = 'img/rmhcsco_map_icon.png';
-    var beachMarker = new google.maps.Marker({
+    rmhscoMarker = new google.maps.Marker({
         position: {
             lat: 43.258030,
             lng: -79.922913
@@ -177,6 +180,10 @@ function initMap(wardNum) {
 
     });
 
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+        var zoomLevel = map.getZoom();
+        console.log(zoomLevel)
+    });
 }
 
 /**
@@ -245,7 +252,7 @@ function setWardColours() {
 }
 
 /**
- * 
+ * Sets Ward on Intital Page Load
  * @param {} wardNumber 
  */
 function setWard(wardNumber) {
@@ -304,14 +311,20 @@ function setWard(wardNumber) {
 }
 
 
-// creates the animated marker
+/**
+ * Creates the animated marker
+ * @param {*} latlng 
+ * @param {*} url 
+ * @param {*} width 
+ * @param {*} hieght 
+ */
 function createMarker(latlng, url, width, hieght) {
     var cart = {
         url: 'img/happy-wheels-cart-icon.png',
         size: new google.maps.Size(50, 76) // 50 pixels wide x 76 pixels tall
     }
     // using Marker api, marker is created
-    var marker = new google.maps.Marker({
+    hwcMarker = new google.maps.Marker({
         position: latlng,
         map: map,
         suppressInfoWindows: true,
@@ -319,14 +332,19 @@ function createMarker(latlng, url, width, hieght) {
         zIndex: 10
     });
 
-    return marker;
+    return hwcMarker;
 }
 
-// Using Directions Service find the route between the starting and ending points
+
+/**
+ * Using Directions Service find the route between the starting and ending points
+ * @param {*} map 
+ * @param {*} startingMarker 
+ */
 function setRoutes(map, startingMarker) {
     //map && initialize();
     //var begin = document.getElementById('start');
-    var startVal = startingMarker; // the stating LatLong values
+    startVal = startingMarker; // the stating LatLong values
     var endVal = 'Ronald McDonald House Charities South Central Ontario';
 
     startLoc[0] = startVal;
@@ -464,6 +482,7 @@ function animate(index, d, tick) {
         disp.setDirections({
             routes: []
         });
+
         //Starts Fireworks
         finaleFirworks();
         var mapWidth = $('#map').width()
@@ -485,54 +504,99 @@ function animate(index, d, tick) {
     marker[index].setPosition(p);
     updatePoly(index, d);
 
+    var startValue = startVal.split(",");
+    var speed = startValue[0] - startValue[1];
+    console.log(speed);
 
-    switch (zoomLevel) {
+    switch (speed) {
 
-        case 11:
-            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 10);
+        // Ward 1
+        case 123.15842860000001:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 200);
             break;
-        case 12:
-            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 15);
+            // Ward 2
+        case 123.1246604:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
             break;
-        case 13:
+            // Ward 3
+        case 123.091904:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 70);
+            break;
+            // Ward 4
+        case 123.0461096:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 40);
+            break;
+            // Ward 5
+        case 123.00607360000001:
             timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 20);
             break;
-        case 14:
-            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 50);
+            // Ward 6
+        case 123.0469326:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 40);
             break;
-        case 15:
-            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+            // Ward 7
+        case 123.0820486:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 40);
             break;
-        case 16:
-            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 110);
+            // Ward 8
+        case 123.11285459999999:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 35);
+            break;
+            // Ward 9
+        case 122.96665909999999:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 20);
+            break;
+            // Ward 10
+        case 122.9254306:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 10);
+            break;
+            // Ward 11
+        case 123.0871276:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 20);
+            break;
+            // Ward 12
+        case 123.2590186:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 20);
+            break;
+            // Ward 13
+        case 123.37245959999998:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 25);
+            break;
+            // Ward 14
+        case 123.1524886:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 55);
+            break;
+            // Ward 15
+        case 123.35521589999999:
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 15);
             break;
         default:
-            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 100);
+            timerHandle[index] = setTimeout("animate(" + index + "," + (d + step) + ")", tick || 70);
             break;
 
     }
 
 }
 
-// start marker movement by updating marker position every x milliseconds i.e. tick value
+/**
+ * Start marker movement by updating marker position every x milliseconds i.e.tick value
+ * */
 function startAnimation(index) {
 
     if (timerHandle[index])
         clearTimeout(timerHandle[index]);
     eol[index] = polyLine[index].Distance();
     map.setCenter(polyLine[index].getPath().getAt(0));
-    //DOES THIS EVEN WORK?
-    map.setZoom(11);
-    // console.log("CENTRE" + polyLine[index].getPath().getAt(0))
+    console.log("CENTRE" + polyLine[index].getPath().getAt(0))
 
     poly2[index] = new google.maps.Polyline({
         path: [polyLine[index].getPath().getAt(0)],
         strokeColor: "#FFFF00",
         strokeWeight: 0
     });
-
-    timerHandle[index] = setTimeout("animate(" + index + ",10)", 1000); // Allow time for the initial map display
-
+    // Allow time for the initial map display
+    timerHandle[index] = setTimeout("animate(" + index + ",10)", 100);
+    console.log('In ViewPort.')
 }
 
 /**
@@ -572,11 +636,10 @@ function animateMapZoomTo(map, targetZoom) {
     }
 }
 
-// [-80.24590663846293, 43.32640897129521],
-//     [-79.96460987574329, 43.124957472139506],
 
 /**
  * Creates the canvas for the fireworks
+ * https://github.com/catdad/canvas-confetti
  */
 function createCanvas() {
 
@@ -597,6 +660,7 @@ function createCanvas() {
 
 /**
  * Creates the Iniyial Fireworks background
+ * https://github.com/catdad/canvas-confetti
  */
 function initialFireworks() {
 
@@ -620,7 +684,7 @@ function initialFireworks() {
             return clearInterval(interval);
         }
 
-        var particleCount = 150 * (timeLeft / duration);
+        var particleCount = 50 * (timeLeft / duration);
         // since particles fall down, start a bit higher than random
         confetti(Object.assign({}, defaults, {
             particleCount,
@@ -641,11 +705,12 @@ function initialFireworks() {
 
 /**
  * Creates the fireworks
+ * https://github.com/catdad/canvas-confetti
  */
 function finaleFirworks() {
 
 
-    var count = 200;
+    var count = 100;
     var defaults = {
         origin: {
             y: 0.7
@@ -694,7 +759,7 @@ function finaleFirworks() {
 
         (function frame() {
             confetti({
-                particleCount: 7,
+                particleCount: 2,
                 angle: 60,
                 spread: 55,
                 origin: {
@@ -703,7 +768,7 @@ function finaleFirworks() {
                 colors: colors
             });
             confetti({
-                particleCount: 7,
+                particleCount: 2,
                 angle: 120,
                 spread: 55,
                 origin: {
@@ -737,7 +802,7 @@ function closeInfoWindow() {
 function sidebarClickEvent() {
 
     $("#sidebar-col").on('touchstart touchend mouseover', function () {
-        console.log("touchstart");
+        // console.log("touchstart");
         $(".sidebar-col-grid").css('cursor', 'pointer');
         $(".sidebar-col-grid").click(function () {
 

@@ -132,20 +132,7 @@
                 </ul>
             </div>
             <div id="sidebar-col">
-                <!-- <div id="sidebar-col-grid">
-                    <div class="rank">
-                        <h1>1</h1>
-                    </div>
-                    <div class="ward-name">
-                        <p>Ancaster</p>
-                    </div>
-                    <div class="ward-number">
-                        <p>Ward # 10</p>
-                    </div>
-                    <div class="amount">
-                        <p>$5000.00</p>
-                    </div>
-                </div> -->
+
             </div>
             <div id="map"></div>
         </div>
@@ -420,6 +407,8 @@
     </script>
     <!-- COVE 8 JAVASCRIPT -->
     <script src="js/cove8JS.js"></script>
+    <!-- Canvas Confetti -->
+    <!-- https://github.com/catdad/canvas-confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.2.0/dist/confetti.browser.min.js"></script>
 
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAQhr3pRpEJWWDruahwCMniTkJWx363U1k&sensor=false"></script>
